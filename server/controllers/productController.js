@@ -17,7 +17,16 @@ exports.createProduct = async (req, res) => {
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    // Build the query
+    const queryObj = { ...req.query };
+    const excludedFields = ["page", "sort", "limit", "fields"];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    const query = Product.find(queryObj);
+
+    // Execute the query
+    const products = await query;
+
     res.status(200).json({
       status: "success",
       results: products.length,
@@ -61,6 +70,21 @@ exports.updateProduct = async (req, res) => {
       data: {
         product,
       },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    await Product.findByIdAndDelete(req.params.id);
+    res.status(204).json({
+      status: "success",
+      data: null,
     });
   } catch (err) {
     res.status(400).json({
