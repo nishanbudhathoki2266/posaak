@@ -1,10 +1,11 @@
 import React from "react";
 import Footer from "./Footer";
+import Header from "./Header";
 
 function Layout({ children }) {
   return (
     <div>
-      <h1>Nav</h1>
+      <Header />
       {children}
       <Footer />
     </div>
