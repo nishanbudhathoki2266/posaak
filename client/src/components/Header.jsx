@@ -10,19 +10,28 @@ function Header() {
         <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
           <Link
             href="/"
-            className="mr-5 hover:text-gray-900 font-light uppercase cursor-pointer"
+            className="mr-5 hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
           >
             Men
           </Link>
-          <a className="mr-5 hover:text-gray-900 font-light uppercase cursor-pointer">
+          <Link
+            href="/"
+            className="mr-5 hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+          >
             Women
-          </a>
-          <a className="mr-5 hover:text-gray-900 font-light uppercase cursor-pointer">
+          </Link>
+          <Link
+            href="/"
+            className="mr-5 hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+          >
             Kids
-          </a>
-          <a className="hover:text-gray-900 font-light uppercase cursor-pointer">
+          </Link>
+          <Link
+            href="/"
+            className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+          >
             Accessories
-          </a>
+          </Link>
         </nav>
         <Link href="/">
           <Image
@@ -34,6 +43,18 @@ function Header() {
         </Link>
         <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
           <div className="flex flex-row gap-4">
+            <Link
+              href="/"
+              className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            >
+              Login
+            </Link>
+            <Link
+              href="/"
+              className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            >
+              Register
+            </Link>
             <span className="relative">
               <AiOutlineShoppingCart className="cursor-pointer text-2xl" />
               <p className="text-md bg-orange-600 text-white rounded-full block text-center h-6 w-6 absolute top-[-21px] right-[-12px]">
