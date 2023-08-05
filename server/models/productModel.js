@@ -6,7 +6,12 @@ const productSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "A product must have a name!"],
+      unique: true,
+      trim: true,
+      maxlength: [40, "A product must have less or equal to 40 characters"],
+      minLength: [10, "A product must have at least 10 characters"],
     },
+    slug: String,
     description: {
       type: String,
       required: [true, "A product must have at least a little description!"],
@@ -14,6 +19,13 @@ const productSchema = new mongoose.Schema(
     price: {
       type: Number,
       required: [true, "A product must have a price"],
+    },
+    priceDiscount: {
+      type: Number,
+      default: 0,
+      validate: function (val) {
+        return val < this.price;
+      },
     },
     images: [String],
   },
