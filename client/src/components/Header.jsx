@@ -27,10 +27,10 @@ function Header() {
             Kids
           </Link>
           <Link
-            href="/"
+            href="/products"
             className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
           >
-            Accessories
+            Shop
           </Link>
         </nav>
         <Link href="/">
