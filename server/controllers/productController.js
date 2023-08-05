@@ -1,4 +1,5 @@
 const Product = require("./../models/productModel");
+const APIFeatures = require("./../utils/apiFeatures");
 
 exports.createProduct = async (req, res) => {
   try {
@@ -18,7 +19,7 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     // Execute the query
-    const features = new APIFeatures(Tour.find(), req.query)
+    const features = new APIFeatures(Product.find(), req.query)
       .filter()
       .sort()
       .limitFields()
