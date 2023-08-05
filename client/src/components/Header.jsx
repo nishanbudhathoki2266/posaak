@@ -6,7 +6,7 @@ import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 function Header() {
   return (
     <header className="text-gray-600 body-font divide-y-4">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col sm:flex-row items-center">
+      <div className="container mx-auto flex flex-wrap p-4 flex-col sm:flex-row items-center">
         <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
           <Link
             href="/"
