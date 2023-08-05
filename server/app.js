@@ -1,10 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
 const productRouter = require("./routes/productRoutes");
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
