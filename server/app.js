@@ -1,4 +1,7 @@
 const express = require("express");
+
+const AppError = require("./utils/appError");
+const globalErrorHandler = require("./controllers/errorController");
 const productRouter = require("./routes/productRoutes");
 
 const app = express();
@@ -9,24 +12,15 @@ app.use(express.static(`${__dirname}/public`));
 app.use("/api/v1/products", productRouter);
 
 app.all("*", (req, res, next) => {
-  const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-  err.status = "fail";
-  err.statusCode = 404;
+  //   const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+  //   err.status = "fail";
+  //   err.statusCode = 404;
 
   // Calling next with error skips all the middlewares and goes to error handling middleware
-  next(err);
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 // A centralized error handler
-app.use((err, req, res, next) => {
-  // Internal server error 500 code
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || "error";
-
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-  });
-});
+app.use(globalErrorHandler);
 
 module.exports = app;
