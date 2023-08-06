@@ -11,7 +11,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getAllProducts = catchAsync(async (req, res) => {
+exports.getAllProducts = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Product.find(), req.query)
     .filter()
     .sort()
@@ -28,7 +28,7 @@ exports.getAllProducts = catchAsync(async (req, res) => {
   });
 });
 
-exports.getProduct = catchAsync(async (req, res) => {
+exports.getProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 
   if (!product) {
@@ -43,7 +43,7 @@ exports.getProduct = catchAsync(async (req, res) => {
   });
 });
 
-exports.updateProduct = catchAsync(async (req, res) => {
+exports.updateProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -61,7 +61,7 @@ exports.updateProduct = catchAsync(async (req, res) => {
   });
 });
 
-exports.deleteProduct = catchAsync(async (req, res) => {
+exports.deleteProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findByIdAndDelete(req.params.id);
   if (!product) {
     return next(new AppError("No product found with that ID!", 404));
