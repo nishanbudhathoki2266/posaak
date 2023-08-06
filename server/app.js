@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 
 const AppError = require("./utils/appError");
 const globalErrorHandler = require("./controllers/errorController");
@@ -9,6 +10,14 @@ const userRouter = require("./routes/userRoutes");
 const app = express();
 
 app.use(cors());
+
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: "Too many requests from this IP, Please try again in an hour!",
+});
+
+app.use("/api", limiter);
 
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
