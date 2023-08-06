@@ -21,6 +21,15 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   const token = signToken(newUser._id);
+
+  res.cookie("jwt", token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    // secure: true,
+    httpOnly: true,
+  });
+
   res.status(201).json({
     status: "succcess",
     token,
@@ -50,6 +59,15 @@ exports.login = catchAsync(async (req, res, next) => {
 
   //   3 -> If everthing ok, send token to client
   const token = signToken(user._id);
+
+  res.cookie("jwt", token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    // secure: true,
+    httpOnly: true,
+  });
+
   res.status(200).json({
     status: "succcess",
     token,
@@ -179,6 +197,15 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
   //  If everthing ok, send token to client
   const token = signToken(user._id);
+
+  res.cookie("jwt", token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    // secure: true,
+    httpOnly: true,
+  });
+
   res.status(200).json({
     status: "succcess",
     token,
@@ -200,6 +227,15 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   await user.save();
 
   const token = signToken(user._id);
+
+  res.cookie("jwt", token, {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    // secure: true,
+    httpOnly: true,
+  });
+
   res.status(200).json({
     status: "succcess",
     token,
