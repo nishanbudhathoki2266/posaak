@@ -31,6 +31,17 @@ const productSchema = new mongoose.Schema(
       },
     },
     images: [String],
+    category: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Category",
+    },
+    colors: [
+      {
+        name: String,
+        hexCode: String,
+      },
+    ],
+    sizes: [String],
   },
   { timestamps: true }
 );
