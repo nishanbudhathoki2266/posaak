@@ -51,6 +51,11 @@ productSchema.pre("save", function (next) {
   next();
 });
 
+productSchema.pre(/^find/, function (next) {
+  this.populate({ path: "category", select: "name description" });
+  next();
+});
+
 const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
