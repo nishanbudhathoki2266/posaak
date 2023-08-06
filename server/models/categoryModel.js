@@ -9,7 +9,6 @@ const categorySchema = mongoose.Schema({
     type: String,
     required: [true, "A category must have its description!"],
   },
-  image: String,
 });
 
 const Category = mongoose.model("Category", categorySchema);
