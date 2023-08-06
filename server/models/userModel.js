@@ -55,6 +55,13 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
+userSchema.pre("save", function (next) {
+  if (!this.isModified("password") || this.isNew) return next();
+
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+
 // Creating an instance method for checking if the user input by user and the password in the document are same
 userSchema.methods.correctPassword = async function (
   candidatePassword,
