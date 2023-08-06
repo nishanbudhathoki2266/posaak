@@ -32,6 +32,7 @@ const userSchema = new mongoose.Schema({
       message: "Both the passwords must match!",
     },
   },
+  passwordChangedAt: Date,
 });
 
 // Encryption for password
@@ -52,6 +53,15 @@ userSchema.methods.correctPassword = async function (
   userPassword
 ) {
   return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+userSchema.methods.changedPasswordAfter = function (JWTTimestamp) {
+  if (this.passwordChangedAt) {
+    const changedTimestamp = this.passwordChangedAt.getTime();
+
+    return JWTTimestamp < changedTimestamp;
+  }
+  return false;
 };
 
 const User = mongoose.model("User", userSchema);
