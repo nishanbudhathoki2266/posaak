@@ -25,6 +25,12 @@ router.patch(
 );
 router.delete("/deleteMe", authController.protect, userController.deleteMe);
 
-router.route("/").get(authController.protect, userController.getAllUsers);
+router
+  .route("/")
+  .get(
+    authController.protect,
+    authController.restrictTo("admin"),
+    userController.getAllUsers
+  );
 
 module.exports = router;
