@@ -8,7 +8,7 @@ function Page({
 }) {
   return (
     <section className="text-gray-600 px-10 body-font">
-      <div className="flex flex-wrap m-4">
+      <div className="flex flex-wrap m-4 gap-6 justify-center items-center">
         {products?.map((product) => (
           <ProductCard key={product._id} product={product} />
         ))}

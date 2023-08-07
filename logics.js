@@ -28,4 +28,16 @@ const testArr = ["a", undefined];
 
 const newArr = testArr.filter((item) => item !== undefined);
 
-console.log(newArr);
+// console.log(newArr);
+
+const fetchUsers = async () => {
+  try {
+    const res = await fetch("http://localhost:8080/api/v1/products");
+    const data = await res.json();
+    console.log(data.data.products);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+fetchUsers();
