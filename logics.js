@@ -41,3 +41,7 @@ const fetchUsers = async () => {
 };
 
 // fetchUsers();
+
+const obj = {
+  username: "ram",
+};
