@@ -21,7 +21,6 @@
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
     "react-responsive-carousel": "^3.2.23",
-    "redux-persist": "^6.0.0",
     "reduxt": "^0.0.5",
     "tailwindcss": "3.3.3",
     "yup": "^1.2.0"

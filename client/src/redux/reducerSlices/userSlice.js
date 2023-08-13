@@ -8,9 +8,7 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUserDetails: (state, actions) => {
-      return { ...state, isLoggedIn: true };
-    },
+    setUserDetails: (state, actions) => {},
   },
 });
 export const { setUserDetails } = userSlice.actions;
