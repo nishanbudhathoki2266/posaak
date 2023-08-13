@@ -19,12 +19,16 @@ function ProductDetail({ product }) {
               width={350}
               height={350}
             />
-            <div className="flex gap-2 justify-center">
+            <div className="flex gap-4 justify-center">
               {images.map((image, i) => (
                 <Image
                   key={i}
                   alt={`Image ${i + 1} of ${product.name}`}
-                  className="h-20 w-20 object-cover object-center rounded cursor-pointer"
+                  className={`h-20 w-20 object-cover object-center rounded cursor-pointer ${
+                    activeImageIndex === i
+                      ? "ring-[3px] ring-offset-2 ring-[#67595E]"
+                      : ""
+                  }`}
                   src={`http://localhost:8080/img/products/${image}`}
                   width={350}
                   height={350}
@@ -50,10 +54,15 @@ function ProductDetail({ product }) {
             </p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
               <div className="flex">
-                <span className="mr-3">Color</span>
-                <button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-                <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-                <button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
+                {product.colors.map((color) => {
+                  const hexCode = color.hexCode;
+                  return (
+                    <button
+                      key={color.name}
+                      className={`border-2 border-[${hexCode}] ml-1 bg-[${hexCode}] rounded-full w-6 h-6 focus:outline-none`}
+                    ></button>
+                  );
+                })}
               </div>
               <div className="flex ml-6 items-center">
                 <span className="mr-3">Size</span>
@@ -83,7 +92,7 @@ function ProductDetail({ product }) {
             </div>
             <div className="flex">
               <span className="title-font font-medium text-2xl text-gray-900">
-                ${product.price}
+                ${product.price - product.priceDiscount}
               </span>
               <Button className="ml-auto" variant="primary">
                 Add to Cart
