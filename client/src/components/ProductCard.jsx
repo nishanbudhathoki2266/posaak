@@ -1,31 +1,30 @@
 import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-
-const ProductCard = ({ product }) => {
+function ProductCard() {
   return (
-    <div className="bg-neutral-50 sm:w-1/2 lg:w-1/4 p-4 cursor-pointer hover:scale-105 transition-all shadow-md rounded-lg">
-      <Image
-        className="rounded w-full object-cover object-center mb-6"
-        height={800}
-        width={800}
-        src={`http://localhost:8080/img/products/${product.images[0]}`}
-        alt={`Image of ${product.name}`}
-      />
-      <h3 className="tracking-widest text-black-500 flex justify-between items-center text-lg font-semibold title-font">
-        {product.name.toUpperCase()}{" "}
-        <span class="bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-3.5 py-1.5 rounded dark:bg-gray-700 dark:text-gray-300">
-          {product.category.name.toUpperCase()}
-        </span>
-      </h3>
-      <h2 className="text-md text-gray-900 font-medium title-font mb-2">
-        ${product.price}
-      </h2>
-      <p className="leading-relaxed text-base">
-        {product.description.slice(0, 40) + "..."}
-      </p>
+    <div className="lg:w-1/4 md:w-1/2 p-4 w-full hover:scale-[1.02] transition-all ease-out cursor-pointer">
+      <div className="block relative h-60 rounded overflow-hidden">
+        <Image
+          alt="ecommerce"
+          className="object-cover object-center w-full h-full block"
+          src="/hero.jpg"
+          quality={90}
+          fill
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </div>
+      <div className="mt-4">
+        <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
+          CATEGORY
+        </h3>
+        <h2 className="text-gray-900 title-font text-lg font-medium">
+          The Catalyzer
+        </h2>
+        <p className="mt-1">$16.00</p>
+      </div>
     </div>
   );
-};
+}
 
 export default ProductCard;
