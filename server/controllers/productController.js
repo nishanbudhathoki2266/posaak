@@ -68,6 +68,18 @@ exports.getAllProducts = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getFeaturedProducts = catchAsync(async (req, res, next) => {
+  const featuredProducts = await Product.find({ isFeatured: true });
+
+  res.status(200).json({
+    status: "success",
+    results: featuredProducts.length,
+    data: {
+      featuredProducts,
+    },
+  });
+});
+
 exports.getProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findById(req.params.id);
 

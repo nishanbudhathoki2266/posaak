@@ -14,6 +14,8 @@ router
     productController.createProduct
   );
 
+router.get("/featured", productController.getFeaturedProducts);
+
 router
   .route("/:id")
   .get(productController.getProduct)
