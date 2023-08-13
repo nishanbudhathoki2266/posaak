@@ -16,7 +16,21 @@ const getFeaturedProducts = async () => {
 
     const data = await response.json();
 
-    console.log(data.data.featuredProducts);
+    return data;
+  } catch (err) {
+    throw new Error("Something went wrong!");
+  }
+};
+
+const getAllProducts = async () => {
+  try {
+    const response = await fetch("http://127.0.0.1:8080/api/v1/products");
+
+    if (!response.ok) {
+      throw new Error("Something went wrong!", response.statusText);
+    }
+
+    const data = await response.json();
 
     return data;
   } catch (err) {
@@ -40,4 +54,4 @@ const getProductById = async (id) => {
   }
 };
 
-export { getFeaturedProducts, getProductById };
+export { getFeaturedProducts, getProductById, getAllProducts };

@@ -41,3 +41,54 @@ const fetchUsers = async () => {
 };
 
 // fetchUsers();
+
+const subjectAnalysis = [
+  {
+    topic: "Linear Equation",
+    testGraph: {},
+  },
+  {
+    topic: "Functions",
+    testGraph: {},
+  },
+  {
+    topic: "Graphs",
+    testGraph: {},
+  },
+  {
+    topic: "Linear Inequalities",
+    testGraph: {
+      correct: "0.00",
+      incorrect: "100.00",
+      unanswered: "0.00",
+      accuracy: "0.00",
+    },
+  },
+  {
+    topic: "Sequence",
+    testGraph: {
+      correct: "60.00",
+      incorrect: "40.00",
+      unanswered: "0.00",
+      accuracy: "60.00",
+    },
+  },
+];
+
+const emptyAnalysisArr = subjectAnalysis.filter((analysis) => {
+  if (!analysis.testGraph.incorrect) return true;
+  else return false;
+});
+
+const analysisArr = subjectAnalysis
+  .filter((analysis) => {
+    if (analysis.testGraph.incorrect) return true;
+    else return false;
+  })
+  .sort(function (a, b) {
+    return b.testGraph.incorrect - a.testGraph.incorrect;
+  });
+
+const finalAnalysisArr = [...analysisArr, ...emptyAnalysisArr];
+
+console.log(finalAnalysisArr);

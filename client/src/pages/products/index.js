@@ -1,18 +1,15 @@
+import FeaturedProducts from "@/components/FeaturedProducts";
 import Heading from "@/components/Heading";
 import ProductCard from "@/components/ProductCard";
-import React from "react";
+import { getAllProducts } from "@/utils/axios";
 
-function Page({
-  data: {
-    data: { products },
-  },
-}) {
+function AllProducts({ products }) {
   return (
-    <section className="text-gray-600 px-5 py-14 body-font">
+    <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
       <div className="container px-5 py-14 mx-auto">
-        <div className="flex flex-wrap -m-4">
-          {products?.map((product) => (
+        <div className="flex justify-center flex-wrap -m-4">
+          {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>
@@ -21,13 +18,14 @@ function Page({
   );
 }
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`http://localhost:8080/api/v1/products`);
-  const data = await res.json();
+export async function getStaticProps() {
+  const products = await getAllProducts();
 
-  // Pass data to the page via props
-  return { props: { data } };
+  return {
+    props: {
+      products: products.data.products,
+    },
+  };
 }
 
-export default Page;
+export default AllProducts;

@@ -3,9 +3,9 @@ import { getFeaturedProducts, getProductById } from "@/utils/axios";
 
 function ProductDetailPage({ product }) {
   // In case fallback is set to true here
-  // if (!product) {
-  //   return <p>Loading...</p>;
-  // }
+  if (!product) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
