@@ -1,17 +1,18 @@
 import ProductDetail from "@/components/ProductDetail";
 import { getFeaturedProducts, getProductById } from "@/utils/axios";
+import NotFoundPage from "../404";
 
 function ProductDetailPage({ product }) {
   // In case fallback is set to true here
-  if (!product) {
-    return <p>Loading...</p>;
+  if (product) {
+    return (
+      <div>
+        <ProductDetail product={product} />
+      </div>
+    );
+  } else {
+    return <p>No product with that ID</p>;
   }
-
-  return (
-    <div>
-      <ProductDetail product={product} />
-    </div>
-  );
 }
 
 export async function getStaticProps(context) {
@@ -36,7 +37,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 }
 

@@ -22,6 +22,7 @@ function ProductDetail({ product }) {
             <div className="flex gap-2 justify-center">
               {images.map((image, i) => (
                 <Image
+                  key={i}
                   alt={`Image ${i + 1} of ${product.name}`}
                   className="h-20 w-20 object-cover object-center rounded cursor-pointer"
                   src={`http://localhost:8080/img/products/${image}`}
