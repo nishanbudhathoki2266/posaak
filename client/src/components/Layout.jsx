@@ -1,14 +1,26 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Footer from "./Footer";
 import Navigation from "./Navigation";
 
+import { Open_Sans } from "next/font/google";
+
+const archivo = Open_Sans({
+  subsets: ["latin"],
+  variable: "--font-archivo",
+});
+
 function Layout({ children }) {
   return (
-    <div>
+    <Fragment>
+      <style jsx global>{`
+        html {
+          font-family: ${archivo.style.fontFamily};
+        }
+      `}</style>
       <Navigation />
-      {children}
+      <main>{children}</main>
       <Footer />
-    </div>
+    </Fragment>
   );
 }
 

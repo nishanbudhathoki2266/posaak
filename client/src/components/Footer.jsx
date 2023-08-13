@@ -2,11 +2,11 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+    <footer className="text-gray-600">
+      <div className="container py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
+            <h2 className="font-bold text-gray-900 tracking-widest text-sm mb-3">
               CATEGORIES
             </h2>
             <nav className="list-none mb-10">
@@ -33,7 +33,7 @@ function Footer() {
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
+            <h2 className="font-bold text-gray-900 tracking-widest text-sm mb-3">
               QUICK LINKS
             </h2>
             <nav className="list-none mb-10">
@@ -56,29 +56,25 @@ function Footer() {
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
+            <h2 className="font-bold text-gray-900 tracking-widest text-sm mb-3">
               ADDRESS
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <p className="text-gray-600 hover:text-gray-800">
+                <a className="text-gray-600 hover:text-gray-800">
                   posaak@gmail.com
-                </p>
+                </a>
               </li>
               <li>
-                <p className="text-gray-600 hover:text-gray-800">
-                  Itahari-2, Sunsari
-                </p>
+                <a className="text-gray-600 hover:text-gray-800">Itahari</a>
               </li>
               <li>
-                <p className="text-gray-600 hover:text-gray-800">
-                  9779810479027
-                </p>
+                <a className="text-gray-600 hover:text-gray-800">9810479027</a>
               </li>
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
+            <h2 className="font-bold text-gray-900 tracking-widest text-sm mb-3">
               SAILENT FEATURES
             </h2>
             <nav className="list-none mb-10">
@@ -115,10 +111,7 @@ function Footer() {
             </a>
           </p>
           <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
-            <a className="text-gray-500"></a>
-            <a className="ml-3 text-gray-500"></a>
-            <a className="ml-3 text-gray-500"></a>
-            <a className="ml-3 text-gray-500"></a>
+            Designed and Developed by Nishan Budhathoki
           </span>
         </div>
       </div>

@@ -2,10 +2,10 @@ import Image from "next/image";
 
 function Hero() {
   return (
-    <section className="text-gray-600 px-8">
-      <div className="container mx-auto flex px-5 py-32 md:flex-row flex-col items-center">
+    <section className="text-gray-600 relative top-20">
+      <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
         <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
+          <h1 className="title-font sm:text-4xl text-3xl mb-4 font-semibold text-gray-900">
             Elevate Your Style
             <br className="hidden lg:inline-block" />
             Your Ultimate Clothing Store
