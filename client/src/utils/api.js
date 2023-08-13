@@ -1,9 +1,3 @@
-import axios from "axios";
-
-const API = axios.create({
-  baseURL: "http://127.0.0.1:8080/api/v1",
-});
-
 const getFeaturedProducts = async () => {
   try {
     const response = await fetch(
@@ -54,4 +48,25 @@ const getProductById = async (id) => {
   }
 };
 
-export { getFeaturedProducts, getProductById, getAllProducts };
+const getAllCategories = async () => {
+  try {
+    const response = await fetch("http://127.0.0.1:8080/api/v1/categories");
+
+    if (!response.ok) {
+      throw new Error("Something went wrong!");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    throw new Error("Something went wrong!");
+  }
+};
+
+export {
+  getFeaturedProducts,
+  getProductById,
+  getAllProducts,
+  getAllCategories,
+};

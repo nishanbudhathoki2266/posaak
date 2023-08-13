@@ -1,5 +1,5 @@
 import ProductDetail from "@/components/ProductDetail";
-import { getFeaturedProducts, getProductById } from "@/utils/axios";
+import { getFeaturedProducts, getProductById } from "@/utils/api";
 import NotFoundPage from "../404";
 
 function ProductDetailPage({ product }) {

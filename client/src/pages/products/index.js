@@ -1,7 +1,6 @@
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Heading from "@/components/Heading";
 import ProductCard from "@/components/ProductCard";
-import { getAllProducts } from "@/utils/axios";
 
 function AllProducts({ products }) {
   return (

@@ -94,9 +94,9 @@ function ProductDetail({ product }) {
               <span className="title-font font-medium text-2xl text-gray-900">
                 ${product.price - product.priceDiscount}
               </span>
-              <Button className="ml-auto" variant="primary">
-                Add to Cart
-              </Button>
+              <div className="ml-auto">
+                <Button variant="primary">Add to Cart</Button>
+              </div>
             </div>
           </div>
         </div>
