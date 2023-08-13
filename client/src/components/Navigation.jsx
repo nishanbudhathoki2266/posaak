@@ -5,8 +5,8 @@ import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 
 function Navigation() {
   return (
-    <header className="text-black-600 border-b-[1px] border-b-black fixed z-50 top-0 left-0 w-full bg-white-900">
-      <div className="container mx-auto flex flex-wrap p-4 flex-col sm:flex-row items-center">
+    <header className="text-black-600 border-b-[1px] border-b-black">
+      <div className="container mx-auto flex flex-wrap p-2 flex-col sm:flex-row items-center">
         <nav className="flex lg:w-2/5 flex-wrap items-center text-sm md:ml-auto">
           <Link
             href="/"
