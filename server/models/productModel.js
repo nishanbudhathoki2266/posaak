@@ -30,6 +30,7 @@ const productSchema = new mongoose.Schema(
         message: "Discount must be lesser than the price!",
       },
     },
+    isFeatured: { type: Boolean, default: false },
     images: [String],
     category: {
       type: mongoose.Schema.ObjectId,
