@@ -20,9 +20,24 @@ const getFeaturedProducts = async () => {
 
     return data;
   } catch (err) {
-    throw new Error(err);
+    throw new Error("Something went wrong!");
   }
 };
 
-getFeaturedProducts();
-export { getFeaturedProducts };
+const getProductById = async (id) => {
+  try {
+    const response = await fetch(`http://127.0.0.1:8080/api/v1/products/${id}`);
+
+    if (!response.ok) {
+      throw new Error("Something went wrong!", response.status);
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    throw new Error("Something went wrong");
+  }
+};
+
+export { getFeaturedProducts, getProductById };

@@ -12,8 +12,6 @@ function Button({ variant, children, onClick, className }) {
       compoundClasses + " " + baseClassName + " ml-4 bg-gray-100 text-gray-700";
   }
 
-  console.log(compoundClasses);
-
   return (
     <button onClick={onClick} className={compoundClasses}>
       {children}
