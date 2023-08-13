@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import { getFeaturedProducts } from "@/utils/axios";
 import { Fragment } from "react";
 
-export default function Home({ featuredProducts }) {
+export default function HomePage({ featuredProducts }) {
   return (
     <Fragment>
       <Hero />

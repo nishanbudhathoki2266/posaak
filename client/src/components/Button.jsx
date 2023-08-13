@@ -1,16 +1,21 @@
-function Button({ variant, children, onClick }) {
+function Button({ variant, children, onClick, className }) {
   const baseClassName =
     "inline-flex border-0 py-2 px-6 focus:outline-none rounded text-lg";
-  let className;
+  let compoundClasses = className;
   if (variant === "primary") {
-    className = baseClassName + " bg-[#67595E] text-white";
+    compoundClasses =
+      compoundClasses + " " + baseClassName + " bg-[#67595E] text-white";
   }
 
   if (variant === "secondary") {
-    className = baseClassName + " ml-4 bg-gray-100 text-gray-700";
+    compoundClasses =
+      compoundClasses + " " + baseClassName + " ml-4 bg-gray-100 text-gray-700";
   }
+
+  console.log(compoundClasses);
+
   return (
-    <button onClick={onClick} className={className}>
+    <button onClick={onClick} className={compoundClasses}>
       {children}
     </button>
   );
