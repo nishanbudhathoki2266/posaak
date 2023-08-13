@@ -1,14 +1,13 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import ImageSlider from "@/components/ImageSlider";
+import { Rubik } from "next/font/google";
 import ShopByCategory from "@/components/ShopByCategory";
+import Hero from "@/components/Hero";
 
-const inter = Inter({ subsets: ["latin"] });
+const rubik = Rubik({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className={`${inter.className}`}>
-      <ImageSlider />
+    <main className={`${rubik.className}`}>
+      <Hero />
       <ShopByCategory />
     </main>
   );

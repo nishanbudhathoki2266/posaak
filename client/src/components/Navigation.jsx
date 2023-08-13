@@ -3,11 +3,11 @@ import Link from "next/link";
 import React from "react";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 
-function Header() {
+function Navigation() {
   return (
-    <header className="text-gray-600 body-font divide-y-4">
-      <div className="container mx-auto flex flex-wrap p-4 flex-col sm:flex-row items-center">
-        <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+    <header className="text-gray-600 border-b-2 fixed top-0 left-0 w-full bg-zinc-50">
+      <div className="container mx-auto flex flex-wrap p-2 flex-col sm:flex-row items-center">
+        <nav className="flex lg:w-2/5 flex-wrap items-center text-sm md:ml-auto">
           <Link
             href="/"
             className="mr-5 hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
@@ -37,12 +37,12 @@ function Header() {
           <Image
             src="/logo.png"
             width={200}
-            height={200}
+            height={150}
             alt="Logo of Posaak"
           />
         </Link>
         <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-          <div className="flex flex-row gap-4">
+          <div className="flex flex-row gap-4 text-sm">
             <Link
               href="/"
               className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
@@ -69,4 +69,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Navigation;

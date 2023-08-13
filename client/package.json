@@ -18,7 +18,6 @@
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
-    "react-responsive-carousel": "^3.2.23",
     "reduxt": "^0.0.5",
     "yup": "^1.2.0"
   },
