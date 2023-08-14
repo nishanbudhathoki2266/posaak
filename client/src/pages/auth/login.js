@@ -6,8 +6,28 @@ import toast, { Toaster } from "react-hot-toast";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import FormError from "@/components/FormError";
+import { login } from "@/utils/api";
 
 function LoginPage() {
+  async function handleLogin(values) {
+    const response = await login({
+      email: values.email,
+      password: values.password,
+    });
+
+    if (response.status === "success") {
+      toast.success("Login successful!", {
+        position: "top-right",
+        className: "h-16 w-96",
+      });
+    } else {
+      toast.error(response.message, {
+        position: "top-right",
+        className: "h-16 w-96",
+      });
+    }
+  }
+
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
       .email("Please enter a valid email")
@@ -22,11 +42,8 @@ function LoginPage() {
       password: "",
     },
     validationSchema: LoginSchema,
-    onSubmit: (values, { resetForm }) => {
-      toast.success("Here is your toast.", {
-        position: "top-right",
-        className: "h-16 w-52",
-      });
+    onSubmit: async (values, { resetForm }) => {
+      handleLogin(values);
       resetForm();
     },
   });

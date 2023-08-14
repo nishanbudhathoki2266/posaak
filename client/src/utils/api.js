@@ -1,8 +1,7 @@
 const getFeaturedProducts = async () => {
+  let response;
   try {
-    const response = await fetch(
-      "http://127.0.0.1:8080/api/v1/products/featured"
-    );
+    response = await fetch("http://127.0.0.1:8080/api/v1/products/featured");
 
     if (!response.ok) {
       throw new Error("Something went wrong!", response.statusText);
@@ -18,8 +17,9 @@ const getFeaturedProducts = async () => {
 };
 
 const getAllProducts = async () => {
+  let response;
   try {
-    const response = await fetch("http://127.0.0.1:8080/api/v1/products");
+    response = await fetch("http://127.0.0.1:8080/api/v1/products");
 
     if (!response.ok) {
       throw new Error("Something went wrong!", response.statusText);
@@ -35,8 +35,9 @@ const getAllProducts = async () => {
 };
 
 const getProductById = async (id) => {
+  let response;
   try {
-    const response = await fetch(`http://127.0.0.1:8080/api/v1/products/${id}`);
+    response = await fetch(`http://127.0.0.1:8080/api/v1/products/${id}`);
 
     if (!response.ok) {
       throw new Error("Something went wrong!", response.status);
@@ -52,8 +53,9 @@ const getProductById = async (id) => {
 };
 
 const getAllCategories = async () => {
+  let response;
   try {
-    const response = await fetch("http://127.0.0.1:8080/api/v1/categories");
+    response = await fetch("http://127.0.0.1:8080/api/v1/categories");
 
     if (!response.ok) {
       throw new Error("Something went wrong!");
@@ -68,9 +70,24 @@ const getAllCategories = async () => {
   }
 };
 
+const login = async (credentials) => {
+  const response = await fetch("http://127.0.0.1:8080/api/v1/users/login", {
+    method: "POST",
+    body: JSON.stringify(credentials),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+
+  return data;
+};
+
 export {
   getFeaturedProducts,
   getProductById,
   getAllProducts,
   getAllCategories,
+  login,
 };
