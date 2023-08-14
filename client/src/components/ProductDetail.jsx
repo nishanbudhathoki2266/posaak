@@ -58,8 +58,9 @@ function ProductDetail({ product }) {
                   const hexCode = color.hexCode;
                   return (
                     <button
+                      style={{ backgroundColor: hexCode }}
                       key={color.name}
-                      className={`border-2 border-[${hexCode}] ml-1 bg-[${hexCode}] rounded-full w-6 h-6 focus:outline-none`}
+                      className={`border-2 border-gray-300 ml-1 rounded-full w-6 h-6 focus:outline-none`}
                     ></button>
                   );
                 })}
