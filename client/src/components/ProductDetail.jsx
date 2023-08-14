@@ -6,6 +6,7 @@ function ProductDetail({ product }) {
   const images = product.images;
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [activeColor, setActiveColor] = useState();
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -53,15 +54,20 @@ function ProductDetail({ product }) {
               carry +1 seitan poutine tumeric.
             </p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-              <div className="flex">
-                {product.colors.map((color) => {
+              <div className="flex gap-[1px]">
+                {product.colors.map((color, i) => {
                   const hexCode = color.hexCode;
                   return (
                     <button
+                      onClick={() => setActiveColor(i)}
                       style={{ backgroundColor: hexCode }}
                       key={color.name}
-                      className={`border-2 border-gray-300 ml-1 rounded-full w-6 h-6 focus:outline-none`}
-                    ></button>
+                      className={`border-2 ${
+                        activeColor === i ? "ring-2" : ""
+                      } ring-[#67595E] ml-1 rounded-full w-6 h-6 focus:outline-none`}
+                    >
+                      {" "}
+                    </button>
                   );
                 })}
               </div>
