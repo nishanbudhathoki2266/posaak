@@ -21,6 +21,8 @@ function AllProducts({ products }) {
 export async function getStaticProps() {
   const products = await getAllProducts();
 
+  console.log(products);
+
   return {
     props: {
       products: products.data.products,

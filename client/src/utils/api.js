@@ -12,6 +12,7 @@ const getFeaturedProducts = async () => {
 
     return data;
   } catch (err) {
+    console.log(err.message);
     throw new Error("Something went wrong!");
   }
 };
@@ -28,6 +29,7 @@ const getAllProducts = async () => {
 
     return data;
   } catch (err) {
+    console.log(err.message);
     throw new Error("Something went wrong!");
   }
 };
@@ -44,6 +46,7 @@ const getProductById = async (id) => {
 
     return data;
   } catch (err) {
+    console.log(err.message);
     throw new Error("Something went wrong");
   }
 };
@@ -60,6 +63,7 @@ const getAllCategories = async () => {
 
     return data;
   } catch (err) {
+    console.log(err.message);
     throw new Error("Something went wrong!");
   }
 };
