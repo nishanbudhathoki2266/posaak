@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
+import FormError from "@/components/FormError";
 
 function LoginPage() {
   const LoginSchema = Yup.object().shape({
@@ -45,9 +46,9 @@ function LoginPage() {
               value={formik.values.email}
               onChange={formik.handleChange}
             />
-            <p className="text-red-900">
+            <FormError>
               {formik.errors.email ? formik.errors.email : ""}
-            </p>
+            </FormError>
           </div>
           <div className="relative mb-4">
             <label
@@ -64,9 +65,9 @@ function LoginPage() {
               value={formik.values.password}
               onChange={formik.handleChange}
             />
-            <p className="text-red-900">
+            <FormError>
               {formik.errors.password ? formik.errors.password : ""}
-            </p>
+            </FormError>
           </div>
           <Button
             variant="primary"

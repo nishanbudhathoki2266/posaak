@@ -1,20 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
-  userDetails: {},
   isLoggedIn: false,
 };
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUserDetails: (state, action) => {
-      state.userDetails = action.payload;
+    setDetails: (state, action) => {
       state.isLoggedIn = true;
+    },
+    logOut: (state) => {
+      state.isLoggedIn = false;
     },
   },
 });
-export const { setUserDetails } = userSlice.actions;
+export const { setDetails } = userSlice.actions;
 export default userSlice.reducer;
 
 export const getIsLoggedIn = (state) => state.user.isLoggedIn;
