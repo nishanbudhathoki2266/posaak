@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import FormError from "@/components/FormError";
 import { login } from "@/utils/api";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   async function handleLogin(values) {
     setIsLoading(true);
@@ -18,18 +20,15 @@ function LoginPage() {
       email: values.email,
       password: values.password,
     });
-    setIsLoading(false);
+
     if (response.status === "success") {
-      toast.success("Login successful!", {
-        position: "top-right",
-        className: "h-16 w-96",
-      });
+      resetForm();
+      router.push("/");
+      toast.success("Login successful!");
     } else {
-      toast.error(response.message, {
-        position: "top-right",
-        className: "h-16 w-96",
-      });
+      toast.error(response.message);
     }
+    setIsLoading(false);
   }
 
   const LoginSchema = Yup.object().shape({
@@ -40,13 +39,6 @@ function LoginPage() {
     password: Yup.string().required("Password is required"),
   });
 
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email: "",
-  //     password: "",
-  //   },
-  //   validationSchema: LoginSchema,
-  // });
   return (
     <section className="text-gray-600 h-[70vh] flex items-center justify-center p-5">
       <div className="bg-white flex flex-col mx-auto md:w-3/4 lg:w-1/2 w-full p-8">
@@ -59,7 +51,6 @@ function LoginPage() {
           validationSchema={LoginSchema}
           onSubmit={async (values, { resetForm }) => {
             handleLogin(values);
-            resetForm();
           }}
         >
           {({ errors, touched }) => (
@@ -107,7 +98,6 @@ function LoginPage() {
               >
                 Login
               </Button>
-              <Toaster />
             </Form>
           )}
         </Formik>

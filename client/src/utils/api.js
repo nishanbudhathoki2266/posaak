@@ -1,73 +1,53 @@
 const getFeaturedProducts = async () => {
-  let response;
-  try {
-    response = await fetch("http://127.0.0.1:8080/api/v1/products/featured");
+  const response = await fetch(
+    "http://127.0.0.1:8080/api/v1/products/featured"
+  );
 
-    if (!response.ok) {
-      throw new Error("Something went wrong!", response.statusText);
-    }
+  const data = await response.json();
 
-    const data = await response.json();
-
-    return data;
-  } catch (err) {
-    console.log(err.message);
-    throw new Error("Something went wrong!");
+  if (!data.status === "success") {
+    console.log(data.message);
+    throw new Error(data.message);
   }
+
+  return data;
 };
 
 const getAllProducts = async () => {
-  let response;
-  try {
-    response = await fetch("http://127.0.0.1:8080/api/v1/products");
+  const response = await fetch("http://127.0.0.1:8080/api/v1/products");
 
-    if (!response.ok) {
-      throw new Error("Something went wrong!", response.statusText);
-    }
+  const data = await response.json();
 
-    const data = await response.json();
-
-    return data;
-  } catch (err) {
-    console.log(err.message);
-    throw new Error("Something went wrong!");
+  if (!data.status === "success") {
+    throw new Error(data.message);
   }
+
+  return data;
 };
 
 const getProductById = async (id) => {
-  let response;
-  try {
-    response = await fetch(`http://127.0.0.1:8080/api/v1/products/${id}`);
+  const response = await fetch(`http://127.0.0.1:8080/api/v1/products/${id}`);
 
-    if (!response.ok) {
-      throw new Error("Something went wrong!", response.status);
-    }
+  const data = await response.json();
 
-    const data = await response.json();
-
-    return data;
-  } catch (err) {
-    console.log(err.message);
-    throw new Error("Something went wrong");
+  if (!data.status === "success") {
+    console.log(data.message);
+    throw new Error(data.message);
   }
+
+  return data;
 };
 
 const getAllCategories = async () => {
-  let response;
-  try {
-    response = await fetch("http://127.0.0.1:8080/api/v1/categories");
+  const response = await fetch("http://127.0.0.1:8080/api/v1/categories");
 
-    if (!response.ok) {
-      throw new Error("Something went wrong!");
-    }
+  const data = await response.json();
 
-    const data = await response.json();
-
-    return data;
-  } catch (err) {
-    console.log(err.message);
-    throw new Error("Something went wrong!");
+  if (!data.status === "success") {
+    throw new Error(data.message);
   }
+
+  return data;
 };
 
 const login = async (credentials) => {
@@ -80,6 +60,10 @@ const login = async (credentials) => {
   });
 
   const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
 
   return data;
 };
