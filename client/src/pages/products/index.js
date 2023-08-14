@@ -4,6 +4,8 @@ import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/utils/api";
 
 function AllProducts({ products }) {
+  if (!products) return <Heading>Loading ...</Heading>;
+
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
@@ -20,8 +22,6 @@ function AllProducts({ products }) {
 
 export async function getStaticProps() {
   const products = await getAllProducts();
-
-  console.log(products);
 
   return {
     props: {

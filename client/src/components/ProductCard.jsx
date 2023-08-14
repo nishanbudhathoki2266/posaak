@@ -10,6 +10,7 @@ function ProductCard({ product }) {
           className="object-cover object-center w-full h-full block hover:scale-[1.10] transition-all duration-500 ease-out"
           src={`http://localhost:8080/img/products/${product.images[0]}`}
           width={300}
+          quality={100}
           height={300}
         />
       </div>

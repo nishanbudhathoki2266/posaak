@@ -1,9 +1,12 @@
+import Heading from "@/components/Heading";
 import ProductDetail from "@/components/ProductDetail";
 import { getFeaturedProducts, getProductById } from "@/utils/api";
 
 function ProductDetailPage({ product }) {
   // In case fallback is set to true here
-  if (!product) return <p>Loading...</p>;
+  if (!product) {
+    return <Heading position="center">Loading..</Heading>;
+  }
   return (
     <div>
       <ProductDetail product={product} />
@@ -16,11 +19,16 @@ export async function getStaticProps(context) {
 
   const product = await getProductById(productId);
 
+  console.log(product);
+
+  const notFound = product ? false : true;
+
   return {
     props: {
       product: product.data.product,
     },
     revalidate: 10,
+    notFound,
   };
 }
 
@@ -33,7 +41,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 

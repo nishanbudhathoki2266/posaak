@@ -24,6 +24,7 @@ function Hero() {
           <Image
             className="object-cover object-center rounded"
             alt="hero"
+            priority={true}
             src="/hero.jpg"
             height={500}
             width={500}

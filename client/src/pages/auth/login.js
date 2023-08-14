@@ -11,7 +11,7 @@ function LoginPage() {
           Access your personal shopping experience 🛒
         </p>
         <div className="relative mb-4">
-          <label for="name" className="leading-7 text-sm text-gray-600">
+          <label htmlFor="name" className="leading-7 text-sm text-gray-600">
             Email
           </label>
           <input
@@ -22,7 +22,7 @@ function LoginPage() {
           />
         </div>
         <div className="relative mb-4">
-          <label for="password" className="leading-7 text-sm text-gray-600">
+          <label htmlFor="password" className="leading-7 text-sm text-gray-600">
             Password
           </label>
           <input

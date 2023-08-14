@@ -1,9 +1,9 @@
 function Heading({ children, position = "" }) {
   return (
     <h1
-      className={`sm:text-4xl ${
-        position === "center" ? "text-center" : ""
-      } text-3xl mb-4 font-bold text-gray-900`}
+      className={`sm:text-3xl ${
+        position === "center" ? "text-center " : ""
+      } text-2xl mb-4 font-bold text-gray-900`}
     >
       {children}
     </h1>
