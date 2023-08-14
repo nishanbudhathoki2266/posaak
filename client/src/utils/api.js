@@ -6,7 +6,6 @@ const getFeaturedProducts = async () => {
   const data = await response.json();
 
   if (!data.status === "success") {
-    console.log(data.message);
     throw new Error(data.message);
   }
 

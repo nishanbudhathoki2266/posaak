@@ -1,14 +1,20 @@
-import { getIsLoggedIn } from "@/redux/reducerSlices/userSlice";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import React, { Fragment, useState } from "react";
+import { toast } from "react-hot-toast";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { getIsLoggedIn, logOut } from "@/redux/reducerSlices/userSlice";
 
 function Navigation() {
+  const [showProfileSettings, setShowProfieSettings] = useState(false);
+
+  const dispatch = useDispatch();
   const router = useRouter();
   const isLoggedIn = useSelector(getIsLoggedIn);
+
+  useState();
   return (
     <header className="text-black-600 p-6 border-b-[1px] border-b-black ">
       <div className="container mx-auto flex flex-wrap justify-around items-center gap-6 md:gap-0">
@@ -78,7 +84,48 @@ function Navigation() {
                   0
                 </p>
               </Link>
-              <AiOutlineUser className="cursor-pointer text-2xl" />
+              <div className="relative flex items-center justify-center">
+                <AiOutlineUser
+                  className="cursor-pointer text-2xl"
+                  onClick={() =>
+                    setShowProfieSettings((currState) => !currState)
+                  }
+                />
+                {showProfileSettings && (
+                  <div className="absolute z-50 top-10 bg-[#EFEEEE] flex justify-center items-center h-40 w-48 rounded-xl">
+                    <div className="flex flex-col justify-center items-center gap-4 p-2">
+                      <div class="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
+                        <Link
+                          href="/"
+                          className="text-md text-white uppercase tracking-wide"
+                        >
+                          Profile
+                        </Link>
+                      </div>
+                      <div class="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
+                        <Link
+                          href="/"
+                          className="text-md text-white uppercase tracking-wide"
+                        >
+                          My Orders
+                        </Link>
+                      </div>
+                      <div class="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
+                        <Link
+                          href="/"
+                          className="text-md text-white uppercase tracking-wide"
+                          onClick={() => {
+                            dispatch(logOut());
+                            toast.success("Logged out successfully!");
+                          }}
+                        >
+                          Log out
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
