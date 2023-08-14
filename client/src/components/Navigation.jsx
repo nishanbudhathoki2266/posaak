@@ -57,7 +57,7 @@ function Navigation() {
             </Link>
             <span className="relative">
               <AiOutlineShoppingCart className="cursor-pointer text-2xl" />
-              <p className="text-md bg-orange-600 text-white rounded-full block text-center h-6 w-6 absolute top-[-21px] right-[-12px]">
+              <p className="text-md bg-orange-600 text-white rounded-full text-center flex items-center justify-center h-6 w-6 absolute top-[-21px] right-[-12px]">
                 3
               </p>
             </span>

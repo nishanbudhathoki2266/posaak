@@ -91,4 +91,13 @@ const analysisArr = subjectAnalysis
 
 const finalAnalysisArr = [...analysisArr, ...emptyAnalysisArr];
 
-console.log(finalAnalysisArr);
+// console.log(finalAnalysisArr);
+
+const name = "kaylin prasad khanal";
+
+const splittedName = name.split(" ");
+const avatarName = (
+  splittedName[0][0] + splittedName[splittedName.length - 1][0]
+).toUpperCase();
+
+console.log(avatarName);
