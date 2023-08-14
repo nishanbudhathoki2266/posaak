@@ -1,4 +1,11 @@
-function Button({ variant, children, onClick, className, type = "" }) {
+function Button({
+  variant,
+  children,
+  onClick,
+  className,
+  type = "",
+  disabled = false,
+}) {
   const baseClassName =
     "inline-flex border-0 py-2 px-6 focus:outline-none rounded text-lg";
   let compoundClasses = className;
@@ -13,7 +20,12 @@ function Button({ variant, children, onClick, className, type = "" }) {
   }
 
   return (
-    <button type={type} onClick={onClick} className={compoundClasses}>
+    <button
+      type={type}
+      disabled={disabled}
+      onClick={onClick}
+      className={compoundClasses}
+    >
       {children}
     </button>
   );
