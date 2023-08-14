@@ -14,10 +14,11 @@ const userSlice = createSlice({
     },
     logOut: (state) => {
       state.isLoggedIn = false;
+      state.user = undefined;
     },
   },
 });
-export const { setDetails } = userSlice.actions;
+export const { setDetails, logOut } = userSlice.actions;
 export default userSlice.reducer;
 
 export const getIsLoggedIn = (state) => state.user.isLoggedIn;

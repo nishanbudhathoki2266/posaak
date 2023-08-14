@@ -50,32 +50,36 @@ function Navigation() {
         </Link>
 
         <div className="flex flex-row items-center justify-center gap-4 text-sm">
-          <Link
-            href="/auth/login"
-            className={`hover:text-gray-900 ${
-              router.pathname === "/auth/login" ? "font-extrabold" : ""
-            } tracking-widest uppercase cursor-pointer`}
-          >
-            Login
-          </Link>
-          <Link
-            href="/auth/register"
-            className={`hover:text-gray-900 ${
-              router.pathname === "/auth/register" ? "font-extrabold" : ""
-            } tracking-widest uppercase cursor-pointer`}
-          >
-            Register
-          </Link>
-          {isLoggedIn && (
+          {isLoggedIn || (
             <Fragment>
-              <span className="relative">
+              <Link
+                href="/auth/login"
+                className={`hover:text-gray-900 ${
+                  router.pathname === "/auth/login" ? "font-extrabold" : ""
+                } tracking-widest uppercase cursor-pointer`}
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/register"
+                className={`hover:text-gray-900 ${
+                  router.pathname === "/auth/register" ? "font-extrabold" : ""
+                } tracking-widest uppercase cursor-pointer`}
+              >
+                Register
+              </Link>{" "}
+            </Fragment>
+          )}
+          {isLoggedIn && (
+            <div className="flex gap-4 items-center">
+              <span className="relative ">
                 <AiOutlineShoppingCart className="cursor-pointer text-2xl" />
                 <p className="text-md bg-orange-600 text-white rounded-full text-center flex items-center justify-center h-6 w-6 absolute top-[-21px] right-[-12px]">
-                  3
+                  0
                 </p>
               </span>
               <AiOutlineUser className="cursor-pointer text-2xl" />
-            </Fragment>
+            </div>
           )}
         </div>
       </div>

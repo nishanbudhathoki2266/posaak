@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -7,12 +10,12 @@ import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import FormError from "@/components/FormError";
 import { login } from "@/utils/api";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { setDetails } from "@/redux/reducerSlices/userSlice";
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   async function handleLogin(values) {
     setIsLoading(true);
@@ -22,7 +25,7 @@ function LoginPage() {
     });
 
     if (response.status === "success") {
-      resetForm();
+      dispatch(setDetails());
       router.push("/");
       toast.success("Login successful!");
     } else {
@@ -51,6 +54,7 @@ function LoginPage() {
           validationSchema={LoginSchema}
           onSubmit={async (values, { resetForm }) => {
             handleLogin(values);
+            resetForm();
           }}
         >
           {({ errors, touched }) => (
