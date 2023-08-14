@@ -1,34 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 
 function Navigation() {
+  const router = useRouter();
   return (
     <header className="text-black-600 p-6 border-b-[1px] border-b-black ">
       <div className="container mx-auto flex flex-wrap justify-around items-center gap-6 md:gap-0">
         <nav className="flex flex-wrap items-center text-sm">
           <Link
             href="/"
-            className="mr-5 hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            className={`mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer`}
           >
             Men
           </Link>
           <Link
             href="/"
-            className="mr-5 hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            className="mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer"
           >
             Women
           </Link>
           <Link
             href="/"
-            className="mr-5 hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            className="mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer"
           >
             Kids
           </Link>
           <Link
             href="/products"
-            className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            className={`hover:text-gray-900 ${
+              router.pathname === "/products" ? "font-extrabold" : ""
+            } tracking-widest uppercase cursor-pointer`}
           >
             Shop
           </Link>
@@ -45,13 +49,17 @@ function Navigation() {
         <div className="flex flex-row items-center justify-center gap-4 text-sm">
           <Link
             href="/auth/login"
-            className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            className={`hover:text-gray-900 ${
+              router.pathname === "/auth/login" ? "font-extrabold" : ""
+            } tracking-widest uppercase cursor-pointer`}
           >
             Login
           </Link>
           <Link
             href="/auth/register"
-            className="hover:text-gray-900 tracking-widest font-light uppercase cursor-pointer"
+            className={`hover:text-gray-900 ${
+              router.pathname === "/auth/register" ? "font-extrabold" : ""
+            } tracking-widest uppercase cursor-pointer`}
           >
             Register
           </Link>
