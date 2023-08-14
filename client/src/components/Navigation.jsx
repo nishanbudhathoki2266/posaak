@@ -72,12 +72,12 @@ function Navigation() {
           )}
           {isLoggedIn && (
             <div className="flex gap-4 items-center">
-              <span className="relative ">
+              <Link href="/cart" className="relative ">
                 <AiOutlineShoppingCart className="cursor-pointer text-2xl" />
                 <p className="text-md bg-orange-600 text-white rounded-full text-center flex items-center justify-center h-6 w-6 absolute top-[-21px] right-[-12px]">
                   0
                 </p>
-              </span>
+              </Link>
               <AiOutlineUser className="cursor-pointer text-2xl" />
             </div>
           )}
