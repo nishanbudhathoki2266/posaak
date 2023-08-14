@@ -8,8 +8,13 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setUserDetails: (state, actions) => {},
+    setUserDetails: (state, action) => {
+      state.userDetails = action.payload;
+      state.isLoggedIn = true;
+    },
   },
 });
 export const { setUserDetails } = userSlice.actions;
 export default userSlice.reducer;
+
+export const getIsLoggedIn = (state) => state.user.isLoggedIn;
