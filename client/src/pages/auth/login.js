@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import toast, { Toaster } from "react-hot-toast";
+
 import Button from "@/components/Button";
 import Heading from "@/components/Heading";
 import FormError from "@/components/FormError";
@@ -21,7 +23,10 @@ function LoginPage() {
     },
     validationSchema: LoginSchema,
     onSubmit: (values, { resetForm }) => {
-      alert(JSON.stringify(values, null, 2));
+      toast.success("Here is your toast.", {
+        position: "top-right",
+        className: "h-16 w-52",
+      });
       resetForm();
     },
   });
@@ -70,11 +75,13 @@ function LoginPage() {
             </FormError>
           </div>
           <Button
+            type="submit"
             variant="primary"
             className="flex justify-center text-lg uppercase tracking-wide"
           >
             Login
           </Button>
+          <Toaster />
         </form>
         <p className="text-md text-gray-500 mt-3">
           Don't have an account ?{" "}

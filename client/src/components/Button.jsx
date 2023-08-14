@@ -1,4 +1,4 @@
-function Button({ variant, children, onClick, className }) {
+function Button({ variant, children, onClick, className, type = "" }) {
   const baseClassName =
     "inline-flex border-0 py-2 px-6 focus:outline-none rounded text-lg";
   let compoundClasses = className;
@@ -13,7 +13,7 @@ function Button({ variant, children, onClick, className }) {
   }
 
   return (
-    <button onClick={onClick} className={compoundClasses}>
+    <button type={type} onClick={onClick} className={compoundClasses}>
       {children}
     </button>
   );
