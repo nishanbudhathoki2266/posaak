@@ -27,7 +27,7 @@ function LoginPage() {
     if (response.status === "success") {
       dispatch(setDetails());
       toast.success("Login successful!");
-      await router.push("/");
+      router.push("/");
     } else {
       toast.error(response.message);
     }

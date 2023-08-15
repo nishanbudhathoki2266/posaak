@@ -102,7 +102,7 @@ function Navigation() {
                           Profile
                         </Link>
                       </div>
-                      <div class="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
+                      <div className="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
                         <Link
                           href="/"
                           className="text-md text-white uppercase tracking-wide"

@@ -36,7 +36,7 @@ export async function getStaticPaths() {
   const featuredProducts = await getFeaturedProducts();
 
   const paths = featuredProducts.data.featuredProducts.map((product) => ({
-    params: { id: product._id },
+    params: { id: `${product._id}` },
   }));
 
   return {
