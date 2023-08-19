@@ -8,6 +8,12 @@ function ProductDetail({ product }) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [activeColor, setActiveColor] = useState();
 
+  function handleActiveImageIndex(index) {
+    if (activeImageIndex !== index) {
+      setActiveImageIndex(index);
+    }
+  }
+
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-24 mx-auto">
@@ -33,7 +39,7 @@ function ProductDetail({ product }) {
                   src={`http://localhost:8080/img/products/${image}`}
                   width={350}
                   height={350}
-                  onClick={() => setActiveImageIndex(i)}
+                  onClick={() => handleActiveImageIndex(i)}
                 />
               ))}
             </div>

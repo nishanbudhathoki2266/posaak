@@ -26,8 +26,8 @@ function LoginPage() {
 
     if (response.status === "success") {
       dispatch(setDetails());
-      toast.success("Login successful!");
       router.push("/");
+      toast.success("Login successful!");
     } else {
       toast.error(response.message);
     }
@@ -100,7 +100,7 @@ function LoginPage() {
                 variant="primary"
                 className="flex justify-center text-lg uppercase tracking-wide"
               >
-                Login
+                {isLoading ? "PROCESSING..." : "Login"}
               </Button>
             </Form>
           )}

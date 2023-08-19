@@ -94,7 +94,7 @@ function Navigation() {
                 {showProfileSettings && (
                   <div className="absolute z-50 top-10 bg-[#EFEEEE] flex justify-center items-center h-40 w-48 rounded-xl">
                     <div className="flex flex-col justify-center items-center gap-4 p-2">
-                      <div class="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
+                      <div className="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
                         <Link
                           href="/"
                           className="text-md text-white uppercase tracking-wide"
@@ -110,7 +110,7 @@ function Navigation() {
                           My Orders
                         </Link>
                       </div>
-                      <div class="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
+                      <div className="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
                         <Link
                           href="/"
                           className="text-md text-white uppercase tracking-wide"
