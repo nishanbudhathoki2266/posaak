@@ -10,8 +10,8 @@ import {
 } from "@/redux/reducerSlices/userSlice";
 import { updateMe, updateMyPassword } from "@/utils/api";
 import { Field, Form, Formik } from "formik";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import Image from "next/image";
+import { Fragment, useRef, useState } from "react";
 import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
@@ -21,12 +21,20 @@ function index() {
   const token = useSelector(getToken);
 
   const dispatch = useDispatch();
-  const router = useRouter();
+
+  // For file input
+  const fileRef = useRef(null);
 
   // To tracke if the user changes filed inputs -> so that a button is displayed
   const [isChanged, setIsChanged] = useState(false);
+
+  // Some loading states
   const [isUpdatingDetails, setIsUpdatingDetails] = useState(false);
   const [isUpdatingPassword, setIsUpdatingPassword] = useState(false);
+  const [isUpdatingImage, setIsUpdatingImage] = useState(false);
+
+  // For file uploaded in avatar of user
+  const [file, setFile] = useState(null);
 
   // Update Details Schema
   const UpdateDetailsSchema = Yup.object().shape({
@@ -61,6 +69,29 @@ function index() {
   // Detect form value changes in update details
   function handleChanged() {
     setIsChanged(true);
+  }
+
+  // Api call for updating user image
+  async function updateImage(values) {
+    const formData = new FormData();
+    formData.append("image", values.file);
+    setIsUpdatingImage(true);
+
+    const response = await fetch(
+      `http://localhost:8080/api/v1/users/updateMe`,
+      {
+        method: "PATCH",
+        body: formData,
+      }
+    );
+
+    if (response.status === "succcess") {
+      dispatch(setDetails(response.data));
+      toast.success("Image uploaded successfully!");
+    } else {
+      toast.error(response.message || "Something went wrong!");
+    }
+    setIsUpdatingImage(false);
   }
 
   // Calling api for updating details
@@ -106,10 +137,55 @@ function index() {
   }
 
   return (
-    <section className="max-w-[1440px] md:w-3/4 lg:w-1/2 mx-auto px-4 py-8">
-      <ProtectedPage url="profile">
+    <ProtectedPage url="profile">
+      <section className="max-w-[1440px] md:w-3/4 lg:w-1/2 mx-auto px-4 py-8">
         <Heading position="center">Profile Details</Heading>
 
+        <div className="text-center p-2">
+          <Image
+            src={`http://localhost:8080/img/users/${user?.image}`}
+            alt={`Photo of ${user?.name}`}
+            width={150}
+            height={150}
+            className="inline-block object-cover mx-auto rounded-full border-2 cursor-pointer"
+            onClick={() => fileRef.current.click()}
+          />
+
+          <Formik
+            initialValues={{
+              file: null,
+            }}
+          >
+            {({ values, setFieldValue }) => (
+              <Form className="mt-4">
+                <input
+                  ref={fileRef}
+                  name="file"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    setFieldValue("file", e.target.files[0]);
+                    setFile(e.target.files[0].name);
+                  }}
+                  hidden
+                />
+                {file && (
+                  <Fragment>
+                    <p className="text-xs mb-2">{file}</p>
+                    <button
+                      onClick={() => updateImage(values)}
+                      className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                    >
+                      Upload
+                    </button>
+                  </Fragment>
+                )}
+              </Form>
+            )}
+          </Formik>
+
+          {/* Update details */}
+        </div>
         {/* Details Forms */}
         <Formik
           initialValues={{
@@ -118,7 +194,7 @@ function index() {
             address: user?.address,
           }}
           validationSchema={UpdateDetailsSchema}
-          onSubmit={async (values) => {
+          onSubmit={(values) => {
             updateMyDetails(values);
           }}
           onCh
@@ -194,7 +270,6 @@ function index() {
           <Heading position="center">Update your password</Heading>
 
           {/* Change Password Forms */}
-          {/* Details Forms */}
           <Formik
             initialValues={{
               passwordCurrent: "",
@@ -202,7 +277,7 @@ function index() {
               passwordConfirm: "",
             }}
             validationSchema={ChangePasswordSchema}
-            onSubmit={async (values) => {
+            onSubmit={(values) => {
               updatePassword(values);
             }}
           >
@@ -219,6 +294,7 @@ function index() {
                     type="password"
                     id="passwordCurrent"
                     name="passwordCurrent"
+                    placeholder="********"
                     className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                   <FormError>
@@ -238,6 +314,7 @@ function index() {
                     type="password"
                     id="password"
                     name="password"
+                    placeholder="********"
                     className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                   <FormError>
@@ -255,6 +332,7 @@ function index() {
                     type="password"
                     id="passwordConfirm"
                     name="passwordConfirm"
+                    placeholder="********"
                     className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   />
                   <FormError>
@@ -275,8 +353,8 @@ function index() {
             )}
           </Formik>
         </div>
-      </ProtectedPage>
-    </section>
+      </section>
+    </ProtectedPage>
   );
 }
 
