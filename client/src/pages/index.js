@@ -2,15 +2,14 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import Hero from "@/components/Hero";
 import ShopByCategory from "@/components/ShopByCategory";
 import { getAllCategories, getFeaturedProducts } from "@/utils/api";
-import { Fragment } from "react";
 
 export default function HomePage({ featuredProducts, categories }) {
   return (
-    <Fragment>
+    <div className="max-w-[1440px] mx-auto px-4 py-8">
       <Hero />
       <FeaturedProducts featuredProducts={featuredProducts} />
       <ShopByCategory categories={categories} />
-    </Fragment>
+    </div>
   );
 }
 
