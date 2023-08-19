@@ -79,8 +79,8 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     );
   }
 
-  //   Only allowing name and email to be changed
-  const filteredBody = filterObj(req.body, "name", "email");
+  //   Only allowing name, email and address to be changed
+  const filteredBody = filterObj(req.body, "name", "email", "address");
   if (req.file) filteredBody.image = req.file.filename;
   const updatedUser = await User.findByIdAndUpdate(req.user.id, filteredBody, {
     new: true,

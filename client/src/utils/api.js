@@ -67,10 +67,27 @@ const login = async (credentials) => {
   return data;
 };
 
+const updateMe = async (headers, updatedData) => {
+  const response = await fetch("http://localhost:8080/api/v1/users/updateMe", {
+    method: "PATCH",
+    body: JSON.stringify(updatedData),
+    headers,
+  });
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
+  console.log(data);
+
+  return data;
+};
+
 export {
   getFeaturedProducts,
   getProductById,
   getAllProducts,
   getAllCategories,
   login,
+  updateMe,
 };
