@@ -25,7 +25,7 @@ function index() {
 
   const myHeaders = new Headers({
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${token ? token : ""}`,
   });
 
   function handleChanged() {
@@ -60,9 +60,9 @@ function index() {
         {/* Forms */}
         <Formik
           initialValues={{
-            name: user.name,
-            email: user.email,
-            address: user.address,
+            name: user?.name,
+            email: user?.email,
+            address: user?.address,
           }}
           onSubmit={async (values) => {
             updateMyDetails(values);
