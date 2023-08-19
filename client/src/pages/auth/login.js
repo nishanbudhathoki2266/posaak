@@ -25,7 +25,7 @@ function LoginPage() {
     });
 
     if (response.status === "success") {
-      dispatch(setDetails());
+      dispatch(setDetails(response.user));
       router.push("/");
       toast.success("Login successful!");
     } else {

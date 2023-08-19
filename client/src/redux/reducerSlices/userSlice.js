@@ -22,3 +22,4 @@ export const { setDetails, logOut } = userSlice.actions;
 export default userSlice.reducer;
 
 export const getIsLoggedIn = (state) => state.user.isLoggedIn;
+export const getUserDetails = (state) => state.user.user;

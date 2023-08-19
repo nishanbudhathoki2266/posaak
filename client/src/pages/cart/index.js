@@ -1,7 +1,6 @@
 import Heading from "@/components/Heading";
 import ProtectedPage from "@/components/ProtectedPage";
 import { getIsLoggedIn } from "@/redux/reducerSlices/userSlice";
-import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 
 function CartPage() {
