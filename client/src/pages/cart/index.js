@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 function CartPage() {
   const isLoggedIn = useSelector(getIsLoggedIn);
   return (
-    <ProtectedPage isLoggedIn={isLoggedIn}>
+    <ProtectedPage url="/cart">
       <Heading position="center">The Cart Page</Heading>
     </ProtectedPage>
   );
