@@ -15,7 +15,7 @@ const userSlice = createSlice({
       state.token = action.payload.token;
     },
     updateDetails: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
     },
     logOut: (state) => {
       state.isLoggedIn = false;

@@ -25,6 +25,7 @@ function LoginPage() {
     });
 
     if (response.status === "success") {
+      console.log(response);
       dispatch(setDetails(response));
       router.push("/");
       toast.success("Login successful!");
@@ -52,9 +53,8 @@ function LoginPage() {
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={LoginSchema}
-          onSubmit={async (values, { resetForm }) => {
+          onSubmit={async (values) => {
             handleLogin(values);
-            resetForm();
           }}
         >
           {({ errors, touched }) => (

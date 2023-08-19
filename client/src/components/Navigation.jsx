@@ -10,6 +10,10 @@ import { getIsLoggedIn, logOut } from "@/redux/reducerSlices/userSlice";
 function Navigation() {
   const [showProfileSettings, setShowProfieSettings] = useState(false);
 
+  function hideProfileSettings() {
+    setShowProfieSettings(false);
+  }
+
   const dispatch = useDispatch();
   const router = useRouter();
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -92,36 +96,34 @@ function Navigation() {
                   }
                 />
                 {showProfileSettings && (
-                  <div className="absolute z-50 top-10 bg-[#EFEEEE] flex justify-center items-center h-40 w-48 rounded-xl">
-                    <div className="flex flex-col justify-center items-center gap-4 p-2">
-                      <div className="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
-                        <Link
-                          href="/"
-                          className="text-md text-white uppercase tracking-wide"
-                        >
-                          Profile
-                        </Link>
-                      </div>
-                      <div className="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
-                        <Link
-                          href="/"
-                          className="text-md text-white uppercase tracking-wide"
-                        >
-                          My Orders
-                        </Link>
-                      </div>
-                      <div className="bg-[#67595E] hover:scale-105 rounded flex px-8 py-1 w-full justify-center items-center">
-                        <Link
-                          href="/"
-                          className="text-md text-white uppercase tracking-wide"
-                          onClick={() => {
-                            dispatch(logOut());
-                            toast.success("Logged out successfully!");
-                          }}
-                        >
-                          Log out
-                        </Link>
-                      </div>
+                  <div className="absolute z-50 top-10 bg-gray-50 shadow-xl border flex justify-center items-center h-36 w-36 rounded-xl">
+                    <div className="flex flex-col justify-center items-center gap-4">
+                      <Link
+                        href="/profile"
+                        className="text-md text-[#67595E] hover:scale-105 cursor-pointer transition-transform ease-in-out duration-150 uppercase text-md font-semibold tracking-widest"
+                        onClick={hideProfileSettings}
+                      >
+                        My Profile
+                      </Link>
+                      <Link
+                        href="/"
+                        className="text-md text-[#67595E] hover:scale-105 cursor-pointer transition-transform ease-in-out duration-150 uppercase text-md font-semibold tracking-widest"
+                        onClick={hideProfileSettings}
+                      >
+                        My Orders
+                      </Link>
+
+                      <Link
+                        href="/"
+                        className="text-md text-[#67595E] hover:scale-105 cursor-pointer transition-transform ease-in-out duration-150 uppercase text-md font-semibold tracking-widest"
+                        onClick={() => {
+                          hideProfileSettings();
+                          dispatch(logOut());
+                          toast.success("Logged out successfully!");
+                        }}
+                      >
+                        Log out
+                      </Link>
                     </div>
                   </div>
                 )}

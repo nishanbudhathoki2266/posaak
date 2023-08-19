@@ -78,7 +78,24 @@ const updateMe = async (headers, updatedData) => {
   if (!data.status === "success") {
     throw new Error(data.message);
   }
-  console.log(data);
+
+  return data;
+};
+
+const updateMyPassword = async (headers, passwordData) => {
+  const response = await fetch(
+    "http://localhost:8080/api/v1/users/updateMyPassword",
+    {
+      method: "PATCH",
+      body: JSON.stringify(passwordData),
+      headers,
+    }
+  );
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
 
   return data;
 };
@@ -90,4 +107,5 @@ export {
   getAllCategories,
   login,
   updateMe,
+  updateMyPassword,
 };

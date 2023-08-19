@@ -1,11 +1,8 @@
-import FeaturedProducts from "@/components/FeaturedProducts";
 import Heading from "@/components/Heading";
 import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/utils/api";
 
 function AllProducts({ products }) {
-  if (!products) return <Heading>Loading ...</Heading>;
-
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
