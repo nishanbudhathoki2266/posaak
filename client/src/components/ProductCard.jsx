@@ -3,8 +3,8 @@ import Link from "next/link";
 import Button from "./Button";
 function ProductCard({ product }) {
   return (
-    <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-      <div className="relative max-h-80 rounded overflow-hidden">
+    <div className="lg:w-1/4 md:w-1/2 p-4 w-fullflex flex-col items-center">
+      <div className="max-h-80 max-w-sm md:w-auto rounded overflow-hidden">
         <Image
           alt="ecommerce"
           className="object-cover object-center w-full h-full block hover:scale-[1.10] transition-all duration-500 ease-out"
@@ -14,7 +14,7 @@ function ProductCard({ product }) {
           height={300}
         />
       </div>
-      <div className="mt-4">
+      <div className="mt-4 self-start">
         <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
           Category - {product.category.name}
         </h3>
