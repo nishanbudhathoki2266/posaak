@@ -12,18 +12,16 @@ const userSlice = createSlice({
     setDetails: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;
-      state.token = action.payload.token;
-    },
-    updateDetails: (state, action) => {
-      state.user = action.payload.user;
+      state.token = action.payload.token ? action.payload.token : state.token;
     },
     logOut: (state) => {
       state.isLoggedIn = false;
       state.user = undefined;
+      state.token = "";
     },
   },
 });
-export const { setDetails, updateDetails, logOut } = userSlice.actions;
+export const { setDetails, logOut } = userSlice.actions;
 export default userSlice.reducer;
 
 // A good practice to export these functions here for useSelector

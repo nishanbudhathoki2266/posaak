@@ -5,8 +5,8 @@ import ProtectedPage from "@/components/ProtectedPage";
 import {
   getToken,
   getUserDetails,
+  setDetails,
   logOut,
-  updateDetails,
 } from "@/redux/reducerSlices/userSlice";
 import { updateMe, updateMyPassword } from "@/utils/api";
 import { Field, Form, Formik } from "formik";
@@ -73,8 +73,8 @@ function index() {
     });
 
     if (response.status === "success") {
-      dispatch(updateDetails(response));
-      toast.success("Updated successfully!");
+      dispatch(setDetails(response.data));
+      toast.success("Details updated successfully!");
     } else {
       toast.error(
         response.message.includes("E11000")
@@ -96,12 +96,9 @@ function index() {
       passwordConfirm: values.passwordConfirm,
     });
 
-    console.log(response);
-
-    if (!response.status === "fail") {
-      dispatch(logOut());
-      router.push("/auth/login");
-      toast.success("Updated successfully! Please login again!");
+    if (response.status === "succcess") {
+      dispatch(setDetails(response));
+      toast.success("Password changed succesfully!");
     } else {
       toast.error(response.message || "Something went wrong!");
     }
@@ -205,7 +202,7 @@ function index() {
               passwordConfirm: "",
             }}
             validationSchema={ChangePasswordSchema}
-            onSubmit={(values) => {
+            onSubmit={async (values) => {
               updatePassword(values);
             }}
           >
@@ -267,11 +264,12 @@ function index() {
                   </FormError>
                 </div>
                 <Button
+                  disabled={isUpdatingPassword}
                   type="submit"
                   variant="primary"
                   className="flex justify-center text-lg uppercase tracking-wide w-full mt-2"
                 >
-                  Update
+                  {isUpdatingPassword ? "Changing..." : "Change"}
                 </Button>
               </Form>
             )}
