@@ -34,7 +34,9 @@ function WishListPage() {
     <ProtectedPage url="wishlist">
       <Heading position="center" className="mt-8">
         Your Wishlist
-        <div className="mt-16 max-w-[1440px] mx-auto px-4 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-14">
+        <div
+          className={`mt-16 max-w-[1440px] mx-auto px-2 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 sm:gap-4 gap-14`}
+        >
           {wishList.map((product) => (
             <WishListCard key={product.id} product={product} />
           ))}
