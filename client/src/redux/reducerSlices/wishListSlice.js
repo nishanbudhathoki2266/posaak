@@ -10,16 +10,16 @@ const wishListSlice = createSlice({
   reducers: {
     addToWishList(state, action) {
       // payload = {new product item}
-      state.cart.push(action.payload);
+      state.wishList.push(action.payload);
     },
     deleteFromWishList(state, action) {
       // payload = product._id
-      state.cart = state.cart.filter(
+      state.wishList = state.wishList.filter(
         (product) => product.id !== action.payload.id
       );
     },
     clearWishList(state) {
-      state.cart = [];
+      state.wishList = [];
     },
   },
 });

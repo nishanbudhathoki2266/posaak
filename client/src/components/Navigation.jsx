@@ -24,7 +24,15 @@ function Navigation() {
   return (
     <header className="text-black-600 py-10 px-6 md:py-6 border-b-[1px] border-b-black ">
       <div className="container mx-auto flex flex-wrap justify-around items-center gap-8 md:gap-0">
-        <nav className="flex flex-wrap items-center text-sm">
+        <Link href="/" className="hidden md:block">
+          <Image
+            src="/logo.png"
+            alt="Logo of Posaak"
+            width={150}
+            height={150}
+          />
+        </Link>
+        <nav className="flex flex-wrap items-center text-sm md:gap-12">
           <Link
             href="/"
             className={`mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer`}
@@ -52,14 +60,6 @@ function Navigation() {
             Shop
           </Link>
         </nav>
-        <Link href="/" className="hidden md:block">
-          <Image
-            src="/logo.png"
-            alt="Logo of Posaak"
-            width={150}
-            height={150}
-          />
-        </Link>
 
         <div className="flex flex-row items-center justify-center gap-4 text-sm">
           {isLoggedIn || (

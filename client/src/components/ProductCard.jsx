@@ -1,8 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToWishList,
+  getWishList,
+} from "@/redux/reducerSlices/wishListSlice";
+import { toast } from "react-hot-toast";
 function ProductCard({ product }) {
+  const dispatch = useDispatch();
+  const wishList = useSelector(getWishList);
+
+  function handleAddToWishList() {
+    const newProduct = {
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+    };
+
+    dispatch(addToWishList(newProduct));
+    toast.success("Successfully added to wishlist.");
+  }
+
   return (
     <div className="lg:w-1/4 md:w-1/2 p-4 w-fullflex flex-col items-center">
       <div className="max-h-80 max-w-sm md:w-auto rounded overflow-hidden">
@@ -24,12 +45,12 @@ function ProductCard({ product }) {
         </h2>
         <p className="mt-1">
           <span className="mr-1">
-            {product.priceDiscount > 0 && <del>${product.price}</del>}
+            {product.priceDiscount > 0 && (
+              <del>${product.price + product.priceDiscount}</del>
+            )}
           </span>
-          $
-          {product.priceDiscount
-            ? product.price - product.priceDiscount
-            : product.price}
+          Rs.
+          {product.price}
         </p>
         <div className="flex items-center justify-between mt-2">
           <Link
@@ -39,7 +60,10 @@ function ProductCard({ product }) {
             View &rarr;
           </Link>
           {/* Add to wishlist */}
-          <AiFillHeart className={`text-red-600 text-3xl cursor-pointer`} />
+          <AiOutlineHeart
+            className={`text-red-600 text-3xl cursor-pointer`}
+            onClick={handleAddToWishList}
+          />
         </div>
       </div>
     </div>
