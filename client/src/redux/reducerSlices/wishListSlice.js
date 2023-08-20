@@ -17,10 +17,12 @@ const wishListSlice = createSlice({
 
       if (!existingProduct) {
         state.wishList.push(action.payload);
-      } else {
-        state.wishList.filter((product) => product.id !== action.payload.id);
       }
-      console.log(JSON.stringify(state.wishList), state.wishList.length);
+      {
+        state.wishList = state.wishList.filter(
+          (product) => product.id !== action.payload.id
+        );
+      }
     },
     deleteFromWishList(state, action) {
       // payload = product._id
