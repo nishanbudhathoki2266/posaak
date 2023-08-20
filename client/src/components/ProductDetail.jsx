@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Button from "./Button";
 import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
+import { addItem } from "@/redux/reducerSlices/cartSlice";
 
 function ProductDetail({ product }) {
   const images = product.images;
@@ -13,6 +15,8 @@ function ProductDetail({ product }) {
       setActiveImageIndex(index);
     }
   }
+
+  const dispatch = useDispatch();
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -108,7 +112,21 @@ function ProductDetail({ product }) {
                 ${product.price - product.priceDiscount}
               </span>
               <div className="ml-auto">
-                <Button variant="primary">Add to Cart</Button>
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    dispatch(
+                      addItem({
+                        id: product._id,
+                        quantity: 5,
+                        price: 3,
+                        name: "Tshirt",
+                      })
+                    );
+                  }}
+                >
+                  Add to Cart
+                </Button>
               </div>
             </div>
           </div>

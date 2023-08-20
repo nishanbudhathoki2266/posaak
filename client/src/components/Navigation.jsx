@@ -6,6 +6,7 @@ import React, { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { getIsLoggedIn, logOut } from "@/redux/reducerSlices/userSlice";
+import { getTotalCartQuantity } from "@/redux/reducerSlices/cartSlice";
 
 function Navigation() {
   const [showProfileSettings, setShowProfieSettings] = useState(false);
@@ -17,6 +18,10 @@ function Navigation() {
   const dispatch = useDispatch();
   const router = useRouter();
   const isLoggedIn = useSelector(getIsLoggedIn);
+
+  const totalCartQuantity = useSelector(getTotalCartQuantity);
+
+  console.log(totalCartQuantity);
 
   useState();
   return (
@@ -85,7 +90,7 @@ function Navigation() {
               <Link href="/cart" className="relative ">
                 <AiOutlineShoppingCart className="cursor-pointer text-2xl" />
                 <p className="text-md bg-orange-600 text-white rounded-full text-center flex items-center justify-center h-6 w-6 absolute top-[-21px] right-[-12px]">
-                  0
+                  {totalCartQuantity}
                 </p>
               </Link>
               <div className="relative flex items-center justify-center">
