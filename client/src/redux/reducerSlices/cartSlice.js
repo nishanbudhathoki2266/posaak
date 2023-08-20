@@ -1,16 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cart: [
-    {
-      id: "64cf7fe2a804740126a0498a",
-      name: "Cotton T-shirt",
-      quantity: 1,
-      color: "Maroon",
-      size: "small",
-      price: 800,
-    },
-  ],
+  cart: [],
 };
 
 const cartSlice = createSlice({

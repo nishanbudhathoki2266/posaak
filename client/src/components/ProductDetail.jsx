@@ -30,6 +30,8 @@ function ProductDetail({ product }) {
     const newProduct = {
       id: product._id,
       name: product.name,
+      // Just keeping the first image in the cart
+      image: product.images[0],
       quantity: 1,
       color: product.colors[activeColor].name,
       size: sizeRef.current.value,
