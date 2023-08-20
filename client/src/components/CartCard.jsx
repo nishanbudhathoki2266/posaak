@@ -10,7 +10,7 @@ function CartCard({ product }) {
 
   return (
     <Fragment>
-      <div className="bg-gray-100 px-4 py-6 flex items-center gap-2 sm:gap-6">
+      <div className="sm:px-4 sm:py-6 flex items-center gap-2 sm:gap-6">
         <div>
           <Image
             src={`http://localhost:8080/img/products/${product.image}`}
@@ -38,13 +38,13 @@ function CartCard({ product }) {
           </Link>
         </div>
       </div>
-      <div className="bg-gray-100 py-6 font-semibold text:sm sm:text-md">
+      <div className="py-6 font-semibold text:sm sm:text-md">
         <ProductCounter product={product} />
       </div>
-      <div className="bg-gray-100 py-6 font-semibold text:sm sm:text-md">
+      <div className="py-6 font-semibold text:sm sm:text-md">
         {product.price}/-
       </div>
-      <div className="bg-gray-100 py-6 font-semibold text:sm sm:text-md">
+      <div className="py-6 font-semibold text:sm sm:text-md">
         {pricePerQuantity}/-
       </div>
     </Fragment>

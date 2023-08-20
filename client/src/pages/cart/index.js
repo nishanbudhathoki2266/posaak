@@ -1,15 +1,20 @@
+import Button from "@/components/Button";
 import CartCard from "@/components/CartCard";
 import Heading from "@/components/Heading";
 import ProtectedPage from "@/components/ProtectedPage";
-import { getCart, getTotalCartPrice } from "@/redux/reducerSlices/cartSlice";
+import {
+  clearCart,
+  getCart,
+  getTotalCartPrice,
+} from "@/redux/reducerSlices/cartSlice";
 import Link from "next/link";
-import { Fragment } from "react";
 import { MdShoppingBag } from "react-icons/md";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function CartPage() {
   const cart = useSelector(getCart);
   const totalCartPrice = useSelector(getTotalCartPrice);
+  const dispatch = useDispatch();
 
   if (!cart.length > 0)
     return (
@@ -35,8 +40,8 @@ function CartPage() {
       <Heading position="center" className="mt-8">
         Your Cart
       </Heading>
-      <div className="px-2 sm:px-4">
-        <div className="mt-8 max-w-[1440px] mx-auto grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] w-full gap-y-1">
+      <div className="px-[.5px] sm:px-4">
+        <div className="mt-8 max-w-[1440px] justify-items-center items-center mx-auto grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] w-full gap-y-1">
           <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
             Products
           </div>
@@ -57,10 +62,13 @@ function CartPage() {
             <CartCard key={product.id + "" + index} product={product} />
           ))}
         </div>
-        <div className="max-w-[1440px] mx-auto border-t-2 mt-2 pt-2 relative">
+        <div className="max-w-[1440px] mx-auto border-t-2 mt-2 pt-2 relative flex items-center">
           <p className="absolute right-4 text-xl sm:text-2xl font-semibold">
-            Rs. {totalCartPrice}/-
+            Total: Rs. {totalCartPrice}/-
           </p>
+          <Button variant="primary" onClick={() => dispatch(clearCart())}>
+            Clear Cart
+          </Button>
         </div>
       </div>
     </ProtectedPage>

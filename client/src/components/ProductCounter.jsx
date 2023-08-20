@@ -6,7 +6,6 @@ import {
   getCurrentProductQuantity,
   increaseQuantity,
 } from "@/redux/reducerSlices/cartSlice";
-import { AiTwotoneDelete } from "react-icons/ai";
 
 function ProductCounter({ product }) {
   const dispatch = useDispatch();
@@ -30,14 +29,6 @@ function ProductCounter({ product }) {
           onClick={() => dispatch(increaseQuantity(product))}
         >
           +
-        </button>
-        <button
-          className="inline-block rounded-lg bg-[#67595E] px-2.5 py-1 md:px-3.5 md:py-2 text-md"
-          onClick={() => dispatch(deleteProduct(product))}
-        >
-          <p className="text-2xl">
-            <AiTwotoneDelete />
-          </p>
         </button>
       </div>
     </div>
