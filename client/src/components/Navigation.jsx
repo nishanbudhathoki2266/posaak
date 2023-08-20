@@ -4,12 +4,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import React, { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
-import {
-  AiFillHeart,
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-} from "react-icons/ai";
+import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { getIsLoggedIn, logOut } from "@/redux/reducerSlices/userSlice";
 import { getTotalCartQuantity } from "@/redux/reducerSlices/cartSlice";
 
@@ -95,9 +90,6 @@ function Navigation() {
                   {totalCartQuantity}
                 </p>
               </Link>
-              <Link href="/wishlist">
-                <AiOutlineHeart className={`text-3xl cursor-pointer`} />
-              </Link>
               <div className="relative flex items-center justify-center">
                 <AiOutlineUser
                   className="cursor-pointer text-3xl"
@@ -107,10 +99,10 @@ function Navigation() {
                 />
                 {showProfileSettings && (
                   <div
-                    className="absolute z-50 top-10 bg-gray-50 shadow-xl border flex justify-center items-center h-28 w-36 rounded-xl"
+                    className="absolute z-50 top-10 bg-white shadow-2xl shadow-gray-400 flex justify-center items-center h-auto py-4 w-40 rounded-md"
                     onMouseLeave={hideProfileSettings}
                   >
-                    <div className="flex flex-col justify-center items-center gap-3">
+                    <div className="flex flex-col justify-center items-center gap-2">
                       <Link
                         href="/profile"
                         className="text-[#67595E] cursor-pointer hover:font-bold text-sm font-medium tracking-widest"
@@ -124,6 +116,14 @@ function Navigation() {
                         onClick={hideProfileSettings}
                       >
                         My Orders
+                      </Link>
+
+                      <Link
+                        href="/wishlist"
+                        className=" text-[#67595E] cursor-pointer hover:font-bold text-sm font-medium tracking-widest"
+                        onClick={hideProfileSettings}
+                      >
+                        My wishlist
                       </Link>
 
                       <Link
