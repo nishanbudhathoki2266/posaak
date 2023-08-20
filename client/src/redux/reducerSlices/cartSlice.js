@@ -24,11 +24,15 @@ const cartSlice = createSlice({
       }
     },
     deleteProduct(state, action) {
-      // payload = product._id
+      // payload = product
       state.cart = state.cart.filter(
-        (product) => product.id !== action.payload
+        (product) =>
+          product.id !== action.payload.id ||
+          product.size !== action.payload.size ||
+          product.color !== action.payload.color
       );
     },
+
     increaseQuantity(state, action) {
       //   payload = product._id;
       const product = state.cart.find(

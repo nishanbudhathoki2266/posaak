@@ -4,6 +4,7 @@ import { Fragment, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addProduct } from "@/redux/reducerSlices/cartSlice";
 import ProductCounter from "./ProductCounter";
+import { toast } from "react-hot-toast";
 
 function ProductDetail({ product }) {
   const dispatch = useDispatch();
@@ -33,14 +34,13 @@ function ProductDetail({ product }) {
       // Just keeping the first image in the cart
       image: product.images[0],
       quantity: 1,
-      color: product.colors[activeColor].name,
-      size: sizeRef.current.value,
+      color: product.colors[activeColor].name.toLowerCase(),
+      size: sizeRef.current.value.toLowerCase(),
       price: product.price,
     };
 
-    console.log(newProduct);
-
     dispatch(addProduct(newProduct));
+    toast.success("Item added to cart!");
   }
 
   return (

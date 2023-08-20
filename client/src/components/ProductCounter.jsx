@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProductCounter() {
+function ProductCounter({ product }) {
   return (
     <div className="flex items-center gap-4 sm:gap-6">
       <div className="flex items-center gap-2 md:gap-3 text-white">
