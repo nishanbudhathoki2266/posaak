@@ -3,7 +3,7 @@ function Heading({ children, position = "" }) {
     <h1
       className={`sm:text-3xl ${
         position === "center" ? "text-center " : ""
-      } text-2xl mb-4 font-bold text-gray-900`}
+      } text-2xl mb-4 font-bold text-gray-600`}
     >
       {children}
     </h1>
