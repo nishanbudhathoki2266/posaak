@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Button from "./Button";
+import { AiFillHeart } from "react-icons/ai";
 function ProductCard({ product }) {
   return (
     <div className="lg:w-1/4 md:w-1/2 p-4 w-fullflex flex-col items-center">
@@ -30,12 +31,16 @@ function ProductCard({ product }) {
             ? product.price - product.priceDiscount
             : product.price}
         </p>
-        <Link
-          href={`/products/${product._id}`}
-          className="text-[#67595E] mt-2 text-lg font-semibold inline-block hover:translate-x-1 duration-200"
-        >
-          View &rarr;
-        </Link>
+        <div className="flex items-center justify-between mt-2">
+          <Link
+            href={`/products/${product._id}`}
+            className="text-[#67595E] text-lg font-semibold inline-block hover:translate-x-1 duration-200"
+          >
+            View &rarr;
+          </Link>
+          {/* Add to wishlist */}
+          <AiFillHeart className={`text-red-600 text-3xl cursor-pointer`} />
+        </div>
       </div>
     </div>
   );

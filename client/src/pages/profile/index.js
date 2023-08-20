@@ -16,7 +16,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 
-function index() {
+function ProfilePage() {
   const user = useSelector(getUserDetails);
   const token = useSelector(getToken);
 
@@ -363,4 +363,4 @@ function index() {
   );
 }
 
-export default index;
+export default ProfilePage;

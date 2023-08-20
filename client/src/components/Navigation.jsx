@@ -4,7 +4,12 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import React, { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
-import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
+import {
+  AiFillHeart,
+  AiOutlineHeart,
+  AiOutlineShoppingCart,
+  AiOutlineUser,
+} from "react-icons/ai";
 import { getIsLoggedIn, logOut } from "@/redux/reducerSlices/userSlice";
 import { getTotalCartQuantity } from "@/redux/reducerSlices/cartSlice";
 
@@ -86,9 +91,12 @@ function Navigation() {
             <div className="flex gap-4 items-center">
               <Link href="/cart" className="relative ">
                 <AiOutlineShoppingCart className="cursor-pointer text-3xl" />
-                <p className="text-md bg-orange-600 text-white rounded-full text-center font-semibold text-md flex items-center justify-center h-7 w-7 absolute top-[-28px] right-[-12px]">
+                <p className="text-md bg-orange-600 text-white rounded-full text-center font-semibold text-md flex items-center justify-center h-7 w-7 absolute top-[-25px] right-[-12px]">
                   {totalCartQuantity}
                 </p>
+              </Link>
+              <Link href="/wishlist">
+                <AiOutlineHeart className={`text-3xl cursor-pointer`} />
               </Link>
               <div className="relative flex items-center justify-center">
                 <AiOutlineUser
