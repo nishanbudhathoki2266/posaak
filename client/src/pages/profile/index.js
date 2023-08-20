@@ -77,21 +77,21 @@ function index() {
     formData.append("image", values.file);
     setIsUpdatingImage(true);
 
-    const response = await fetch(
-      `http://localhost:8080/api/v1/users/updateMe`,
-      {
-        method: "PATCH",
-        body: formData,
-      }
+    const response = await updateMe(
+      { Authorization: `Bearer ${token ? token : ""}` },
+      formData,
+      true
     );
 
-    if (response.status === "succcess") {
+    if (response.status === "success") {
       dispatch(setDetails(response.data));
-      toast.success("Image uploaded successfully!");
+      toast.success("Image updated successfully!");
     } else {
-      toast.error(response.message || "Something went wrong!");
+      toast.error(response.message);
     }
+
     setIsUpdatingImage(false);
+    setFile(null);
   }
 
   // Calling api for updating details
@@ -127,13 +127,14 @@ function index() {
       passwordConfirm: values.passwordConfirm,
     });
 
-    if (response.status === "succcess") {
+    if (response.status === "success") {
       dispatch(setDetails(response));
       toast.success("Password changed succesfully!");
     } else {
       toast.error(response.message || "Something went wrong!");
     }
     setIsUpdatingPassword(false);
+    return response.status;
   }
 
   return (
@@ -155,6 +156,7 @@ function index() {
             initialValues={{
               file: null,
             }}
+            onSubmit={(values) => updateImage(values)}
           >
             {({ values, setFieldValue }) => (
               <Form className="mt-4">
@@ -173,7 +175,7 @@ function index() {
                   <Fragment>
                     <p className="text-xs mb-2">{file}</p>
                     <button
-                      onClick={() => updateImage(values)}
+                      type="submit"
                       className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
                     >
                       Upload
@@ -277,8 +279,9 @@ function index() {
               passwordConfirm: "",
             }}
             validationSchema={ChangePasswordSchema}
-            onSubmit={(values) => {
-              updatePassword(values);
+            onSubmit={async (values, { resetForm }) => {
+              const response = await updatePassword(values);
+              if (response === "success") resetForm();
             }}
           >
             {({ errors, touched }) => (

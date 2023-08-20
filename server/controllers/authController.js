@@ -242,7 +242,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   const { password: userPassword, ...restDetails } = user._doc;
 
   res.status(200).json({
-    status: "succcess",
+    status: "success",
     token,
     user: restDetails,
   });

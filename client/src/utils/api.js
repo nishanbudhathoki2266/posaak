@@ -67,10 +67,10 @@ const login = async (credentials) => {
   return data;
 };
 
-const updateMe = async (headers, updatedData) => {
+const updateMe = async (headers, updatedData, raw = false) => {
   const response = await fetch("http://localhost:8080/api/v1/users/updateMe", {
     method: "PATCH",
-    body: JSON.stringify(updatedData),
+    body: raw === true ? updatedData : JSON.stringify(updatedData),
     headers,
   });
   const data = await response.json();
