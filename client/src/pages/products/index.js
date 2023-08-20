@@ -1,4 +1,5 @@
 import Heading from "@/components/Heading";
+import Loader from "@/components/Loader";
 import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/utils/api";
 
@@ -17,7 +18,7 @@ function AllProducts({ products }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const products = await getAllProducts();
 
   return {

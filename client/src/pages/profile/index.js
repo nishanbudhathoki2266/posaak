@@ -141,13 +141,13 @@ function index() {
       <section className="max-w-[1440px] md:w-3/4 lg:w-1/2 mx-auto px-4 py-8">
         <Heading position="center">Profile Details</Heading>
 
-        <div className="text-center p-2">
+        <div className="text-center p-2 rounded-full">
           <Image
             src={`http://localhost:8080/img/users/${user?.image}`}
-            alt={`Photo of ${user?.name}`}
+            alt={`Avatar`}
             width={150}
             height={150}
-            className="inline-block object-cover mx-auto rounded-full border-2 cursor-pointer"
+            className="inline-flex object-cover mx-auto rounded-full border-2 shadow-lg cursor-pointer justify-center items-center"
             onClick={() => fileRef.current.click()}
           />
 

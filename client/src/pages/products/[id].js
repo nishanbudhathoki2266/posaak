@@ -1,15 +1,21 @@
 import Heading from "@/components/Heading";
+import Loader from "@/components/Loader";
 import ProductDetail from "@/components/ProductDetail";
 import { getFeaturedProducts, getProductById } from "@/utils/api";
 
 function ProductDetailPage({ product }) {
   // In case fallback is set to true here
   if (!product) {
-    return <Heading position="center">Loading..</Heading>;
+    return (
+      <div className="h-[70vh] flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
+
   return (
     <div>
-      <ProductDetail product={product} />
+      <ProductDetail product={product.data.product} />
     </div>
   );
 }
@@ -19,13 +25,11 @@ export async function getStaticProps(context) {
 
   const product = await getProductById(productId);
 
-  console.log(product);
-
-  const notFound = product ? false : true;
+  const notFound = product.status !== "success";
 
   return {
     props: {
-      product: product.data.product,
+      product,
     },
     revalidate: 10,
     notFound,

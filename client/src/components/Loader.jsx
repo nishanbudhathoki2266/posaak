@@ -1,15 +1,16 @@
 import React from "react";
-import { Watch } from "react-loader-spinner";
+import { Audio } from "react-loader-spinner";
 
 const Loader = () => {
   return (
-    <Watch
-      height="80"
-      width="80"
-      radius="48"
+    <Audio
+      height="50"
+      width="50"
+      radius="9"
       color="#67595E"
-      ariaLabel="watch-loading"
-      visible={true}
+      ariaLabel="loading"
+      wrapperStyle
+      wrapperClass
     />
   );
 };
