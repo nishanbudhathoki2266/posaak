@@ -1,18 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cart: [],
+  cart: [
+    {
+      id: "64cf7fe2a804740126a0498a",
+      name: "Cotton T-shirt",
+      quantity: 1,
+      color: "Maroon",
+      size: "small",
+      price: 800,
+    },
+  ],
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem(state, action) {
+    addProduct(state, action) {
       // payload = {new product item}
-      state.cart.push(action.payload);
+      const product = state.cart.find(
+        (product) =>
+          product.id === action.payload.id &&
+          product.size === action.payload.size &&
+          product.color === action.payload.color
+      );
+
+      if (product) {
+        product.quantity += product.quantity;
+      } else {
+        state.cart.push(action.payload);
+      }
     },
-    deleteItem(state, action) {
+    deleteProduct(state, action) {
       // payload = product._id
       state.cart = state.cart.filter(
         (product) => product.id !== action.payload
@@ -34,7 +54,7 @@ const cartSlice = createSlice({
       product.quantity--;
       product.totalPrice = product.price * product.quantity;
       if (product.quantity === 0) {
-        cartSlice.caseReducers.deleteItem(state, action);
+        cartSlice.caseReducers.deleteProduct(state, action);
       }
     },
     clearCart(state) {
@@ -44,8 +64,8 @@ const cartSlice = createSlice({
 });
 
 export const {
-  addItem,
-  deleteItem,
+  addProduct,
+  deleteProduct,
   increaseQuantity,
   decreaseQuantity,
   clearCart,

@@ -1,14 +1,24 @@
 import Image from "next/image";
 import Button from "./Button";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addItem } from "@/redux/reducerSlices/cartSlice";
+import { addProduct } from "@/redux/reducerSlices/cartSlice";
+import ProductCounter from "./ProductCounter";
 
 function ProductDetail({ product }) {
-  const images = product.images;
+  const dispatch = useDispatch();
 
+  // For displaying large image upon the user selection
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [activeColor, setActiveColor] = useState();
+
+  // For choosing the color
+  const [activeColor, setActiveColor] = useState(0);
+
+  // ref for getting the user selected size
+  const sizeRef = useRef(null);
+
+  // An array of product images
+  const images = product.images;
 
   function handleActiveImageIndex(index) {
     if (activeImageIndex !== index) {
@@ -16,7 +26,20 @@ function ProductDetail({ product }) {
     }
   }
 
-  const dispatch = useDispatch();
+  function handleAddToCart() {
+    const newProduct = {
+      id: product._id,
+      name: product.name,
+      quantity: 1,
+      color: product.colors[activeColor].name,
+      size: sizeRef.current.value,
+      price: product.price,
+    };
+
+    console.log(newProduct);
+
+    dispatch(addProduct(newProduct));
+  }
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -53,18 +76,19 @@ function ProductDetail({ product }) {
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               Category - {product.category.name}
             </h2>
-            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+            <h1 className="text-gray-900 text-3xl font-medium mb-1">
               {product.name}
             </h1>
 
-            <p className="leading-relaxed">
+            <p className="leading-relaxed text-md">
               {product.description} Fam locavore kickstarter distillery. Mixtape
               chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO
               fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday
               carry +1 seitan poutine tumeric.
             </p>
-            <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+            <div className="flex mt-6 items-center pb-5 mb-5">
               <div className="flex gap-[1px]">
+                <span className="mr-3">Color</span>
                 {product.colors.map((color, i) => {
                   const hexCode = color.hexCode;
                   return (
@@ -75,16 +99,17 @@ function ProductDetail({ product }) {
                       className={`border-2 ${
                         activeColor === i ? "ring-2" : ""
                       } ring-[#67595E] ml-1 rounded-full w-6 h-6 focus:outline-none`}
-                    >
-                      {" "}
-                    </button>
+                    ></button>
                   );
                 })}
               </div>
               <div className="flex ml-6 items-center">
                 <span className="mr-3">Size</span>
                 <div className="relative">
-                  <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                  <select
+                    ref={sizeRef}
+                    className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10"
+                  >
                     {product.sizes.map((size) => (
                       <option key={size} value={size.toLowerCase()}>
                         {size}
@@ -107,24 +132,18 @@ function ProductDetail({ product }) {
                 </div>
               </div>
             </div>
-            <div className="flex">
+            {/* Here in the product counter we pass product id to keep track of quanity in the cart */}
+            {/* 
+            <div className="border-b-2 border-gray-100 pb-6 mb-6">
+            <ProductCounter />
+            </div>
+          */}
+            <div className="flex items-center">
               <span className="title-font font-medium text-2xl text-gray-900">
-                ${product.price - product.priceDiscount}
+                Rs. {product.price - product.priceDiscount} /-
               </span>
               <div className="ml-auto">
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    dispatch(
-                      addItem({
-                        id: product._id,
-                        quantity: 5,
-                        price: 3,
-                        name: "Tshirt",
-                      })
-                    );
-                  }}
-                >
+                <Button variant="primary" onClick={handleAddToCart}>
                   Add to Cart
                 </Button>
               </div>

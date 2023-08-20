@@ -21,12 +21,10 @@ function Navigation() {
 
   const totalCartQuantity = useSelector(getTotalCartQuantity);
 
-  console.log(totalCartQuantity);
-
   useState();
   return (
-    <header className="text-black-600 p-6 border-b-[1px] border-b-black ">
-      <div className="container mx-auto flex flex-wrap justify-around items-center gap-6 md:gap-0">
+    <header className="text-black-600 py-10 px-6 md:py-6 border-b-[1px] border-b-black ">
+      <div className="container mx-auto flex flex-wrap justify-around items-center gap-8 md:gap-0">
         <nav className="flex flex-wrap items-center text-sm">
           <Link
             href="/"
@@ -89,7 +87,7 @@ function Navigation() {
             <div className="flex gap-4 items-center">
               <Link href="/cart" className="relative ">
                 <AiOutlineShoppingCart className="cursor-pointer text-2xl" />
-                <p className="text-md bg-orange-600 text-white rounded-full text-center flex items-center justify-center h-6 w-6 absolute top-[-21px] right-[-12px]">
+                <p className="text-md bg-orange-600 text-white rounded-full text-center font-semibold text-md flex items-center justify-center h-8 w-8 absolute top-[-29px] right-[-12px]">
                   {totalCartQuantity}
                 </p>
               </Link>
