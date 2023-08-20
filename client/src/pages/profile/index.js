@@ -178,7 +178,7 @@ function index() {
                       type="submit"
                       className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
                     >
-                      Upload
+                      {isUpdatingImage ? "Updating" : "Update"}
                     </button>
                   </Fragment>
                 )}
@@ -269,7 +269,7 @@ function index() {
         </Formik>
 
         <div className="mt-8">
-          <Heading position="center">Update your password</Heading>
+          <Heading position="center">Change your password</Heading>
 
           {/* Change Password Forms */}
           <Formik
