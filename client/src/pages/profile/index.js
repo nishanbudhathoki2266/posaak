@@ -144,7 +144,9 @@ function index() {
 
         <div className="text-center p-2 rounded-full">
           <Image
-            src={`http://localhost:8080/img/users/${user?.image}`}
+            src={`http://localhost:8080/img/users/${
+              user?.image || "default.png"
+            }`}
             alt={`Avatar`}
             width={150}
             height={150}
