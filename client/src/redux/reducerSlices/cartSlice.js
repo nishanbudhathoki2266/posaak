@@ -34,18 +34,25 @@ const cartSlice = createSlice({
     },
 
     increaseQuantity(state, action) {
-      //   payload = product._id;
+      //   payload = product;
       const product = state.cart.find(
-        (product) => product.id === action.payload
+        (product) =>
+          product.id === action.payload.id &&
+          product.size === action.payload.size &&
+          product.color === action.payload.color
       );
       product.quantity++;
       product.totalPrice = product.price * product.quantity;
     },
     decreaseQuantity(state, action) {
-      //   payload = product._id;
+      //   payload = product;
       const product = state.cart.find(
-        (product) => product.id === action.payload
+        (product) =>
+          product.id === action.payload.id &&
+          product.size === action.payload.size &&
+          product.color === action.payload.color
       );
+
       product.quantity--;
       product.totalPrice = product.price * product.quantity;
       if (product.quantity === 0) {
@@ -77,5 +84,10 @@ export const getTotalCartQuantity = (state) =>
 export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((sum, product) => sum + product.price, 0);
 
-export const getCurrentQuantityById = (id) => (state) =>
-  state.cart.cart.find((product) => product.id === id)?.quantity || 0;
+export const getCurrentProductQuantity =
+  ({ id, size, color }) =>
+  (state) =>
+    state.cart.cart.find(
+      (product) =>
+        product.id === id && product.size === size && product.color === color
+    )?.quantity || 0;
