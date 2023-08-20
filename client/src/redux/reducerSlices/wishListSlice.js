@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { prepareDataForValidation } from "formik";
+import { toast } from "react-hot-toast";
 
 const initialState = {
   wishList: [],
@@ -17,11 +17,12 @@ const wishListSlice = createSlice({
 
       if (!existingProduct) {
         state.wishList.push(action.payload);
-      }
-      {
+        toast.success("Successfully added to wishlist.");
+      } else {
         state.wishList = state.wishList.filter(
           (product) => product.id !== action.payload.id
         );
+        toast.success("Successfully removed from wishList.");
       }
     },
     deleteFromWishList(state, action) {

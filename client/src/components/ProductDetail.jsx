@@ -1,10 +1,14 @@
 import Image from "next/image";
 import Button from "./Button";
 import { Fragment, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "@/redux/reducerSlices/cartSlice";
-import ProductCounter from "./ProductCounter";
 import { toast } from "react-hot-toast";
+import {
+  addToWishList,
+  getWishList,
+} from "@/redux/reducerSlices/wishListSlice";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 function ProductDetail({ product }) {
   const dispatch = useDispatch();
@@ -21,12 +25,33 @@ function ProductDetail({ product }) {
   // An array of product images
   const images = product.images;
 
+  // Wish List
+  const wishList = useSelector(getWishList);
+
+  // function that checks if the product is already in the wishList
+  const currProductInWishList = wishList.find(
+    (wishListProduct) => wishListProduct.id === product._id
+  );
+
   function handleActiveImageIndex(index) {
     if (activeImageIndex !== index) {
       setActiveImageIndex(index);
     }
   }
 
+  // Add to wishList
+  function handleAddToWishList() {
+    const newProduct = {
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.images[0],
+    };
+
+    dispatch(addToWishList(newProduct));
+  }
+
+  // Add to cart
   function handleAddToCart() {
     const newProduct = {
       id: product._id,
@@ -75,9 +100,23 @@ function ProductDetail({ product }) {
           </div>
 
           <div className="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <h2 className="text-sm title-font text-gray-500 tracking-widest">
-              Category - {product.category.name}
-            </h2>
+            <div className="flex justify-between items-center">
+              <h2 className="text-sm title-font text-gray-500 tracking-widest">
+                Category - {product.category.name}
+              </h2>
+              {/* Add to wishlist */}
+              {currProductInWishList ? (
+                <AiFillHeart
+                  className={`text-red-600 text-3xl cursor-pointer`}
+                  onClick={handleAddToWishList}
+                />
+              ) : (
+                <AiOutlineHeart
+                  className={`text-red-600 text-3xl cursor-pointer`}
+                  onClick={handleAddToWishList}
+                />
+              )}
+            </div>
             <h1 className="text-gray-900 text-3xl font-medium mb-1">
               {product.name}
             </h1>

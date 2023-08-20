@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Button from "./Button";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,6 +12,11 @@ function ProductCard({ product }) {
   const dispatch = useDispatch();
   const wishList = useSelector(getWishList);
 
+  // function that checks if the product is already in the wishList
+  const currProductInWishList = wishList.find(
+    (wishListProduct) => wishListProduct.id === product._id
+  );
+
   function handleAddToWishList() {
     const newProduct = {
       id: product._id,
@@ -22,7 +26,6 @@ function ProductCard({ product }) {
     };
 
     dispatch(addToWishList(newProduct));
-    toast.success("Successfully added to wishlist.");
   }
 
   return (
@@ -61,10 +64,17 @@ function ProductCard({ product }) {
             View &rarr;
           </Link>
           {/* Add to wishlist */}
-          <AiOutlineHeart
-            className={`text-red-600 text-3xl cursor-pointer`}
-            onClick={handleAddToWishList}
-          />
+          {currProductInWishList ? (
+            <AiFillHeart
+              className={`text-red-600 text-3xl cursor-pointer`}
+              onClick={handleAddToWishList}
+            />
+          ) : (
+            <AiOutlineHeart
+              className={`text-red-600 text-3xl cursor-pointer`}
+              onClick={handleAddToWishList}
+            />
+          )}
         </div>
       </div>
     </div>
