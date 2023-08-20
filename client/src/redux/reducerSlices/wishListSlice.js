@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { prepareDataForValidation } from "formik";
 
 const initialState = {
   wishList: [],
@@ -10,7 +11,16 @@ const wishListSlice = createSlice({
   reducers: {
     addToWishList(state, action) {
       // payload = {new product item}
-      state.wishList.push(action.payload);
+      const existingProduct = state.wishList.find(
+        (product) => product.id === action.payload.id
+      );
+
+      if (!existingProduct) {
+        state.wishList.push(action.payload);
+      } else {
+        state.wishList.filter((product) => product.id !== action.payload.id);
+      }
+      console.log(JSON.stringify(state.wishList), state.wishList.length);
     },
     deleteFromWishList(state, action) {
       // payload = product._id
