@@ -15,7 +15,7 @@ function WishListCard({ product }) {
   }
 
   return (
-    <div className="max-xs:max-w-7/12 sm:w-full mx-auto border rounded-md shadow-xl p-4 flex flex-col gap-2 hover:scale-[1.006] transition-transform">
+    <div className="max-xs:max-w-7/12 sm:w-full mx-auto border rounded-md shadow-xl p-4 flex flex-col gap-2 hover:scale-[1.004] transition-transform">
       <Image
         src={`http://localhost:8080/img/products/${product.image}`}
         alt={`Image of ${product.name}`}
@@ -25,8 +25,8 @@ function WishListCard({ product }) {
       />
 
       <div className="text-left">
-        <h3 className="text-lg font-medium">{product.name}</h3>
-        <p className="text-sm font-semibold">Rs. {product.price}</p>
+        <h3 className="text-lg font-semibold">{product.name}</h3>
+        <p className="text-sm font-medium">Rs. {product.price}</p>
       </div>
       <div className="flex items-center gap-3 mt-1">
         <Link href={`products/${product.id}`}>
