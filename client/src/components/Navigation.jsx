@@ -114,7 +114,7 @@ function Navigation() {
                       </Link>
 
                       <Link
-                        href="/"
+                        href="/auth/login"
                         className="text-md text-[#67595E] hover:scale-105 cursor-pointer transition-transform ease-in-out duration-150 uppercase text-md font-semibold tracking-widest"
                         onClick={() => {
                           hideProfileSettings();
