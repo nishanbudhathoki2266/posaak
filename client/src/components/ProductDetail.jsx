@@ -74,7 +74,7 @@ function ProductDetail({ product }) {
             </div>
           </div>
 
-          <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          <div className="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               Category - {product.category.name}
             </h2>
@@ -82,7 +82,7 @@ function ProductDetail({ product }) {
               {product.name}
             </h1>
 
-            <p className="leading-relaxed text-md">
+            <p className="leading-relaxed text-sm tracking-wider">
               {product.description} Fam locavore kickstarter distillery. Mixtape
               chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO
               fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday
@@ -134,13 +134,11 @@ function ProductDetail({ product }) {
                 </div>
               </div>
             </div>
-            {/* Here in the product counter we pass product id to keep track of quanity in the cart */}
-            {/* 
-            <div className="border-b-2 border-gray-100 pb-6 mb-6">
-            <ProductCounter />
-            </div>
-          */}
-            <div className="flex items-center">
+            <p className="leading-relaxed text-[13px] mb-2 tracking-wider">
+              Want to set a quantity ? Chill! 😋 Add it to cart and you can set
+              the quantity in the cart 🛒
+            </p>
+            <div className="flex items-center border-t-2 pt-4">
               <span className="title-font font-medium text-2xl text-gray-900">
                 Rs. {product.price - product.priceDiscount} /-
               </span>

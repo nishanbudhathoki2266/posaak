@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 
 function CartPage() {
   const cart = useSelector(getCart);
-
   const totalCartPrice = useSelector(getTotalCartPrice);
 
   if (!cart.length > 0)
@@ -34,7 +33,7 @@ function CartPage() {
   return (
     <ProtectedPage url="cart">
       <Heading position="center" className="mt-8">
-        The Cart Page
+        Your Cart
       </Heading>
       <div className="px-2 sm:px-4">
         <div className="mt-8 max-w-[1440px] mx-auto grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] w-full gap-y-1">
