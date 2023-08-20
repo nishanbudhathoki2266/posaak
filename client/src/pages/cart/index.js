@@ -1,7 +1,7 @@
 import CartCard from "@/components/CartCard";
 import Heading from "@/components/Heading";
 import ProtectedPage from "@/components/ProtectedPage";
-import { getCart } from "@/redux/reducerSlices/cartSlice";
+import { getCart, getTotalCartPrice } from "@/redux/reducerSlices/cartSlice";
 import Link from "next/link";
 import { Fragment } from "react";
 import { MdShoppingBag } from "react-icons/md";
@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 
 function CartPage() {
   const cart = useSelector(getCart);
+
+  const totalCartPrice = useSelector(getTotalCartPrice);
 
   if (!cart.length > 0)
     return (
@@ -34,29 +36,33 @@ function CartPage() {
       <Heading position="center" className="mt-8">
         The Cart Page
       </Heading>
-      <div className="mt-8 max-w-[1440px] mx-auto px-2 sm:px-4 grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] w-full gap-y-1">
-        <div className="text-md font-medium uppercase tracking-wide p-3">
-          Products
-        </div>
-        <div className="text-md font-medium uppercase tracking-wide p-3">
-          Quantity
-        </div>
-        <div className="text-md font-medium uppercase tracking-wide p-3">
-          Price
-        </div>
-        <div className="text-md font-medium uppercase tracking-wide p-3">
-          Total
-        </div>
+      <div className="px-2 sm:px-4">
+        <div className="mt-8 max-w-[1440px] mx-auto grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] w-full gap-y-1">
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Products
+          </div>
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Quantity
+          </div>
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Price (Rs.)
+          </div>
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Total (Rs.)
+          </div>
 
-        {/* Cart products */}
+          {/* Cart products */}
 
-        {cart.map((product, index) => (
-          // Also giving index + product id as key because there might be two product ids as user might choose different colors and add to cart
-          <CartCard key={product.id + "" + index} product={product} />
-        ))}
-      </div>
-      <div className="max-w-[1440px] mx-auto border-t-2 mt-2 pt-2 relative">
-        <p className="absolute right-0 text-1xl font-semibold">Rs. 9000/-</p>
+          {cart.map((product, index) => (
+            // Also giving index + product id as key because there might be two product ids as user might choose different colors and add to cart
+            <CartCard key={product.id + "" + index} product={product} />
+          ))}
+        </div>
+        <div className="max-w-[1440px] mx-auto border-t-2 mt-2 pt-2 relative">
+          <p className="absolute right-4 text-xl sm:text-2xl font-semibold">
+            Rs. {totalCartPrice}/-
+          </p>
+        </div>
       </div>
     </ProtectedPage>
   );

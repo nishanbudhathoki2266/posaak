@@ -21,7 +21,6 @@ function Navigation() {
 
   const totalCartQuantity = useSelector(getTotalCartQuantity);
 
-  useState();
   return (
     <header className="text-black-600 py-10 px-6 md:py-6 border-b-[1px] border-b-black ">
       <div className="container mx-auto flex flex-wrap justify-around items-center gap-8 md:gap-0">
@@ -86,31 +85,34 @@ function Navigation() {
           {isLoggedIn && (
             <div className="flex gap-4 items-center">
               <Link href="/cart" className="relative ">
-                <AiOutlineShoppingCart className="cursor-pointer text-2xl" />
-                <p className="text-md bg-orange-600 text-white rounded-full text-center font-semibold text-md flex items-center justify-center h-8 w-8 absolute top-[-29px] right-[-12px]">
+                <AiOutlineShoppingCart className="cursor-pointer text-3xl" />
+                <p className="text-md bg-orange-600 text-white rounded-full text-center font-semibold text-md flex items-center justify-center h-7 w-7 absolute top-[-28px] right-[-12px]">
                   {totalCartQuantity}
                 </p>
               </Link>
               <div className="relative flex items-center justify-center">
                 <AiOutlineUser
-                  className="cursor-pointer text-2xl"
+                  className="cursor-pointer text-3xl"
                   onClick={() =>
                     setShowProfieSettings((currState) => !currState)
                   }
                 />
                 {showProfileSettings && (
-                  <div className="absolute z-50 top-10 bg-gray-50 shadow-xl border flex justify-center items-center h-36 w-36 rounded-xl">
-                    <div className="flex flex-col justify-center items-center gap-4">
+                  <div
+                    className="absolute z-50 top-10 bg-gray-50 shadow-xl border flex justify-center items-center h-28 w-36 rounded-xl"
+                    onMouseLeave={hideProfileSettings}
+                  >
+                    <div className="flex flex-col justify-center items-center gap-3">
                       <Link
                         href="/profile"
-                        className="text-md text-[#67595E] hover:scale-105 cursor-pointer transition-transform ease-in-out duration-150 uppercase text-md font-semibold tracking-widest"
+                        className="text-[#67595E] cursor-pointer hover:font-bold text-sm font-medium tracking-widest"
                         onClick={hideProfileSettings}
                       >
                         My Profile
                       </Link>
                       <Link
                         href="/"
-                        className="text-md text-[#67595E] hover:scale-105 cursor-pointer transition-transform ease-in-out duration-150 uppercase text-md font-semibold tracking-widest"
+                        className=" text-[#67595E] cursor-pointer hover:font-bold text-sm font-medium tracking-widest"
                         onClick={hideProfileSettings}
                       >
                         My Orders
@@ -118,9 +120,8 @@ function Navigation() {
 
                       <Link
                         href="/auth/login"
-                        className="text-md text-[#67595E] hover:scale-105 cursor-pointer transition-transform ease-in-out duration-150 uppercase text-md font-semibold tracking-widest"
+                        className="text-sm text-[#67595E] cursor-pointer hover:font-bold text-md font-medium tracking-widest"
                         onClick={() => {
-                          hideProfileSettings();
                           dispatch(logOut());
                           toast.success("Logged out successfully!");
                         }}

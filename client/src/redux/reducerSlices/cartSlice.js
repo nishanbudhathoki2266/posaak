@@ -82,7 +82,10 @@ export const getTotalCartQuantity = (state) =>
   state.cart.cart.reduce((sum, product) => sum + product.quantity, 0);
 
 export const getTotalCartPrice = (state) =>
-  state.cart.cart.reduce((sum, product) => sum + product.price, 0);
+  state.cart.cart.reduce(
+    (sum, product) => sum + product.price * product.quantity,
+    0
+  );
 
 export const getCurrentProductQuantity =
   ({ id, size, color }) =>
@@ -91,3 +94,15 @@ export const getCurrentProductQuantity =
       (product) =>
         product.id === id && product.size === size && product.color === color
     )?.quantity || 0;
+
+export const getTotalPriceByQuantity =
+  ({ id, size, color }) =>
+  (state) =>
+    state.cart.cart.find(
+      (product) =>
+        product.id === id && product.size === size && product.color === color
+    )?.quantity *
+    state.cart.cart.find(
+      (product) =>
+        product.id === id && product.size === size && product.color === color
+    )?.price;
