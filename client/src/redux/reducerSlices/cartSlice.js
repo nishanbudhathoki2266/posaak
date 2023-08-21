@@ -1,31 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  cart: [],
-};
+const initialState = {};
 
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addProduct(state, action) {
-      // payload = {new product item}
-      const product = state.cart.find(
-        (product) =>
-          product.id === action.payload.id &&
-          product.size === action.payload.size &&
-          product.color === action.payload.color
-      );
+      // payload = {new product item and userId}
+      const userId = action.payload.userId;
 
-      if (product) {
-        product.quantity += product.quantity;
+      if (!state[userId]) {
+        state[userId] = [];
       } else {
-        state.cart.push(action.payload);
+        const product = state[userId].find(
+          (product) =>
+            product.id === action.payload.id &&
+            product.size === action.payload.size &&
+            product.color === action.payload.color
+        );
+        if (product) {
+          product.quantity += product.quantity;
+        } else {
+          state[userId].push(action.payload);
+        }
       }
     },
+
     deleteProduct(state, action) {
-      // payload = product
-      state.cart = state.cart.filter(
+      // payload = product and userId
+      const userId = action.payload.userId;
+      state[userId] = state[userId].filter(
         (product) =>
           product.id !== action.payload.id ||
           product.size !== action.payload.size ||
@@ -34,8 +39,9 @@ const cartSlice = createSlice({
     },
 
     increaseQuantity(state, action) {
-      //   payload = product;
-      const product = state.cart.find(
+      // payload = product and product id;
+      const userId = action.payload.userId;
+      const product = state[userId].find(
         (product) =>
           product.id === action.payload.id &&
           product.size === action.payload.size &&
@@ -45,8 +51,9 @@ const cartSlice = createSlice({
       product.totalPrice = product.price * product.quantity;
     },
     decreaseQuantity(state, action) {
-      //   payload = product;
-      const product = state.cart.find(
+      //   payload = product and product id;
+      const userId = action.payload.userId;
+      const product = state[userId].find(
         (product) =>
           product.id === action.payload.id &&
           product.size === action.payload.size &&
@@ -60,7 +67,7 @@ const cartSlice = createSlice({
       }
     },
     clearCart(state) {
-      state.cart = [];
+      return initialState;
     },
   },
 });
@@ -76,29 +83,30 @@ export const {
 export default cartSlice.reducer;
 
 // selector functions start with get -> best practice
-export const getCart = (state) => state.cart.cart;
+export const getCart = (userId) => (state) =>
+  state.cart[userId].length > 0 ? state.cart[userId] : [];
 
-export const getTotalCartQuantity = (state) =>
-  state.cart.cart.reduce((sum, product) => sum + product.quantity, 0);
+export const getTotalCartQuantity = (userId) => (state) =>
+  state.cart[userId].reduce((sum, product) => sum + product.quantity, 0);
 
-export const getTotalCartPrice = (state) =>
-  state.cart.cart.reduce(
+export const getTotalCartPrice = (userId) => (state) =>
+  state.cart[userId].reduce(
     (sum, product) => sum + product.price * product.quantity,
     0
   );
 
 export const getCurrentProductQuantity =
-  ({ id, size, color }) =>
+  ({ product: { id, size, color }, userId }) =>
   (state) =>
-    state.cart.cart.find(
+    state.cart[userId].find(
       (product) =>
         product.id === id && product.size === size && product.color === color
     )?.quantity || 0;
 
 export const getTotalPriceByQuantity =
-  ({ id, size, color }) =>
+  ({ product: { id, size, color }, userId }) =>
   (state) =>
-    state.cart.cart.find(
+    state.cart[userId].find(
       (product) =>
         product.id === id && product.size === size && product.color === color
     )?.quantity *

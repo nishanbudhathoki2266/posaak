@@ -48,6 +48,12 @@ function ProductDetail({ product }) {
 
   // Add to wishList
   function handleAddToWishList() {
+    if (!userId) {
+      router.push("auth/login");
+      toast.error("Login required!");
+      return;
+    }
+
     const newProduct = {
       id: product._id,
       userId,
