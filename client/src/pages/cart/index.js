@@ -7,14 +7,15 @@ import {
   getCart,
   getTotalCartPrice,
 } from "@/redux/reducerSlices/cartSlice";
-import { getIsLoggedIn } from "@/redux/reducerSlices/userSlice";
+import { getIsLoggedIn, getUserDetails } from "@/redux/reducerSlices/userSlice";
 import Link from "next/link";
 import { MdShoppingBag } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 
 function CartPage() {
-  const cart = useSelector(getCart);
-  const totalCartPrice = useSelector(getTotalCartPrice);
+  const userId = useSelector(getUserDetails)._id;
+  const cart = useSelector(getCart(userId));
+  const totalCartPrice = useSelector(getTotalCartPrice(userId));
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -69,7 +70,7 @@ function CartPage() {
           <p className="absolute right-4 text-xl sm:text-2xl font-semibold">
             Total: Rs. {totalCartPrice}/-
           </p>
-          <Button variant="primary" onClick={() => dispatch(clearCart())}>
+          <Button variant="primary" onClick={() => dispatch(clearCart(userId))}>
             Clear Cart
           </Button>
         </div>

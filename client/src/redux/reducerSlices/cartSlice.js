@@ -66,8 +66,9 @@ const cartSlice = createSlice({
         cartSlice.caseReducers.deleteProduct(state, action);
       }
     },
-    clearCart(state) {
-      return initialState;
+    clearCart(state, action) {
+      const userId = action.payload;
+      state[userId] = [];
     },
   },
 });
