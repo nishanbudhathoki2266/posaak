@@ -26,7 +26,7 @@ function Navigation() {
   const totalCartQuantity = useSelector(getTotalCartQuantity(userId));
 
   return (
-    <header className="text-black-600 py-10 px-6 md:py-6 border-b-[1px] border-b-black ">
+    <header className="text-black-600 py-8 px-6 md:py-6 border-b-[1px] border-b-black ">
       <div className="container mx-auto flex flex-wrap justify-around items-center gap-8 md:gap-0">
         <Link href="/" className="hidden md:block">
           <Image
