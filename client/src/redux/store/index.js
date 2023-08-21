@@ -8,6 +8,7 @@ import wishListReducer from "../reducerSlices/wishListSlice";
 const persistConfig = {
   key: "root",
   storage,
+  whitelist: ["user"],
 };
 
 const rootReducer = combineReducers({

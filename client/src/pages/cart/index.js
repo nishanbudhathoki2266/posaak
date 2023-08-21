@@ -7,6 +7,7 @@ import {
   getCart,
   getTotalCartPrice,
 } from "@/redux/reducerSlices/cartSlice";
+import { getIsLoggedIn } from "@/redux/reducerSlices/userSlice";
 import Link from "next/link";
 import { MdShoppingBag } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,7 +17,9 @@ function CartPage() {
   const totalCartPrice = useSelector(getTotalCartPrice);
   const dispatch = useDispatch();
 
-  if (!cart.length > 0)
+  const isLoggedIn = useSelector(getIsLoggedIn);
+
+  if (isLoggedIn && !cart.length > 0)
     return (
       <div className="h-[50vh] flex items-center justify-center">
         <div className="flex-col justify-center space-y-4 text-left px-6">

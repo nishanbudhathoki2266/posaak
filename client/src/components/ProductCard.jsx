@@ -6,10 +6,11 @@ import {
   addToWishList,
   getWishList,
 } from "@/redux/reducerSlices/wishListSlice";
-import { toast } from "react-hot-toast";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
+
+  // Get wishList from the store
   const wishList = useSelector(getWishList);
 
   // function that checks if the product is already in the wishList

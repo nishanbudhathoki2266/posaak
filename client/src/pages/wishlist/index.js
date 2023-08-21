@@ -1,6 +1,7 @@
 import Heading from "@/components/Heading";
 import ProtectedPage from "@/components/ProtectedPage";
 import WishListCard from "@/components/WishListCard";
+import { getIsLoggedIn } from "@/redux/reducerSlices/userSlice";
 import { getWishList } from "@/redux/reducerSlices/wishListSlice";
 import Link from "next/link";
 import React from "react";
@@ -9,8 +10,9 @@ import { useSelector } from "react-redux";
 
 function WishListPage() {
   const wishList = useSelector(getWishList);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
-  if (!wishList.length > 0)
+  if (isLoggedIn && !wishList.length > 0)
     return (
       <div className="h-[50vh] flex items-center justify-center">
         <div className="flex-col justify-center space-y-4 text-left px-6">

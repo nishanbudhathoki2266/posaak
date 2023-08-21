@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function WishListCard({ product }) {
   const dispatch = useDispatch();

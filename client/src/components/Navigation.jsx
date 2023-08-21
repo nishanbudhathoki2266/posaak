@@ -86,7 +86,7 @@ function Navigation() {
             <div className="flex gap-4 items-center">
               <Link href="/cart" className="relative ">
                 <AiOutlineShoppingCart className="cursor-pointer text-3xl" />
-                <p className="text-md bg-orange-600 text-white rounded-full text-center font-normal text-lg flex items-center justify-center h-7 w-7 absolute top-[-25px] right-[-12px]">
+                <p className="text-md bg-orange-600 text-white rounded-full text-center font-normal text-md flex items-center justify-center p-3 h-6 w-6 absolute top-[-23px] right-[-12px]">
                   {totalCartQuantity}
                 </p>
               </Link>
