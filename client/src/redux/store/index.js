@@ -6,7 +6,7 @@ import cartReducer from "../reducerSlices/cartSlice";
 import wishListReducer from "../reducerSlices/wishListSlice";
 
 const persistConfig = {
-  key: "root",
+  key: "userDetails",
   storage,
 };
 

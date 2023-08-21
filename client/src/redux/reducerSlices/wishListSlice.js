@@ -14,21 +14,21 @@ const wishListSlice = createSlice({
 
       if (!state[userId]) {
         state[userId] = [];
+      }
+
+      const existingProduct = state[userId].find(
+        (product) => product.id === action.payload.id
+      );
+
+      if (!existingProduct) {
+        state[userId].push(action.payload);
+
+        toast.success("Successfully added to wishlist.");
       } else {
-        const existingProduct = state[userId].find(
-          (product) => product.id === action.payload.id
-        );
-
-        if (!existingProduct) {
-          state[userId].push(action.payload);
-
-          toast.success("Successfully added to wishlist.");
-        } else {
-          state[userId] = state[userId].filter((product) => {
-            return product.id !== action.payload.id;
-          });
-          toast.success("Successfully removed from wishList.");
-        }
+        state[userId] = state[userId].filter((product) => {
+          return product.id !== action.payload.id;
+        });
+        toast.success("Successfully removed from wishList.");
       }
     },
     deleteFromWishList(state, action) {

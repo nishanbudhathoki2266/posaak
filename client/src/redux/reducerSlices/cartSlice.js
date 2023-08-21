@@ -12,18 +12,17 @@ const cartSlice = createSlice({
 
       if (!state[userId]) {
         state[userId] = [];
+      }
+      const product = state[userId].find(
+        (product) =>
+          product.id === action.payload.id &&
+          product.size === action.payload.size &&
+          product.color === action.payload.color
+      );
+      if (product) {
+        product.quantity += product.quantity;
       } else {
-        const product = state[userId].find(
-          (product) =>
-            product.id === action.payload.id &&
-            product.size === action.payload.size &&
-            product.color === action.payload.color
-        );
-        if (product) {
-          product.quantity += product.quantity;
-        } else {
-          state[userId].push(action.payload);
-        }
+        state[userId].push(action.payload);
       }
     },
 
