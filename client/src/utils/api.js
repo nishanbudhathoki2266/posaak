@@ -49,6 +49,24 @@ const getAllCategories = async () => {
   return data;
 };
 
+const register = async (credentials) => {
+  const response = await fetch("http://localhost:8080/api/v1/users/signup", {
+    method: "POST",
+    body: JSON.stringify(credentials),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
 const login = async (credentials) => {
   const response = await fetch("http://localhost:8080/api/v1/users/login", {
     method: "POST",
@@ -105,6 +123,7 @@ export {
   getProductById,
   getAllProducts,
   getAllCategories,
+  register,
   login,
   updateMe,
   updateMyPassword,

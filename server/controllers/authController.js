@@ -18,6 +18,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
+    address: req.body.address,
   });
 
   const token = signToken(newUser._id);
@@ -30,12 +31,13 @@ exports.signup = catchAsync(async (req, res, next) => {
     httpOnly: true,
   });
 
+  // Just to make sure that the password isn't shown
+  const { password: userPassword, ...restDetails } = newUser._doc;
+
   res.status(201).json({
-    status: "succcess",
+    status: "success",
     token,
-    data: {
-      user: newUser,
-    },
+    user: restDetails,
   });
 });
 

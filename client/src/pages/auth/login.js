@@ -24,6 +24,7 @@ function LoginPage() {
       password: values.password,
     });
 
+    setIsLoading(false);
     if (response.status === "success") {
       dispatch(setDetails(response));
       router.push("/");
@@ -31,7 +32,6 @@ function LoginPage() {
     } else {
       toast.error(response.message);
     }
-    setIsLoading(false);
   }
 
   const LoginSchema = Yup.object().shape({
