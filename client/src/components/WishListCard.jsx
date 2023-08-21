@@ -1,3 +1,4 @@
+import { getUserDetails } from "@/redux/reducerSlices/userSlice";
 import { deleteFromWishList } from "@/redux/reducerSlices/wishListSlice";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,13 +10,15 @@ import { useDispatch, useSelector } from "react-redux";
 function WishListCard({ product }) {
   const dispatch = useDispatch();
 
+  const userId = useSelector(getUserDetails)._id;
+
   function handleDeleteFromWishList() {
-    dispatch(deleteFromWishList(product.id));
+    dispatch(deleteFromWishList({ productId: product.id, userId }));
     toast.success("Successfully removed from wishlist.");
   }
 
   return (
-    <div className="max-xs:max-w-7/12 sm:w-full mx-auto border rounded-md shadow-xl p-4 flex flex-col gap-2 hover:scale-[1.004] transition-transform">
+    <div className="max-xs:max-w-7/12 sm:w-full mx-auto justify-center border rounded-md shadow-xl p-6 flex flex-col gap-2 hover:scale-[1.004] transition-transform">
       <Image
         src={`http://localhost:8080/img/products/${product.image}`}
         alt={`Image of ${product.name}`}

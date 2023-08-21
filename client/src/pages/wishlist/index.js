@@ -1,7 +1,7 @@
 import Heading from "@/components/Heading";
 import ProtectedPage from "@/components/ProtectedPage";
 import WishListCard from "@/components/WishListCard";
-import { getIsLoggedIn } from "@/redux/reducerSlices/userSlice";
+import { getIsLoggedIn, getUserDetails } from "@/redux/reducerSlices/userSlice";
 import { getWishList } from "@/redux/reducerSlices/wishListSlice";
 import Link from "next/link";
 import React from "react";
@@ -9,8 +9,9 @@ import { AiTwotoneHeart } from "react-icons/ai";
 import { useSelector } from "react-redux";
 
 function WishListPage() {
-  const wishList = useSelector(getWishList);
   const isLoggedIn = useSelector(getIsLoggedIn);
+  const user = useSelector(getUserDetails);
+  const wishList = useSelector(getWishList(user?._id));
 
   if (isLoggedIn && !wishList.length > 0)
     return (

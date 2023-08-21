@@ -44,7 +44,7 @@ function LoginPage() {
 
   return (
     <section className="text-gray-600 h-[70vh] flex items-center justify-center p-5">
-      <div className="bg-white flex flex-col mx-auto md:w-3/4 lg:w-1/2 w-full p-8">
+      <div className="bg-white flex flex-col mx-auto md:w-3/4 lg:w-1/2 w-full p-8 relative ">
         <Heading>Sign in</Heading>
         <p className="leading-relaxed mb-5 text-gray-600">
           Access your personal shopping experience 🛒
@@ -76,7 +76,7 @@ function LoginPage() {
                   {errors.email && touched.email ? errors.email : ""}
                 </FormError>
               </div>
-              <div className="relative mb-4">
+              <div className="mb-4 relative bg-red-900">
                 <label
                   htmlFor="password"
                   className="leading-7 text-sm text-gray-600"
@@ -88,7 +88,10 @@ function LoginPage() {
                   id="password"
                   name="password"
                   className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                />
+                ></Field>
+                <p className="bg-gray-200 py-1 px-3 w-auto inline right-3 top-8 absolute">
+                  show
+                </p>
                 <FormError>
                   {errors.password && touched.password ? errors.password : ""}
                 </FormError>

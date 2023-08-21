@@ -6,7 +6,11 @@ import React, { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
 import { getIsLoggedIn, logOut } from "@/redux/reducerSlices/userSlice";
-import { getTotalCartQuantity } from "@/redux/reducerSlices/cartSlice";
+import {
+  clearCart,
+  getTotalCartQuantity,
+} from "@/redux/reducerSlices/cartSlice";
+import { clearWishList } from "@/redux/reducerSlices/wishListSlice";
 
 function Navigation() {
   const [showProfileSettings, setShowProfieSettings] = useState(false);
@@ -32,7 +36,7 @@ function Navigation() {
             height={150}
           />
         </Link>
-        <nav className="flex flex-wrap items-center text-sm md:gap-12">
+        <nav className="flex flex-wrap items-center text-sm md:gap-2">
           <Link
             href="/"
             className={`mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer`}

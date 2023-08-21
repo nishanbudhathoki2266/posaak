@@ -1,38 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useId } from "react";
 import { toast } from "react-hot-toast";
 
-const initialState = {
-  wishList: [],
-};
+const initialState = {};
 
 const wishListSlice = createSlice({
   name: "wishList",
   initialState,
   reducers: {
     addToWishList(state, action) {
-      // payload = {new product item}
-      const existingProduct = state.wishList.find(
-        (product) => product.id === action.payload.id
-      );
+      // payload = {new product item} and userId, to keep track of wishlist of each users
+      const userId = action.payload.userId;
 
-      if (!existingProduct) {
-        state.wishList.push(action.payload);
-        toast.success("Successfully added to wishlist.");
+      if (!state[userId]) {
+        state[userId] = [];
       } else {
-        state.wishList = state.wishList.filter(
-          (product) => product.id !== action.payload.id
+        const existingProduct = state[userId].find(
+          (product) => product.id === action.payload.id
         );
-        toast.success("Successfully removed from wishList.");
+
+        if (!existingProduct) {
+          state[userId].push(action.payload);
+
+          toast.success("Successfully added to wishlist.");
+        } else {
+          state[userId] = state[userId].filter((product) => {
+            return product.id !== action.payload.id;
+          });
+          toast.success("Successfully removed from wishList.");
+        }
       }
     },
     deleteFromWishList(state, action) {
-      // payload = product._id
-      state.wishList = state.wishList.filter(
-        (product) => product.id !== action.payload
+      // payload ={product.id and userId}
+      const { productId, userId } = action.payload;
+      state[userId] = state[userId].filter(
+        (product) => product.id !== productId
       );
     },
-    clearWishList(state) {
-      state.wishList = [];
+    clearWishList() {
+      return initialState;
     },
   },
 });
@@ -43,7 +50,7 @@ export const { addToWishList, deleteFromWishList, clearWishList } =
 export default wishListSlice.reducer;
 
 // selector functions start with get -> best practice
-export const getWishList = (state) => state.wishList.wishList;
+export const getWishList = (id) => (state) => state.wishList[id] || [];
 
-export const getTotalWishListQuantity = (state) =>
-  state.cart.cart.reduce((sum) => sum, 0);
+// export const getTotalWishListQuantity = (state) =>
+//   state.cart.cart.reduce((sum) => sum, 0);

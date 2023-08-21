@@ -6,12 +6,20 @@ import {
   addToWishList,
   getWishList,
 } from "@/redux/reducerSlices/wishListSlice";
+import { getUserDetails } from "@/redux/reducerSlices/userSlice";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
 
+  const router = useRouter();
+
+  // Get user
+  const userId = useSelector(getUserDetails)?._id;
+
   // Get wishList from the store
-  const wishList = useSelector(getWishList);
+  const wishList = useSelector(getWishList(userId));
 
   // function that checks if the product is already in the wishList
   const currProductInWishList = wishList.find(
@@ -19,8 +27,15 @@ function ProductCard({ product }) {
   );
 
   function handleAddToWishList() {
+    if (!userId) {
+      router.push("auth/login");
+      toast.error("Login required!");
+      return;
+    }
+
     const newProduct = {
       id: product._id,
+      userId,
       name: product.name,
       price: product.price,
       image: product.images[0],

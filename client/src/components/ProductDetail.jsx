@@ -9,6 +9,7 @@ import {
   getWishList,
 } from "@/redux/reducerSlices/wishListSlice";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { getIsLoggedIn, getUserDetails } from "@/redux/reducerSlices/userSlice";
 
 function ProductDetail({ product }) {
   const dispatch = useDispatch();
@@ -25,8 +26,14 @@ function ProductDetail({ product }) {
   // An array of product images
   const images = product.images;
 
+  // get userId
+  const userId = useSelector(getUserDetails)?._id;
+
+  // getLoggedIn
+  const isLoggedIn = useSelector(getIsLoggedIn);
+
   // Wish List
-  const wishList = useSelector(getWishList);
+  const wishList = useSelector(getWishList(userId));
 
   // function that checks if the product is already in the wishList
   const currProductInWishList = wishList.find(
@@ -43,6 +50,7 @@ function ProductDetail({ product }) {
   function handleAddToWishList() {
     const newProduct = {
       id: product._id,
+      userId,
       name: product.name,
       price: product.price,
       image: product.images[0],
@@ -105,17 +113,21 @@ function ProductDetail({ product }) {
                 Category - {product.category.name}
               </h2>
               {/* Add to wishlist */}
-              {currProductInWishList ? (
-                <AiFillHeart
-                  className={`text-red-600 text-3xl cursor-pointer`}
-                  onClick={handleAddToWishList}
-                />
-              ) : (
-                <AiOutlineHeart
-                  className={`text-red-600 text-3xl cursor-pointer`}
-                  onClick={handleAddToWishList}
-                />
-              )}
+              {isLoggedIn ? (
+                <Fragment>
+                  {currProductInWishList ? (
+                    <AiFillHeart
+                      className={`text-red-600 text-3xl cursor-pointer`}
+                      onClick={handleAddToWishList}
+                    />
+                  ) : (
+                    <AiOutlineHeart
+                      className={`text-red-600 text-3xl cursor-pointer`}
+                      onClick={handleAddToWishList}
+                    />
+                  )}
+                </Fragment>
+              ) : null}
             </div>
             <h1 className="text-gray-900 text-3xl font-medium mb-1">
               {product.name}
