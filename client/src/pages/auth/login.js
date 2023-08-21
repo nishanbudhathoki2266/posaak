@@ -76,7 +76,7 @@ function LoginPage() {
                   {errors.email && touched.email ? errors.email : ""}
                 </FormError>
               </div>
-              <div className="mb-4 relative bg-red-900">
+              <div className="mb-4 relative">
                 <label
                   htmlFor="password"
                   className="leading-7 text-sm text-gray-600"
@@ -89,9 +89,6 @@ function LoginPage() {
                   name="password"
                   className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 ></Field>
-                <p className="bg-gray-200 py-1 px-3 w-auto inline right-3 top-8 absolute">
-                  show
-                </p>
                 <FormError>
                   {errors.password && touched.password ? errors.password : ""}
                 </FormError>
