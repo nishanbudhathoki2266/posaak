@@ -5,25 +5,25 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiOutlineShoppingCart, AiOutlineUser } from "react-icons/ai";
-import { getIsLoggedIn, logOut } from "@/redux/reducerSlices/userSlice";
 import {
-  clearCart,
-  getTotalCartQuantity,
-} from "@/redux/reducerSlices/cartSlice";
-import { clearWishList } from "@/redux/reducerSlices/wishListSlice";
+  getIsLoggedIn,
+  getUserDetails,
+  logOut,
+} from "@/redux/reducerSlices/userSlice";
+import { getTotalCartQuantity } from "@/redux/reducerSlices/cartSlice";
 
 function Navigation() {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const userId = useSelector(getUserDetails)?._id;
+  const isLoggedIn = useSelector(getIsLoggedIn);
   const [showProfileSettings, setShowProfieSettings] = useState(false);
 
   function hideProfileSettings() {
     setShowProfieSettings(false);
   }
 
-  const dispatch = useDispatch();
-  const router = useRouter();
-  const isLoggedIn = useSelector(getIsLoggedIn);
-
-  const totalCartQuantity = useSelector(getTotalCartQuantity);
+  const totalCartQuantity = useSelector(getTotalCartQuantity(userId));
 
   return (
     <header className="text-black-600 py-10 px-6 md:py-6 border-b-[1px] border-b-black ">

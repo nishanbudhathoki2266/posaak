@@ -13,11 +13,10 @@ import { MdShoppingBag } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 
 function CartPage() {
-  const userId = useSelector(getUserDetails)._id;
+  const userId = useSelector(getUserDetails)?._id;
   const cart = useSelector(getCart(userId));
   const totalCartPrice = useSelector(getTotalCartPrice(userId));
   const dispatch = useDispatch();
-
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   if (isLoggedIn && !cart.length > 0)

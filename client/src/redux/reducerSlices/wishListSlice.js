@@ -38,8 +38,9 @@ const wishListSlice = createSlice({
         (product) => product.id !== productId
       );
     },
-    clearWishList() {
-      return initialState;
+    clearWishList(state, action) {
+      const userId = action.payload;
+      state[userId] = [];
     },
   },
 });

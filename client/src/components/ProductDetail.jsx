@@ -70,6 +70,7 @@ function ProductDetail({ product }) {
     const newProduct = {
       id: product._id,
       name: product.name,
+      userId,
       // Just keeping the first image in the cart
       image: product.images[0],
       quantity: 1,

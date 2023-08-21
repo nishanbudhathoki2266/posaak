@@ -84,34 +84,35 @@ export const {
 export default cartSlice.reducer;
 
 // selector functions start with get -> best practice
-export const getCart = (userId) => (state) =>
-  state.cart[userId].length > 0 ? state.cart[userId] : [];
+export const getCart = (userId) => (state) => state.cart[userId] || [];
 
 export const getTotalCartQuantity = (userId) => (state) =>
-  state.cart[userId].reduce((sum, product) => sum + product.quantity, 0);
+  state.cart[userId]?.reduce((sum, product) => sum + product.quantity, 0) || 0;
 
 export const getTotalCartPrice = (userId) => (state) =>
-  state.cart[userId].reduce(
+  state.cart[userId]?.reduce(
     (sum, product) => sum + product.price * product.quantity,
     0
   );
 
-export const getCurrentProductQuantity =
-  ({ product: { id, size, color }, userId }) =>
-  (state) =>
-    state.cart[userId].find(
-      (product) =>
-        product.id === id && product.size === size && product.color === color
-    )?.quantity || 0;
+export const getCurrentProductQuantity = (productDetails) => (state) =>
+  state.cart[productDetails.userId].find(
+    (product) =>
+      product.id === productDetails.id &&
+      product.size === productDetails.size &&
+      product.color === productDetails.color
+  )?.quantity || 0;
 
-export const getTotalPriceByQuantity =
-  ({ product: { id, size, color }, userId }) =>
-  (state) =>
-    state.cart[userId].find(
-      (product) =>
-        product.id === id && product.size === size && product.color === color
-    )?.quantity *
-    state.cart.cart.find(
-      (product) =>
-        product.id === id && product.size === size && product.color === color
-    )?.price;
+export const getTotalPriceByQuantity = (productDetails) => (state) =>
+  state.cart[productDetails.userId].find(
+    (product) =>
+      product.id === productDetails.id &&
+      product.size === productDetails.size &&
+      product.color === productDetails.color
+  )?.quantity *
+  state.cart[productDetails.userId].find(
+    (product) =>
+      product.id === productDetails.id &&
+      product.size === productDetails.size &&
+      product.color === productDetails.color
+  )?.price;
