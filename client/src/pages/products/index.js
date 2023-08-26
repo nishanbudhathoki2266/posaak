@@ -20,7 +20,6 @@ function AllProducts({ products }) {
 
 export async function getServerSideProps() {
   const products = await getAllProducts();
-
   return {
     props: {
       products: products.data.products,
