@@ -13,9 +13,6 @@ export default function HomePage({ featuredProducts, categories }) {
   );
 }
 
-// This site is under construction hai guys :(
-// Node Express React Next Mongodb -> Main tech stack
-
 export async function getStaticProps() {
   const featuredProducts = await getFeaturedProducts();
   const categories = await getAllCategories();
