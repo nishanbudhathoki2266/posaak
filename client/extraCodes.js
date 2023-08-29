@@ -28,3 +28,22 @@ const checkIfStringIsNum = (str) => {
 
 // console.log(checkIfStringIsNum(z));
 // console.log(checkIfStringIsNum(y));
+
+let variableA = "hello";
+variableA = "world";
+variableA = 1;
+
+let variableB = "hello";
+variableB = "world";
+variableB = 1;
+
+const variableC = [];
+// #Task - write a syntax to push the string "hello world" inside variableC
+variableC.push("Hello World");
+
+const variableD = {};
+// #Task - write a syntax to push a key called "foo" with value "bar" inside variable D
+variableD["foo"] = "bar";
+
+// #Task - Determine Output
+// console.log(variableA, variableB, variableC, variableD);
