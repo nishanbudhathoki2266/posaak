@@ -50,6 +50,7 @@ function RegisterPage() {
       .oneOf([Yup.ref("password")], "Both passwords must match!"),
     address: Yup.string().required("Please enter your address!"),
   });
+
   return (
     <section className="text-gray-600 h-auto px-5 py-16">
       <div className="bg-white flex flex-col mx-auto md:w-3/4 lg:w-1/2 w-full p-8">

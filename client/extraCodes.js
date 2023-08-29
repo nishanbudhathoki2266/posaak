@@ -13,4 +13,18 @@ const arr = [
   },
 ];
 
-console.log(arr.filter((pr) => pr.id !== "64cf7f75a804740126a04985"));
+// console.log(arr.filter((pr) => pr.id !== "64cf7f75a804740126a04985"));
+
+const z = "hell@gmail.com";
+const y = "2323";
+
+const checkIfStringIsNum = (str) => {
+  const convertedStr = +str;
+  if (isNaN(convertedStr)) {
+    return "String";
+  }
+  return "Number";
+};
+
+// console.log(checkIfStringIsNum(z));
+// console.log(checkIfStringIsNum(y));
