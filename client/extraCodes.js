@@ -47,3 +47,14 @@ variableD["foo"] = "bar";
 
 // #Task - Determine Output
 // console.log(variableA, variableB, variableC, variableD);
+
+// const name = "ram";
+
+// let state = {
+//   name: "hari",
+//   age: 50,
+// };
+
+// state = { ...state };
+
+// console.log(state);
