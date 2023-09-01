@@ -68,3 +68,21 @@ const sum = (arr) => {
 };
 
 // console.log(sum([1, 2, 3, 4, 5, 5, 6]));
+
+const findSecondLargest = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (i === j) continue; // Just making sure the same number of same index aren't compared
+
+      if (arr[j] > arr[i]) {
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+
+  return arr[arr.length - 2];
+};
+
+// console.log(findSecondLargest([2222, 111, 0, 1, 2, 7, 6, 4, 9, 12]));
