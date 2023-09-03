@@ -45,7 +45,7 @@ function ProductCard({ product }) {
   }
 
   return (
-    <div className="lg:w-1/4 md:w-1/2 p-4 w-fullflex flex-col items-center">
+    <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
       <div className="max-h-80 max-w-sm md:w-auto rounded overflow-hidden">
         <Image
           alt="ecommerce"
@@ -57,7 +57,7 @@ function ProductCard({ product }) {
         />
       </div>
 
-      <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1 mt-4">
+      <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
         Category - {product.category.name}
       </h3>
       <h2 className="text-gray-900 title-font text-lg font-medium">

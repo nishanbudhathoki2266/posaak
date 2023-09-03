@@ -19,6 +19,18 @@ function AllProducts(props) {
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
+
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
         </div>
       </div>
     </section>
