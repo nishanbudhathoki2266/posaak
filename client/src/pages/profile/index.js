@@ -42,8 +42,6 @@ function ProfilePage() {
     email: Yup.string()
       .email("Please enter a valid email")
       .required("Email is required"),
-
-    address: Yup.string().required("Address is required!"),
   });
 
   // Update Password Schema
@@ -100,7 +98,6 @@ function ProfilePage() {
     const response = await updateMe(myHeaders, {
       name: values.name,
       email: values.email,
-      address: values.address,
     });
 
     if (response.status === "success") {
@@ -195,7 +192,6 @@ function ProfilePage() {
           initialValues={{
             name: user?.name,
             email: user?.email,
-            address: user?.address,
           }}
           validationSchema={UpdateDetailsSchema}
           onSubmit={(values) => {
@@ -237,23 +233,6 @@ function ProfilePage() {
                 />
                 <FormError>
                   {errors.email && touched.email ? errors.email : ""}
-                </FormError>
-              </div>
-              <div className="relative mb-4">
-                <label
-                  htmlFor="address"
-                  className="leading-7 text-sm text-gray-600"
-                >
-                  Your Address
-                </label>
-                <Field
-                  type="text"
-                  id="address"
-                  name="address"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                />
-                <FormError>
-                  {errors.address && touched.address ? errors.address : ""}
                 </FormError>
               </div>
               {isChanged && (
