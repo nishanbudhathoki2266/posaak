@@ -23,7 +23,6 @@ function RegisterPage() {
       email: values.email,
       password: values.password,
       passwordConfirm: values.passwordConfirm,
-      address: values.address,
     });
 
     setIsLoading(false);
@@ -48,7 +47,6 @@ function RegisterPage() {
     passwordConfirm: Yup.string()
       .required("You must confirm your password!")
       .oneOf([Yup.ref("password")], "Both passwords must match!"),
-    address: Yup.string().required("Please enter your address!"),
   });
 
   return (
@@ -64,7 +62,6 @@ function RegisterPage() {
             email: "",
             password: "",
             passwordConfirm: "",
-            address: "",
           }}
           validationSchema={RegisterSchema}
           onSubmit={async (values) => {
@@ -141,24 +138,6 @@ function RegisterPage() {
                   {errors.passwordConfirm && touched.passwordConfirm
                     ? errors.passwordConfirm
                     : ""}
-                </FormError>
-              </div>
-              <div className="relative mb-4">
-                <label
-                  htmlFor="address"
-                  className="leading-7 text-sm text-gray-600"
-                >
-                  Address
-                </label>
-                <Field
-                  type="text"
-                  placeholder="Itahari (City), Sunsari (District) - Recommended format"
-                  id="address"
-                  name="address"
-                  className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                />
-                <FormError>
-                  {errors.address && touched.address ? errors.address : ""}
                 </FormError>
               </div>
               <Button
