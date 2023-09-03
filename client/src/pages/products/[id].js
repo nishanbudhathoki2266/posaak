@@ -1,4 +1,3 @@
-import Error from "@/components/Error";
 import Loader from "@/components/Loader";
 import ProductDetail from "@/components/ProductDetail";
 import { getFeaturedProducts, getProductById } from "@/utils/api";
