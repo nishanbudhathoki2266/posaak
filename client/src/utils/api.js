@@ -1,6 +1,6 @@
 const getFeaturedProducts = async () => {
   const response = await fetch(
-    "http://localhost:8080/api/v1/products/featured"
+    "http://localhost:8080/api/v1/prodsucts/featured"
   );
 
   const data = await response.json();
