@@ -86,3 +86,7 @@ const findSecondLargest = (arr) => {
 };
 
 // console.log(findSecondLargest([2222, 111, 0, 1, 2, 7, 6, 4, 9, 12]));
+
+// const arrTest = undefined;
+
+// console.log(arrTest?.[0] ?? "Empty");
