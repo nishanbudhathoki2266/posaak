@@ -16,6 +16,28 @@ import { toast } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 
+// Update Details Schema
+const UpdateDetailsSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required!"),
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
+});
+
+// Update Password Schema
+const ChangePasswordSchema = Yup.object().shape({
+  passwordCurrent: Yup.string().required(
+    "You must enter your current password!"
+  ),
+  password: Yup.string()
+    .required("Please enter a new password!")
+    .min(8, "Password must be at least 8 characters!"),
+
+  passwordConfirm: Yup.string()
+    .required("You must confirm your password!")
+    .oneOf([Yup.ref("password")], "Both passwords must match!"),
+});
+
 function ProfilePage() {
   const user = useSelector(getUserDetails);
   const token = useSelector(getToken);
@@ -35,28 +57,6 @@ function ProfilePage() {
 
   // For file uploaded in avatar of user
   const [file, setFile] = useState(null);
-
-  // Update Details Schema
-  const UpdateDetailsSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required!"),
-    email: Yup.string()
-      .email("Please enter a valid email")
-      .required("Email is required"),
-  });
-
-  // Update Password Schema
-  const ChangePasswordSchema = Yup.object().shape({
-    passwordCurrent: Yup.string().required(
-      "You must enter your current password!"
-    ),
-    password: Yup.string()
-      .required("Please enter a new password!")
-      .min(8, "Password must be at least 8 characters!"),
-
-    passwordConfirm: Yup.string()
-      .required("You must confirm your password!")
-      .oneOf([Yup.ref("password")], "Both passwords must match!"),
-  });
 
   // Setting headers with token and content type
   const myHeaders = new Headers({
