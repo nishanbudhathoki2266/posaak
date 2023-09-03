@@ -56,42 +56,41 @@ function ProductCard({ product }) {
           height={300}
         />
       </div>
-      <div className="mt-4 self-start">
-        <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-          Category - {product.category.name}
-        </h3>
-        <h2 className="text-gray-900 title-font text-lg font-medium">
-          {product.name}
-        </h2>
-        <p className="mt-1">
-          <span className="mr-1">
-            {product.priceDiscount > 0 && (
-              <del>${product.price + product.priceDiscount}</del>
-            )}
-          </span>
-          Rs.
-          {product.price}
-        </p>
-        <div className="flex items-center justify-between mt-2">
-          <Link
-            href={`/products/${product._id}`}
-            className="text-[#67595E] text-lg font-semibold inline-block hover:translate-x-1 duration-200"
-          >
-            View &rarr;
-          </Link>
-          {/* Add to wishlist */}
-          {currProductInWishList ? (
-            <AiFillHeart
-              className={`text-red-600 text-3xl cursor-pointer`}
-              onClick={handleAddToWishList}
-            />
-          ) : (
-            <AiOutlineHeart
-              className={`text-red-600 text-3xl cursor-pointer`}
-              onClick={handleAddToWishList}
-            />
+
+      <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1 mt-4">
+        Category - {product.category.name}
+      </h3>
+      <h2 className="text-gray-900 title-font text-lg font-medium">
+        {product.name}
+      </h2>
+      <p className="mt-1">
+        <span className="mr-1">
+          {product.priceDiscount > 0 && (
+            <del>${product.price + product.priceDiscount}</del>
           )}
-        </div>
+        </span>
+        Rs.
+        {product.price}
+      </p>
+      <div className="flex items-center justify-between mt-2">
+        <Link
+          href={`/products/${product._id}`}
+          className="text-[#67595E] text-lg font-semibold inline-block hover:translate-x-1 duration-200"
+        >
+          View &rarr;
+        </Link>
+        {/* Add to wishlist */}
+        {currProductInWishList ? (
+          <AiFillHeart
+            className={`text-red-600 text-3xl cursor-pointer`}
+            onClick={handleAddToWishList}
+          />
+        ) : (
+          <AiOutlineHeart
+            className={`text-red-600 text-3xl cursor-pointer`}
+            onClick={handleAddToWishList}
+          />
+        )}
       </div>
     </div>
   );
