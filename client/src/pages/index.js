@@ -15,6 +15,7 @@ export default function HomePage({ featuredProducts, categories }) {
 
 export async function getStaticProps() {
   const featuredProducts = await getFeaturedProducts();
+  console.log(featuredProducts);
   const categories = await getAllCategories();
 
   return {

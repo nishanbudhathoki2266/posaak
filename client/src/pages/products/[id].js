@@ -1,4 +1,3 @@
-import Heading from "@/components/Heading";
 import Loader from "@/components/Loader";
 import ProductDetail from "@/components/ProductDetail";
 import { getFeaturedProducts, getProductById } from "@/utils/api";
@@ -7,7 +6,7 @@ function ProductDetailPage({ product }) {
   // In case fallback is set to true here
   if (!product) {
     return (
-      <div className="h-[70vh] flex justify-center items-center">
+      <div className="h-[60vh] flex justify-center items-center">
         <Loader />
       </div>
     );
