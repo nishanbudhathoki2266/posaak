@@ -90,3 +90,29 @@ const findSecondLargest = (arr) => {
 // const arrTest = undefined;
 
 // console.log(arrTest?.[0] ?? "Empty");
+
+// States ->
+
+// Local state , Global state, remote state, Derived state
+
+// A -> B
+// hr
+// const [timeTakenToTravel, setTimeTakenToTravel] = useState(0 + "hr");
+
+// derived state
+// const timeTakenToTravelInMin = timeTakenToTravel * 60;
+
+const [firstName, setFirstName] = useState("");
+const [lastName, setLastName] = useState("");
+
+// Derived state for full name
+// const fullName = firstName + lastName;
+
+// const [timeTakenToTravelInMin, setTimeTakenToTravelInMin] = useState();
+
+// useEffect(() => {
+//   setTimeTakenToTravelInMin(timeTakenToTravel * 60);
+// }, [timeTakenToTravel]);
+
+// UI -> Show timeTakenToTravel in min
+// {timeTakenToTravelInMin * 60}
