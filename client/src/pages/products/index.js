@@ -1,9 +1,16 @@
+import Error from "@/components/Error";
 import Heading from "@/components/Heading";
 import Loader from "@/components/Loader";
 import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/utils/api";
 
-function AllProducts({ products }) {
+function AllProducts(props) {
+  // Error handling
+  if (props.error) return <Error error={props.error} />;
+
+  // If no error
+  const { products } = props;
+
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
@@ -19,12 +26,20 @@ function AllProducts({ products }) {
 }
 
 export async function getServerSideProps() {
-  const products = await getAllProducts();
-  return {
-    props: {
-      products: products.data.products,
-    },
-  };
+  try {
+    const products = await getAllProducts();
+    return {
+      props: {
+        products: products.data.products,
+      },
+    };
+  } catch (err) {
+    return {
+      props: {
+        error: "Failed to fetch",
+      },
+    };
+  }
 }
 
 export default AllProducts;

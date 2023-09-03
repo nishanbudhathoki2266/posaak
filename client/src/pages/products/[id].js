@@ -1,8 +1,11 @@
+import Error from "@/components/Error";
 import Loader from "@/components/Loader";
 import ProductDetail from "@/components/ProductDetail";
 import { getFeaturedProducts, getProductById } from "@/utils/api";
 
-function ProductDetailPage({ product }) {
+function ProductDetailPage(props) {
+  const { product } = props;
+
   // In case fallback is set to true here
   if (!product) {
     return (
@@ -36,16 +39,22 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const featuredProducts = await getFeaturedProducts();
+  try {
+    const featuredProducts = await getFeaturedProducts();
+    const paths = featuredProducts.data.featuredProducts.map((product) => ({
+      params: { id: `${product._id}` },
+    }));
 
-  const paths = featuredProducts.data.featuredProducts.map((product) => ({
-    params: { id: `${product._id}` },
-  }));
-
-  return {
-    paths,
-    fallback: true,
-  };
+    return {
+      paths,
+      fallback: true,
+    };
+  } catch (err) {
+    return {
+      paths: [],
+      fallback: true,
+    };
+  }
 }
 
 export default ProductDetailPage;
