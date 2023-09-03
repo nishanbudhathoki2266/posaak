@@ -2,11 +2,23 @@ import "@/styles/globals.css";
 import Head from "next/head";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
+import ProgressBar from "@badrap/bar-of-progress";
 import { PersistGate } from "redux-persist/integration/react";
+import Router from "next/router";
 
 import { persistor, store } from "@/redux/store";
 import "@/components/Layout";
 import Layout from "@/components/Layout";
+
+const progress = new ProgressBar({
+  size: 4,
+  color: "#A24857",
+  className: "z-50",
+});
+
+Router.events.on("routeChangeStart", progress.start);
+Router.events.on("routeChangeComplete", progress.finish);
+Router.events.on("routeChangeError", progress.finish);
 
 export default function App({ Component, pageProps }) {
   return (

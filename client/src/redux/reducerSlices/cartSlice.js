@@ -69,6 +69,10 @@ const cartSlice = createSlice({
       const userId = action.payload;
       state[userId] = [];
     },
+    saveShippingAddress: (state, action) => {
+      const { userId, shippingAddress } = action.payload;
+      state[userId].shippingAddress = shippingAddress;
+    },
   },
 });
 

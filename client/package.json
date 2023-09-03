@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@badrap/bar-of-progress": "^0.2.2",
     "@reduxjs/toolkit": "^1.9.5",
     "axios": "^1.4.0",
     "eslint": "8.46.0",
