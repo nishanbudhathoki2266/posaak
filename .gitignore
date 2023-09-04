@@ -43,3 +43,4 @@ public/
 #Env
 .env
 
+client/src/extraCodes.js
