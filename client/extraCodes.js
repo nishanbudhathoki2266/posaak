@@ -125,4 +125,4 @@ coords["longitude"] = coords["lng"];
 delete coords["lat"];
 delete coords["lng"];
 
-console.log(coords);
+// console.log(coords);
