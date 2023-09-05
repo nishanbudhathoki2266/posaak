@@ -102,8 +102,8 @@ const findSecondLargest = (arr) => {
 // derived state
 // const timeTakenToTravelInMin = timeTakenToTravel * 60;
 
-const [firstName, setFirstName] = useState("");
-const [lastName, setLastName] = useState("");
+// const [firstName, setFirstName] = useState("");
+// const [lastName, setLastName] = useState("");
 
 // Derived state for full name
 // const fullName = firstName + lastName;
@@ -116,3 +116,13 @@ const [lastName, setLastName] = useState("");
 
 // UI -> Show timeTakenToTravel in min
 // {timeTakenToTravelInMin * 60}
+
+const coords = { lat: 51.12, lng: 7.088 };
+
+coords["latitude"] = coords["lat"];
+coords["longitude"] = coords["lng"];
+
+delete coords["lat"];
+delete coords["lng"];
+
+console.log(coords);
