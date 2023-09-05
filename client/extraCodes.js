@@ -126,3 +126,19 @@ delete coords["lat"];
 delete coords["lng"];
 
 // console.log(coords);
+
+// true and undefined
+const arrOfTable = [true, undefined];
+const newArr = arrOfTable.map((item) => String(item));
+
+// console.log(newArr);
+
+//
+const uniqueBooleanValues = () => {
+  const values = new Set(); //for uniqe data sets
+  preFilteredRows.forEach((row) => {
+    const value = row.values[id];
+    values.add(value !== undefined ? value.toString() : "undefined"); // Convert to string
+  });
+  return [...values];
+};
