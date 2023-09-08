@@ -7,7 +7,7 @@ function Button({
   disabled = false,
 }) {
   const baseClassName =
-    "inline-flex border-0 py-2 px-6 focus:outline-none rounded text-lg";
+    "inline-flex border-0 py-2 px-6 focus:outline-none rounded text-lg hover:scale-[1.02] transition-transform ease-out duration-200";
   let compoundClasses = className;
   if (variant === "primary") {
     compoundClasses =

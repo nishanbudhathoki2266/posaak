@@ -66,11 +66,16 @@ function CartPage() {
           ))}
         </div>
         <div className="max-w-[1440px] mx-auto border-t-2 mt-2 pt-2 relative flex items-center">
-          <p className="absolute right-4 text-xl sm:text-2xl font-semibold">
-            Total: Rs. {totalCartPrice}/-
-          </p>
+          <div className="absolute right-4 flex gap-4 items-center">
+            <p className="text-lg sm:text-2xl font-semibold">
+              Total: Rs. {totalCartPrice}/-
+            </p>
+            <Link href="#">
+              <Button variant="primary">Checkout 🛒</Button>
+            </Link>
+          </div>
           <Button variant="primary" onClick={() => dispatch(clearCart(userId))}>
-            Clear Cart
+            Clear Cart ❌
           </Button>
         </div>
       </div>
