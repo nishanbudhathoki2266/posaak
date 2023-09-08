@@ -75,7 +75,7 @@ function CartPage() {
             <p className="text-lg sm:text-xl font-semibold">
               Total: Rs. {totalCartPrice}/-
             </p>
-            <Link href="#">
+            <Link href="/cart/checkout">
               <Button variant="primary">Checkout 🛒</Button>
             </Link>
           </div>
