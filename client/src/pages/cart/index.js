@@ -58,6 +58,8 @@ function CartPage() {
             Total (Rs.)
           </div>
 
+          <div className="col-span-full border w-full mt-2" />
+
           {/* Cart products */}
 
           {cart.map((product, index) => (
