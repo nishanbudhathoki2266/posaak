@@ -67,7 +67,7 @@ function CartPage() {
         </div>
         <div className="max-w-[1440px] mx-auto border-t-2 mt-2 pt-2 relative flex items-center">
           <div className="absolute right-4 flex gap-4 items-center">
-            <p className="text-lg sm:text-2xl font-semibold">
+            <p className="text-lg sm:text-xl font-semibold">
               Total: Rs. {totalCartPrice}/-
             </p>
             <Link href="#">
