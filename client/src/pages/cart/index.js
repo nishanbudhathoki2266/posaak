@@ -64,10 +64,13 @@ function CartPage() {
 
           {cart.map((product, index) => (
             // Also giving index + product id as key because there might be two product ids as user might choose different colors and add to cart
-            <CartCard key={product.id + "" + index} product={product} />
+            <>
+              <CartCard key={product.id + "" + index} product={product} />
+              <div className="col-span-full border w-full mt-2" />
+            </>
           ))}
         </div>
-        <div className="max-w-[1440px] mx-auto border-t-2 mt-2 pt-2 relative flex items-center">
+        <div className="max-w-[1440px] mx-auto mt-2 pt-2 relative flex items-center">
           <div className="absolute right-4 flex gap-4 items-center">
             <p className="text-lg sm:text-xl font-semibold">
               Total: Rs. {totalCartPrice}/-
