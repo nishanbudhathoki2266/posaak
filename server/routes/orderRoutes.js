@@ -10,7 +10,7 @@ router
   .get(authController.restrictTo("admin"), orderController.getAllOrders)
   .post(authController.restrictTo("user"), orderController.createOrder);
 
-router.route("/user/:userId").get(orderController.getOrderByUserId);
+router.route("/my-orders").get(orderController.getMyOrder);
 
 router.use(authController.restrictTo("admin"));
 

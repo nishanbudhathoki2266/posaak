@@ -164,6 +164,22 @@ const createOrder = async (orderData, headers) => {
   return data;
 };
 
+const getOrderByUserId = async (headers) => {
+  const response = await fetch("http://localhost:8080/api/v1/orders", {
+    method: "POST",
+    body: JSON.stringify(orderData),
+    headers: { ...headers, "Content-Type": "application/json" },
+  });
+
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
 export {
   getFeaturedProducts,
   getProductById,

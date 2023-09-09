@@ -44,8 +44,8 @@ exports.getOrder = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getOrderByUserId = catchAsync(async (req, res, next) => {
-  const orders = await Order.find({ user: req.params.userId });
+exports.getMyOrder = catchAsync(async (req, res, next) => {
+  const orders = await Order.find({ user: req.user.id });
 
   if (!orders) {
     return next(new AppError("No order found for the given user ID!", 404));
