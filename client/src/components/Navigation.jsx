@@ -128,7 +128,7 @@ function Navigation() {
                         My Profile
                       </Link>
                       <Link
-                        href="/"
+                        href="/orders"
                         className=" text-[#67595E] cursor-pointer hover:font-bold text-sm font-medium tracking-widest"
                         onClick={hideProfileSettings}
                       >
