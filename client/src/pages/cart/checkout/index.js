@@ -21,7 +21,7 @@ const ShippingSchema = Yup.object().shape({
 });
 
 const index = () => {
-  const [isCheckedOut, setIsCheckedOut] = useState(false);
+  const router = useRouter();
 
   const token = useSelector(getToken);
 
@@ -58,7 +58,8 @@ const index = () => {
 
     setIsLoading(false);
     if (response.status === "success") {
-      setIsCheckedOut(true);
+      toast.success("Order placed successfully");
+      router.push("/products");
     } else {
       toast.error(response.message);
     }
@@ -91,95 +92,89 @@ const index = () => {
 
   return (
     <ProtectedPage url="cart/checkout">
-      {isCheckedOut ? (
-        <div className="px-2 md:px-8 max-w-3xl mx-auto mt-8">
-          Successfully checkedout
-        </div>
-      ) : (
-        <div className="px-2 md:px-8 max-w-3xl mx-auto mt-8">
-          <Formik
-            initialValues={{ city: "", tole: "", postalCode: "" }}
-            validationSchema={ShippingSchema}
-            onSubmit={async (values) => {
-              handleCheckout(values);
-            }}
-          >
-            {({ errors, touched }) => (
-              <Form>
-                {" "}
-                <div className="relative mb-4">
-                  <label
-                    htmlFor="city"
-                    className="leading-7 text-sm text-gray-600"
-                  >
-                    City
-                  </label>
-                  <Field
-                    type="text"
-                    id="city"
-                    name="city"
-                    className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  />
-                  <FormError>
-                    {errors.city && touched.city ? errors.city : ""}
-                  </FormError>
-                </div>
-                <div className="mb-4 relative">
-                  <label
-                    htmlFor="tole"
-                    className="leading-7 text-sm text-gray-600"
-                  >
-                    Tole
-                  </label>
-                  <Field
-                    type="text"
-                    id="tole"
-                    name="tole"
-                    className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  ></Field>
-                  <FormError>
-                    {errors.tole && touched.tole ? errors.tole : ""}
-                  </FormError>
-                </div>
-                <div className="mb-4 relative">
-                  <label
-                    htmlFor="code"
-                    className="leading-7 text-sm text-gray-600"
-                  >
-                    Postal Code
-                  </label>
-                  <Field
-                    type="text"
-                    id="postalCode"
-                    name="postalCode"
-                    className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                  ></Field>
-                  <FormError>
-                    {errors.postalCode && touched.postalCode
-                      ? errors.postalCode
-                      : ""}
-                  </FormError>
-                </div>
-                <p className="text-xs font-normal tracking-wide mb-4">
-                  Please note that we only have{" "}
-                  <span className="text-md font-bold tracking-tighter uppercase">
-                    Cash on Delivery
-                  </span>{" "}
-                  payment type available currently 🚚💵
-                </p>
-                <Button
-                  disabled={isLoading}
-                  type="submit"
-                  variant="primary"
-                  className="flex justify-center text-lg uppercase tracking-wide"
+      <div className="px-2 md:px-8 max-w-3xl mx-auto mt-8">
+        <Formik
+          initialValues={{ city: "", tole: "", postalCode: "" }}
+          validationSchema={ShippingSchema}
+          onSubmit={async (values) => {
+            handleCheckout(values);
+          }}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              {" "}
+              <div className="relative mb-4">
+                <label
+                  htmlFor="city"
+                  className="leading-7 text-sm text-gray-600"
                 >
-                  {isLoading ? "Processing..." : "Process"}
-                </Button>
-              </Form>
-            )}
-          </Formik>
-        </div>
-      )}
+                  City
+                </label>
+                <Field
+                  type="text"
+                  id="city"
+                  name="city"
+                  className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E] text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                />
+                <FormError>
+                  {errors.city && touched.city ? errors.city : ""}
+                </FormError>
+              </div>
+              <div className="mb-4 relative">
+                <label
+                  htmlFor="tole"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Tole
+                </label>
+                <Field
+                  type="text"
+                  id="tole"
+                  name="tole"
+                  className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                ></Field>
+                <FormError>
+                  {errors.tole && touched.tole ? errors.tole : ""}
+                </FormError>
+              </div>
+              <div className="mb-4 relative">
+                <label
+                  htmlFor="code"
+                  className="leading-7 text-sm text-gray-600"
+                >
+                  Postal Code
+                </label>
+                <Field
+                  type="text"
+                  id="postalCode"
+                  name="postalCode"
+                  className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                ></Field>
+                <FormError>
+                  {errors.postalCode && touched.postalCode
+                    ? errors.postalCode
+                    : ""}
+                </FormError>
+              </div>
+              <p className="text-xs font-normal tracking-wide mb-4">
+                Please note that we only have{" "}
+                <span className="text-md font-bold tracking-tighter uppercase">
+                  Cash on Delivery
+                </span>{" "}
+                payment type available currently 🚚💵
+              </p>
+              <Button
+                disabled={isLoading}
+                type="submit"
+                variant="primary"
+                className="flex justify-center text-lg uppercase tracking-wide"
+              >
+                {isLoading ? "Processing..." : "Process"}
+              </Button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </ProtectedPage>
   );
 };
