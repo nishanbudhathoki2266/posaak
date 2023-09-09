@@ -36,7 +36,7 @@ const index = () => {
               to checkout!
             </div>
             <div className="flex space-x-4 items-center justify-start">
-              <Link href="cart">
+              <Link href="/cart">
                 <div className="bg-[#67595E] px-4 py-1 text-white font-medium border-2 border-gray-400 hover:scale-105 cursor-pointer">
                   <MdOutlineKeyboardBackspace />
                 </div>
