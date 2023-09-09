@@ -11,6 +11,7 @@ import { getCart } from "@/redux/reducerSlices/cartSlice";
 import { getUserDetails } from "@/redux/reducerSlices/userSlice";
 import Link from "next/link";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
+import { useRouter } from "next/router";
 
 const ShippingSchema = Yup.object().shape({
   tole: Yup.string().required("Tole is required"),
@@ -24,6 +25,26 @@ const index = () => {
   const userId = useSelector(getUserDetails)._id;
 
   const cart = useSelector(getCart(userId));
+
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const handleCheckout = async (values) => {
+    setIsLoading(true);
+    // const response = await login({
+    //   email: values.email,
+    //   password: values.password,
+    // });
+
+    setIsLoading(false);
+    // if (response.status === "success") {
+    //   dispatch(setDetails(response));
+    //   router.push("/");
+    //   toast.success("Login successful!");
+    // } else {
+    //   toast.error(response.message);
+    // }
+  };
 
   if (cart.length <= 0)
     return (

@@ -3,27 +3,19 @@ const orderController = require("./../controllers/orderController");
 const authController = require("./../controllers/authController");
 const router = express.Router();
 
+router.use(authController.protect);
+
 router
   .route("/")
-  .get(orderController.getAllOrders)
-  .post(
-    authController.protect,
-    authController.restrictTo("user"),
-    orderController.createOrder
-  );
+  .get(authController.restrictTo("admin"), orderController.getAllOrders)
+  .post(authController.restrictTo("user"), orderController.createOrder);
+
+router.use(authController.restrictTo("admin"));
 
 router
   .route("/:id")
   .get(orderController.getOrder)
-  .patch(
-    authController.protect,
-    authController.restrictTo("admin"),
-    orderController.updateOrder
-  )
-  .delete(
-    authController.protect,
-    authController.restrictTo("admin"),
-    orderController.deletOrder
-  );
+  .patch(orderController.updateOrder)
+  .delete(orderController.deletOrder);
 
 module.exports = router;
