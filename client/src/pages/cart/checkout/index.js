@@ -107,12 +107,14 @@ const index = () => {
                   </label>
                   <Field
                     type="text"
-                    id="code"
-                    name="code"
+                    id="postalCode"
+                    name="postalCode"
                     className="w-full bg-white rounded border border-gray-300 focus:border-[#67595E] focus:ring-2 focus:ring-[#67595E]  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                   ></Field>
                   <FormError>
-                    {errors.code && touched.code ? errors.code : ""}
+                    {errors.postalCode && touched.postalCode
+                      ? errors.postalCode
+                      : ""}
                   </FormError>
                 </div>
                 <p className="text-xs font-normal tracking-wide mb-4">
