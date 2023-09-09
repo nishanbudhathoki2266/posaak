@@ -9,6 +9,7 @@ import {
 } from "@/redux/reducerSlices/cartSlice";
 import { getIsLoggedIn, getUserDetails } from "@/redux/reducerSlices/userSlice";
 import Link from "next/link";
+import { Fragment } from "react";
 import { MdShoppingBag } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -62,13 +63,17 @@ function CartPage() {
 
           {/* Cart products */}
 
-          {cart.map((product, index) => (
+          {cart.map((product) => {
             // Also giving index + product id as key because there might be two product ids as user might choose different colors and add to cart
-            <>
-              <CartCard key={product.id + "" + index} product={product} />
-              <div className="col-span-full border w-full mt-2" />
-            </>
-          ))}
+            return (
+              <Fragment
+                key={product.id + "-" + product.color + "-" + product.size}
+              >
+                <CartCard product={product} />
+                <div className="col-span-full border w-full mt-2" />
+              </Fragment>
+            );
+          })}
         </div>
         <div className="max-w-[1440px] mx-auto mt-2 pt-2 relative flex items-center">
           <div className="absolute right-4 flex gap-4 items-center">
