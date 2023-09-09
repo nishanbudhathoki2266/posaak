@@ -11,6 +11,7 @@ import {
   logOut,
 } from "@/redux/reducerSlices/userSlice";
 import { getTotalCartQuantity } from "@/redux/reducerSlices/cartSlice";
+import categoryNames from "@/utils/categoryNames";
 
 function Navigation() {
   const dispatch = useDispatch();
@@ -38,20 +39,32 @@ function Navigation() {
         </Link>
         <nav className="flex flex-wrap items-center text-sm md:gap-2">
           <Link
-            href="/"
-            className={`mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer`}
+            href={`/category/${categoryNames.men}`}
+            className={`mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer ${
+              router.asPath === `/category/${categoryNames.men}`
+                ? "font-extrabold"
+                : ""
+            }`}
           >
             Men
           </Link>
           <Link
-            href="/"
-            className="mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer"
+            href={`/category/${categoryNames.women}`}
+            className={`mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer ${
+              router.asPath === `/category/${categoryNames.women}`
+                ? "font-extrabold"
+                : ""
+            }`}
           >
             Women
           </Link>
           <Link
-            href="/"
-            className="mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer"
+            href={`/category/${categoryNames.kids}`}
+            className={`mr-5 hover:text-gray-900 tracking-widest uppercase cursor-pointer ${
+              router.asPath === `/category/${categoryNames.kids}`
+                ? "font-extrabold"
+                : ""
+            }`}
           >
             Kids
           </Link>
