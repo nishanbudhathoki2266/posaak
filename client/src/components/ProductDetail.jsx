@@ -200,11 +200,13 @@ function ProductDetail({ product }) {
               <span className="title-font font-medium text-2xl text-gray-900">
                 Rs. {product.price - product.priceDiscount} /-
               </span>
-              <div className="ml-auto">
-                <Button variant="primary" onClick={handleAddToCart}>
-                  Add to Cart
-                </Button>
-              </div>
+              {userId && (
+                <div className="ml-auto">
+                  <Button variant="primary" onClick={handleAddToCart}>
+                    Add to Cart
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         </div>
