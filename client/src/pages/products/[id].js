@@ -15,9 +15,9 @@ function ProductDetailPage(props) {
   }
 
   return (
-    <div>
+    <main>
       <ProductDetail product={product.data.product} />
-    </div>
+    </main>
   );
 }
 

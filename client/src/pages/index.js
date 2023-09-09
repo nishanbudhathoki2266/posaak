@@ -11,11 +11,11 @@ export default function HomePage(props) {
   // If no error
   const { featuredProducts, categories } = props;
   return (
-    <div className="max-w-[1440px] mx-auto px-4 py-8">
+    <section className="max-w-[1440px] mx-auto px-4 py-8">
       <Hero />
       <FeaturedProducts featuredProducts={featuredProducts} />
       <ShopByCategory categories={categories} />
-    </div>
+    </section>
   );
 }
 

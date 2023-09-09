@@ -24,6 +24,20 @@ const getAllProducts = async () => {
   return data;
 };
 
+const getProductsByCategory = async (categoryId) => {
+  const response = await fetch(
+    `http://localhost:8080/api/v1/products?category=${categoryId}`
+  );
+
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
 const getProductById = async (id) => {
   const response = await fetch(`http://localhost:8080/api/v1/products/${id}`);
 
@@ -39,6 +53,20 @@ const getProductById = async (id) => {
 
 const getAllCategories = async () => {
   const response = await fetch("http://localhost:8080/api/v1/categories");
+
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
+const getCategoryById = async (categoryId) => {
+  const response = await fetch(
+    `http://localhost:8080/api/v1/categories/${categoryId}`
+  );
 
   const data = await response.json();
 
@@ -123,6 +151,8 @@ export {
   getProductById,
   getAllProducts,
   getAllCategories,
+  getCategoryById,
+  getProductsByCategory,
   register,
   login,
   updateMe,
