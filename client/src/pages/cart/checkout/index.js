@@ -7,11 +7,12 @@ import toast from "react-hot-toast";
 import Button from "@/components/Button";
 import FormError from "@/components/FormError";
 import { useSelector } from "react-redux";
-import { getCart } from "@/redux/reducerSlices/cartSlice";
-import { getUserDetails } from "@/redux/reducerSlices/userSlice";
+import { getCart, getTotalCartPrice } from "@/redux/reducerSlices/cartSlice";
+import { getToken, getUserDetails } from "@/redux/reducerSlices/userSlice";
 import Link from "next/link";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { useRouter } from "next/router";
+import { createOrder } from "@/utils/api";
 
 const ShippingSchema = Yup.object().shape({
   tole: Yup.string().required("Tole is required"),
@@ -22,28 +23,45 @@ const ShippingSchema = Yup.object().shape({
 const index = () => {
   const [isCheckedOut, setIsCheckedOut] = useState(false);
 
+  const token = useSelector(getToken);
+
   const userId = useSelector(getUserDetails)._id;
 
   const cart = useSelector(getCart(userId));
 
+  const totalPrice = useSelector(getTotalCartPrice(userId));
+
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   const handleCheckout = async (values) => {
     setIsLoading(true);
-    // const response = await login({
-    //   email: values.email,
-    //   password: values.password,
-    // });
+    const response = await createOrder(
+      {
+        user: userId,
+        products: cart.map((product) => ({
+          product: product.id,
+          quantity: product.quantity,
+          image: product.image,
+          color: product.color,
+          size: product.size,
+          price: product.price,
+        })),
+        shippingAddress: {
+          tole: values.tole,
+          city: values.city,
+          postalCode: values.postalCode,
+        },
+        totalPrice,
+      },
+      { Authorization: `Bearer ${token ? token : ""}` }
+    );
 
     setIsLoading(false);
-    // if (response.status === "success") {
-    //   dispatch(setDetails(response));
-    //   router.push("/");
-    //   toast.success("Login successful!");
-    // } else {
-    //   toast.error(response.message);
-    // }
+    if (response.status === "success") {
+      setIsCheckedOut(true);
+    } else {
+      toast.error(response.message);
+    }
   };
 
   if (cart.length <= 0)
@@ -74,13 +92,17 @@ const index = () => {
   return (
     <ProtectedPage url="cart/checkout">
       {isCheckedOut ? (
-        <div>Successfully checkedout</div>
+        <div className="px-2 md:px-8 max-w-3xl mx-auto mt-8">
+          Successfully checkedout
+        </div>
       ) : (
         <div className="px-2 md:px-8 max-w-3xl mx-auto mt-8">
           <Formik
             initialValues={{ city: "", tole: "", postalCode: "" }}
             validationSchema={ShippingSchema}
-            onSubmit={async (values) => {}}
+            onSubmit={async (values) => {
+              handleCheckout(values);
+            }}
           >
             {({ errors, touched }) => (
               <Form>
@@ -146,11 +168,12 @@ const index = () => {
                   payment type available currently 🚚💵
                 </p>
                 <Button
+                  disabled={isLoading}
                   type="submit"
                   variant="primary"
                   className="flex justify-center text-lg uppercase tracking-wide"
                 >
-                  Order
+                  {isLoading ? "Processing..." : "Process"}
                 </Button>
               </Form>
             )}

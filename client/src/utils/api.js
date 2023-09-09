@@ -146,6 +146,24 @@ const updateMyPassword = async (headers, passwordData) => {
   return data;
 };
 
+// orders
+
+const createOrder = async (orderData, headers) => {
+  const response = await fetch("http://localhost:8080/api/v1/orders", {
+    method: "POST",
+    body: JSON.stringify(orderData),
+    headers: { ...headers, "Content-Type": "application/json" },
+  });
+
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
 export {
   getFeaturedProducts,
   getProductById,
@@ -157,4 +175,5 @@ export {
   login,
   updateMe,
   updateMyPassword,
+  createOrder,
 };
