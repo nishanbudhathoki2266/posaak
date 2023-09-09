@@ -12,6 +12,14 @@ import FormError from "@/components/FormError";
 import { login } from "@/utils/api";
 import { setDetails } from "@/redux/reducerSlices/userSlice";
 
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
+
+  password: Yup.string().required("Password is required"),
+});
+
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -33,14 +41,6 @@ function LoginPage() {
       toast.error(response.message);
     }
   }
-
-  const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Please enter a valid email")
-      .required("Email is required"),
-
-    password: Yup.string().required("Password is required"),
-  });
 
   return (
     <section className="text-gray-600 h-[70vh] flex items-center justify-center p-5">

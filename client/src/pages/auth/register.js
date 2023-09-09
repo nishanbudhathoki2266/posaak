@@ -11,6 +11,20 @@ import { register } from "@/utils/api";
 import { setDetails } from "@/redux/reducerSlices/userSlice";
 import { toast } from "react-hot-toast";
 
+// Schema
+const RegisterSchema = Yup.object().shape({
+  fullName: Yup.string().required("Please enter your full name!"),
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters!"),
+  passwordConfirm: Yup.string()
+    .required("You must confirm your password!")
+    .oneOf([Yup.ref("password")], "Both passwords must match!"),
+});
+
 function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -34,20 +48,6 @@ function RegisterPage() {
       toast.error(response.message);
     }
   }
-
-  // Schema
-  const RegisterSchema = Yup.object().shape({
-    fullName: Yup.string().required("Please enter your full name!"),
-    email: Yup.string()
-      .email("Please enter a valid email")
-      .required("Email is required"),
-    password: Yup.string()
-      .required("Password is required")
-      .min(8, "Password must be at least 8 characters!"),
-    passwordConfirm: Yup.string()
-      .required("You must confirm your password!")
-      .oneOf([Yup.ref("password")], "Both passwords must match!"),
-  });
 
   return (
     <section className="text-gray-600 h-auto px-5 py-16">
