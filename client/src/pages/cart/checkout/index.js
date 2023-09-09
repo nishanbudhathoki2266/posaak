@@ -1,7 +1,8 @@
-import React from "react";
+import Heading from "@/components/Heading";
+import ProtectedPage from "@/components/ProtectedPage";
 
 const index = () => {
-  return <div>Cart Checkout</div>;
+  return <ProtectedPage url="cart/checkout">Checkout</ProtectedPage>;
 };
 
 export default index;
