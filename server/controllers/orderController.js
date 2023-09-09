@@ -4,7 +4,7 @@ const APIFeatures = require("./../utils/apiFeatures");
 const catchAsync = require("./../utils/catchAsync");
 
 exports.createOrder = catchAsync(async (req, res, next) => {
-  const newOrder = await Order.create(req.body);
+  const newOrder = await Order.create({ ...req.body, user: req.user.id });
   res.status(201).json({
     status: "success",
     order: newOrder,

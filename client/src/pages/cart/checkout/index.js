@@ -37,7 +37,6 @@ const index = () => {
     setIsLoading(true);
     const response = await createOrder(
       {
-        user: userId,
         products: cart.map((product) => ({
           product: product.id,
           quantity: product.quantity,
