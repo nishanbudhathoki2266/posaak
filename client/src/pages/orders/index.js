@@ -1,3 +1,4 @@
+import ProtectedPage from "@/components/ProtectedPage";
 import { getToken } from "@/redux/reducerSlices/userSlice";
 import { getMyOrders } from "@/utils/api";
 import React, { useEffect, useState } from "react";
@@ -26,9 +27,34 @@ const MyOrdersPage = () => {
     fetchOrders();
   }, []);
 
-  console.log(orders);
+  return (
+    <ProtectedPage url="orders">
+      <div className="px-[.5px] sm:px-4">
+        <div className="mt-8 max-w-[1440px] justify-items-center items-center mx-auto grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] w-full gap-y-1">
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Products
+          </div>
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Total Price
+          </div>
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Status
+          </div>
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Ordered Date
+          </div>
 
-  return <div>MyOrdersPage</div>;
+          <div className="col-span-full border w-full mt-2" />
+
+          {/* Cart products */}
+
+          {orders.map((order) => {
+            <p>{order._id}</p>;
+          })}
+        </div>
+      </div>
+    </ProtectedPage>
+  );
 };
 
 export default MyOrdersPage;
