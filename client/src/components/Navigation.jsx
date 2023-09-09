@@ -74,7 +74,7 @@ function Navigation() {
               router.pathname === "/products" ? "font-extrabold" : ""
             } tracking-widest uppercase cursor-pointer`}
           >
-            Shop
+            All products
           </Link>
         </nav>
 
