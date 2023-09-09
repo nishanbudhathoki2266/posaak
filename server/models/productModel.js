@@ -35,14 +35,15 @@ const productSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.ObjectId,
       ref: "Category",
+      required: true,
     },
     colors: [
       {
-        name: String,
-        hexCode: String,
+        name: { type: String, required: true },
+        hexCode: { type: String, required: true },
       },
     ],
-    sizes: [String],
+    sizes: [{ type: String, required: true }],
   },
   { timestamps: true }
 );

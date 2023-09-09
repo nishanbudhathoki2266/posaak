@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 
 function ProductDetail({ product }) {
   const router = useRouter();
+  console.log(product);
 
   const dispatch = useDispatch();
 
