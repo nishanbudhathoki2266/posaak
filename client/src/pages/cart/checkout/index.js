@@ -13,8 +13,8 @@ import Link from "next/link";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 const ShippingSchema = Yup.object().shape({
-  city: Yup.string().required("City name is required"),
   tole: Yup.string().required("Tole is required"),
+  city: Yup.string().required("City name is required"),
   postalCode: Yup.string().required("Postal code is required"),
 });
 
@@ -57,7 +57,7 @@ const index = () => {
       ) : (
         <div className="px-2 md:px-8 max-w-3xl mx-auto mt-8">
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ city: "", tole: "", postalCode: "" }}
             validationSchema={ShippingSchema}
             onSubmit={async (values) => {}}
           >
