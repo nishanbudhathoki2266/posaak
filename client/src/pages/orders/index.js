@@ -48,9 +48,9 @@ const MyOrdersPage = () => {
 
           {/* Cart products */}
 
-          {orders.map((order) => {
-            <p>{order._id}</p>;
-          })}
+          {orders?.map((order) => (
+            <p className="bg-red-900">{order._id}</p>
+          ))}
         </div>
       </div>
     </ProtectedPage>
