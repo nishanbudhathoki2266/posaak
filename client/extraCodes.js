@@ -142,3 +142,42 @@ const uniqueBooleanValues = () => {
   });
   return [...values];
 };
+
+/*
+// Just for semantic purpose
+<SectionContainer>
+
+// uses tailwind's container class -> to define max-width
+<Container>
+
+// 12 columns grid
+  <GridContainer>
+
+
+
+  
+  </GridContainer>
+</Container>
+
+</SectionContainer>
+
+
+
+// Google Map COmponent
+function GoogleMap () {
+
+  return {
+    <div className="col-span-full md:col-span-5"></div>
+  }
+}
+
+// Google Map COmponent
+function Card () {
+
+  return {
+    <div className="col-span-full md:col-span-4 lg:col-span-3"></div>
+  }
+}
+
+
+*/
