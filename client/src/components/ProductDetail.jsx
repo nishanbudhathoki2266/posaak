@@ -10,8 +10,11 @@ import {
 } from "@/redux/reducerSlices/wishListSlice";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { getIsLoggedIn, getUserDetails } from "@/redux/reducerSlices/userSlice";
+import { useRouter } from "next/router";
 
 function ProductDetail({ product }) {
+  const router = useRouter();
+
   const dispatch = useDispatch();
 
   // For displaying large image upon the user selection
@@ -82,6 +85,11 @@ function ProductDetail({ product }) {
     dispatch(addProduct(newProduct));
     toast.success("Item added to cart!");
   }
+
+  const handleUnauthenticatedClick = () => {
+    toast.error("Login required!");
+    router.push("/auth/login");
+  };
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -200,13 +208,16 @@ function ProductDetail({ product }) {
               <span className="title-font font-medium text-2xl text-gray-900">
                 Rs. {product.price - product.priceDiscount} /-
               </span>
-              {userId && (
-                <div className="ml-auto">
-                  <Button variant="primary" onClick={handleAddToCart}>
-                    Add to Cart
-                  </Button>
-                </div>
-              )}
+              <div className="ml-auto">
+                <Button
+                  variant="primary"
+                  onClick={
+                    userId ? handleAddToCart : handleUnauthenticatedClick
+                  }
+                >
+                  Add to Cart
+                </Button>
+              </div>
             </div>
           </div>
         </div>
