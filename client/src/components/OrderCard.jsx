@@ -7,44 +7,31 @@ import ProductCounter from "./ProductCounter";
 function OrderCard({ order }) {
   return (
     <Fragment>
-      <div className="sm:px-4 sm:py-6 flex items-center gap-2 sm:gap-6">
-        <div className="flex text-left flex-col items-start justify-start tracking-normal sm:tracking-wider">
-          {order?.products.map((product) => (
-            <Fragment key={product?._id + product?.color + product?.size}>
-              <Link
-                href={`/products/${product?._id}`}
-                className="self-start text-md sm:text-lg font-semibold tracking-wider inline"
-              >
-                {`${product?.color} (${product?.size}) ${product?.name}`}
-              </Link>
-              <span className="ml-2 text-md font-semibold">
-                X {product.quantity}
-              </span>
-            </Fragment>
-          ))}
-          {/* <p className="text-[13px] sm:text-[14px]">
-            <span className="font-semibold">Color:</span> {product.color}
-          </p>
-          <p className="text-[13px] sm:text-[14px]">
-            <span className="font-semibold">Size:</span> {product.size}
-          </p>
-          <Link
-            href={`products/${product.id}`}
-            className="text-[15px] text-[#67595E] mt-6 font-semibold underline underline-offset-4 hover:-translate-y-1 transition-transform ease-in-out duration-150"
-          >
-            Details
-          </Link> */}
-        </div>
+      <div className="flex text-left flex-col gap-1 items-start justify-start tracking-normal sm:tracking-wider">
+        {order?.products.map((product) => (
+          <Fragment key={product?.product + product?.color + product?.size}>
+            <Link
+              href={`products/${product?.product}`}
+              className="self-start text-md font-normal tracking-normal underline hover:-translate-y-[.6px] transition-transform duration-150 ease-out"
+            >
+              {`${product?.color} (${product?.size}) ${product?.name}: Rs. ${product?.price} x ${product?.quantity}`}
+            </Link>
+          </Fragment>
+        ))}
       </div>
-      {/* <div className="py-6 font-semibold text:sm sm:text-md">
-        <ProductCounter product={product} />
+
+      <div className="py-6 font-semibold text:sm sm:text-md">
+        Rs. {order?.totalPrice}/-
       </div>
       <div className="py-6 font-semibold text:sm sm:text-md">
-        {product.price}/-
+        {order?.isDelivered ? "Delivered" : "Pending"}
       </div>
       <div className="py-6 font-semibold text:sm sm:text-md">
-        {pricePerQuantity}/-
-      </div> */}
+        {new Date(order?.orderDate).toLocaleDateString()}
+      </div>
+      <div className="py-6 font-semibold text:sm sm:text-md">
+        {order?.paymentType}
+      </div>
     </Fragment>
   );
 }
