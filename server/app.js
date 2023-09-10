@@ -32,6 +32,7 @@ app.use(mongoSanitize());
 
 app.use(xss());
 
+// To avoid Parameter polluting
 app.use(
   hpp({
     whitelist: ["price"],

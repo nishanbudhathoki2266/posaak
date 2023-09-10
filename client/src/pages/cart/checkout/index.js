@@ -6,8 +6,12 @@ import toast from "react-hot-toast";
 
 import Button from "@/components/Button";
 import FormError from "@/components/FormError";
-import { useSelector } from "react-redux";
-import { getCart, getTotalCartPrice } from "@/redux/reducerSlices/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearCart,
+  getCart,
+  getTotalCartPrice,
+} from "@/redux/reducerSlices/cartSlice";
 import { getToken, getUserDetails } from "@/redux/reducerSlices/userSlice";
 import Link from "next/link";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
@@ -22,6 +26,8 @@ const ShippingSchema = Yup.object().shape({
 
 const index = () => {
   const router = useRouter();
+
+  const dispatch = useDispatch();
 
   const token = useSelector(getToken);
 
@@ -58,7 +64,9 @@ const index = () => {
     setIsLoading(false);
     if (response.status === "success") {
       toast.success("Order placed successfully");
-      router.push("/products");
+      dispatch(clearCart());
+      toast.success("Cart cleared!");
+      router.push("/orders");
     } else {
       toast.error(response.message);
     }
