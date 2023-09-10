@@ -45,6 +45,7 @@ const index = () => {
       {
         products: cart.map((product) => ({
           product: product.id,
+          name: product.name,
           quantity: product.quantity,
           image: product.image,
           color: product.color,

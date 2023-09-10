@@ -20,6 +20,8 @@ function CartPage() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
 
+  console.log(cart);
+
   if (isLoggedIn && !cart.length > 0)
     return (
       <div className="h-[50vh] flex items-center justify-center">
@@ -45,7 +47,7 @@ function CartPage() {
         Your Cart
       </Heading>
       <div className="px-[.5px] sm:px-4">
-        <div className="mt-8 max-w-[1440px] justify-items-center items-center mx-auto grid grid-cols-[1fr_1fr_1fr_1fr] sm:grid-cols-[2fr_1fr_1fr_1fr] w-full gap-y-1">
+        <div className="mt-8 max-w-[1440px] justify-items-center items-center mx-auto grid grid-cols-[1fr_1fr_1fr_1fr] gap-y-1">
           <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
             Products
           </div>

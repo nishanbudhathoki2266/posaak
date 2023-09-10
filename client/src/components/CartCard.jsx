@@ -52,3 +52,104 @@ function CartCard({ product }) {
 }
 
 export default CartCard;
+
+/*
+
+[
+    {
+        "shippingAddress": {
+            "tole": "Shantinagar",
+            "city": "Itahari",
+            "postalCode": "57605"
+        },
+        "_id": "64fce4b9f998fefc2b325933",
+        "user": "64cf73a49fba480ec59ec3ac",
+        "products": [
+            {
+                "product": "64fc793510b025b9af24e403",
+                "quantity": 2,
+                "image": "product-64cf73bd9fba480ec59ec3ae-1694267976390-2.jpeg",
+                "color": "dark blue",
+                "size": "medium",
+                "price": 600,
+                "_id": "64fce4b9f998fefc2b325934"
+            }
+        ],
+        "totalPrice": 1200,
+        "orderDate": "2023-09-09T21:33:12.934Z",
+        "isDelivered": false,
+        "paymentType": "COD",
+        "__v": 0
+    },
+    {
+        "shippingAddress": {
+            "tole": "Shantinagar",
+            "city": "Itahari",
+            "postalCode": "57605"
+        },
+        "_id": "64fd237bd080b201afe001f0",
+        "user": "64cf73a49fba480ec59ec3ac",
+        "products": [
+            {
+                "product": "64cf7fe2a804740126a0498a",
+                "quantity": 1,
+                "image": "product-64cf73bd9fba480ec59ec3ae-1691330089150-3.jpeg",
+                "color": "maroon",
+                "size": "small",
+                "price": 800,
+                "_id": "64fd237bd080b201afe001f1"
+            },
+            {
+                "product": "64cf7fe2a804740126a0498a",
+                "quantity": 1,
+                "image": "product-64cf73bd9fba480ec59ec3ae-1691330089150-3.jpeg",
+                "color": "almond",
+                "size": "large",
+                "price": 800,
+                "_id": "64fd237bd080b201afe001f2"
+            }
+        ],
+        "totalPrice": 1600,
+        "orderDate": "2023-09-10T01:11:16.823Z",
+        "isDelivered": false,
+        "paymentType": "COD",
+        "__v": 0
+    },
+    {
+        "shippingAddress": {
+            "tole": "Shantinagar",
+            "city": "Itahari",
+            "postalCode": "57605"
+        },
+        "_id": "64fd3319d080b201afe00259",
+        "user": "64cf73a49fba480ec59ec3ac",
+        "products": [
+            {
+                "product": "64cfa3dd36ce1330e82b1fa3",
+                "quantity": 1,
+                "image": "product-64cf73bd9fba480ec59ec3ae-1694267804534-1.jpeg",
+                "color": "red",
+                "size": "small",
+                "price": 1200,
+                "_id": "64fd3319d080b201afe0025a"
+            },
+            {
+                "product": "64cfa3dd36ce1330e82b1fa3",
+                "quantity": 1,
+                "image": "product-64cf73bd9fba480ec59ec3ae-1694267804534-1.jpeg",
+                "color": "almond",
+                "size": "large",
+                "price": 1200,
+                "_id": "64fd3319d080b201afe0025b"
+            }
+        ],
+        "totalPrice": 2400,
+        "orderDate": "2023-09-10T01:11:16.823Z",
+        "isDelivered": false,
+        "paymentType": "COD",
+        "__v": 0
+    }
+]
+
+
+*/
