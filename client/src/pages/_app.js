@@ -44,7 +44,7 @@ export default function App({ Component, pageProps }) {
           containerStyle={{ margin: "8px" }}
           toastOptions={{
             success: {
-              duration: 1500,
+              duration: 2500,
             },
             error: {
               duration: 3000,

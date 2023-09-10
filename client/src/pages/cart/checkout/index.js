@@ -64,9 +64,12 @@ const index = () => {
 
     setIsLoading(false);
     if (response.status === "success") {
-      toast.success("Cart cleared!");
       dispatch(clearCart(userId));
       toast.success("Order placed successfully");
+      setTimeout(() => {
+        toast.success("Cart cleared!");
+      }, 2000);
+
       router.push("/orders");
     } else {
       toast.error(response.message);
