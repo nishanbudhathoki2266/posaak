@@ -20,8 +20,6 @@ function CartPage() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(getIsLoggedIn);
 
-  console.log(cart);
-
   if (isLoggedIn && !cart.length > 0)
     return (
       <div className="h-[50vh] flex items-center justify-center">

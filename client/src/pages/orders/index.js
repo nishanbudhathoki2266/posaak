@@ -85,7 +85,7 @@ const MyOrdersPage = () => {
           <div className="col-span-full border w-full mt-2" />
 
           {orders.map((order) => (
-            <Fragment key={order.id}>
+            <Fragment key={order._id}>
               <OrderCard order={order} />
               <div className="col-span-full border w-full mt-2" />
             </Fragment>
