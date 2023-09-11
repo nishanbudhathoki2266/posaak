@@ -6,16 +6,17 @@ This is an eCommerce site for a fictional store named 'Posaak', built with Next.
 
 ## Table of Contents
 
-- [Features](#features)
+## Features
 
 - User Registration and Login with JWT
+- User Profile and Updation
 - Product Catalog (List) with categories and filters
-- Shopping cart
+- Shopping cart functionality
 - WishLists
-- Search Functionality
+- Order history
+- Search and sort Functionality
 - Admin dashboard for managing products and orders
 
-## Features
 
 - User registration and authentication
 - User Profile and Updation
