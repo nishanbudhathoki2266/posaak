@@ -33,7 +33,7 @@ function AllProducts(props) {
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
-      <div className="container px-5 py-4 mx-auto">
+      <div className="container px-5 py-4 mx-auto w-full">
         <div className="mb-4 flex gap-4 items-center border-2 rounded-lg p-2">
           <FilterButton onClick={() => router.push("?sort=price")}>
             Sort by price
@@ -53,6 +53,7 @@ function AllProducts(props) {
               <MdSearch />
             </FilterButton>
           </div>
+
           <MdOutlineClear
             className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150"
             onClick={() => router.push("/products")}
@@ -82,7 +83,7 @@ export async function getServerSideProps(context) {
 
   try {
     // Some query string manipulations and joining array
-    const products = await getAllProducts(`?${finedQueryStr.join("&")}&page=1`);
+    const products = await getAllProducts(`?${finedQueryStr.join("&")}`);
     return {
       props: {
         products: products.data.products,
