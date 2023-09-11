@@ -34,7 +34,10 @@ function AllProducts(props) {
           <FilterButton onClick={() => router.push("?sort=name")}>
             Sort by name
           </FilterButton>
-          <MdOutlineClear className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150" />
+          <MdOutlineClear
+            className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150"
+            onClick={() => router.push("/products")}
+          />
         </div>
         <div className="flex flex-wrap -m-4">
           {products.map((product) => (
