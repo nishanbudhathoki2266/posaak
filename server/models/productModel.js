@@ -20,16 +20,6 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, "A product must have a price"],
     },
-    priceDiscount: {
-      type: Number,
-      default: 0,
-      validate: {
-        validator: function (val) {
-          return this.price > val;
-        },
-        message: "Discount must be lesser than the price!",
-      },
-    },
     isFeatured: { type: Boolean, default: false },
     images: [String],
     category: {

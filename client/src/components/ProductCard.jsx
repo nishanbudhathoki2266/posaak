@@ -65,7 +65,7 @@ function ProductCard({ product }) {
       <p className="mt-1">
         <span className="mr-1">
           {product.priceDiscount > 0 && (
-            <del>${product.price + product.priceDiscount}</del>
+            <del>Rs. {product.price + product.priceDiscount}/-</del>
           )}
         </span>
         Rs.
