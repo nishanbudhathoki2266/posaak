@@ -1,4 +1,5 @@
 import Error from "@/components/Error";
+import FilterButton from "@/components/FilterButton";
 import Heading from "@/components/Heading";
 import Loader from "@/components/Loader";
 import ProductCard from "@/components/ProductCard";
@@ -21,7 +22,11 @@ function AllProducts(props) {
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
-      <div className="container px-5 py-10 mx-auto">
+      <div className="container px-5 py-4 mx-auto">
+        <div className="mb-4 flex gap-4">
+          <FilterButton>Sort by price</FilterButton>
+          <FilterButton>Sort by name</FilterButton>
+        </div>
         <div className="flex flex-wrap -m-4">
           {products.map((product) => (
             <ProductCard key={product._id} product={product} />
