@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";

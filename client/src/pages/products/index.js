@@ -32,7 +32,8 @@ function AllProducts(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+  console.log(context);
   try {
     const products = await getAllProducts();
     return {
