@@ -62,15 +62,7 @@ function ProductCard({ product }) {
       <h2 className="text-gray-900 title-font text-lg font-medium">
         {product.name}
       </h2>
-      <p className="mt-1">
-        <span className="mr-1">
-          {product.priceDiscount > 0 && (
-            <del>Rs. {product.price + product.priceDiscount}/-</del>
-          )}
-        </span>
-        Rs.
-        {product.price}
-      </p>
+      <p className="mt-1">Rs. {product.price}/-</p>
       <div className="flex items-center justify-between mt-2">
         <Link
           href={`/products/${product._id}`}
