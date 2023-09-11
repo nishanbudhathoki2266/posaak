@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }) {
               duration: 2500,
             },
             error: {
-              duration: 3000,
+              duration: 4000,
             },
             style: {
               fontSize: "16px",
