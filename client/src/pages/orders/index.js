@@ -65,7 +65,7 @@ const MyOrdersPage = () => {
         Your orders
       </Heading>
       <div className="px-[.5px] sm:px-4">
-        <div className="mt-8 max-w-[1440px] justify-items-center items-center mx-auto grid grid-cols-[2fr_1fr_1fr_1fr_1fr] gap-y-1 overflow-auto">
+        <div className="mt-8 max-w-[1440px] justify-items-center items-center mx-auto grid grid-cols-[2fr_1fr_1fr_1fr_1fr_1.5fr] gap-y-1 overflow-auto">
           <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
             Products
           </div>
@@ -80,6 +80,9 @@ const MyOrdersPage = () => {
           </div>
           <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
             Payment Type
+          </div>
+          <div className="text-sm sm:text-md font-medium uppercase tracking-wide p-3">
+            Shipping Address
           </div>
 
           <div className="col-span-full border w-full mt-2" />

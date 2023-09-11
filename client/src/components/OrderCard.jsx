@@ -32,6 +32,9 @@ function OrderCard({ order }) {
       <div className="py-6 font-semibold text:sm sm:text-md">
         {order?.paymentType}
       </div>
+      <div className="py-6 font-semibold text:sm sm:text-md">
+        {order?.shippingAddress.tole}, {order?.shippingAddress.city}
+      </div>
     </Fragment>
   );
 }
