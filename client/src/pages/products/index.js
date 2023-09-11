@@ -5,6 +5,7 @@ import Loader from "@/components/Loader";
 import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/utils/api";
 import { useRouter } from "next/router";
+import { MdOutlineClear } from "react-icons/md";
 
 function AllProducts(props) {
   const router = useRouter();
@@ -26,13 +27,14 @@ function AllProducts(props) {
     <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
       <div className="container px-5 py-4 mx-auto">
-        <div className="mb-4 flex gap-4">
+        <div className="mb-4 flex gap-4 items-center border-2 rounded-lg p-2">
           <FilterButton onClick={() => router.push("?sort=price")}>
             Sort by price
           </FilterButton>
           <FilterButton onClick={() => router.push("?sort=name")}>
             Sort by name
           </FilterButton>
+          <MdOutlineClear className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150" />
         </div>
         <div className="flex flex-wrap -m-4">
           {products.map((product) => (
