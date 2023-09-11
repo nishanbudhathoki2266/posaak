@@ -45,15 +45,14 @@ function ProductCard({ product }) {
   }
 
   return (
-    <div className="lg:w-1/4 md:w-1/2 p-4 w-full">
-      <div className="max-h-80 max-w-sm md:w-auto rounded overflow-hidden">
+    <div className="w-full lg:w-1/5 md:w-1/3 p-4">
+      <div className="aspect-square rounded bg-red overflow-hidden relative">
         <Image
           alt="ecommerce"
-          className="object-cover object-center w-full h-full block hover:scale-[1.10] transition-all duration-500 ease-out"
+          className="hover:scale-[1.10] transition-all duration-500 ease-out"
           src={`http://localhost:8080/img/products/${product.images[0]}`}
-          width={300}
-          quality={100}
-          height={300}
+          layout="fill"
+          objectFit="cover"
         />
       </div>
 

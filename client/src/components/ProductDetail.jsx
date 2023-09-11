@@ -149,10 +149,7 @@ function ProductDetail({ product }) {
             </h1>
 
             <p className="leading-relaxed text-sm tracking-wider">
-              {product.description} Fam locavore kickstarter distillery. Mixtape
-              chillwave tumeric sriracha taximy chia microdosing tilde DIY. XOXO
-              fam indxgo juiceramps cornhole raw denim forage brooklyn. Everyday
-              carry +1 seitan poutine tumeric.
+              {product.description}
             </p>
             <div className="flex mt-6 items-center pb-5 mb-5">
               <div className="flex gap-[1px]">
