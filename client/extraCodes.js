@@ -183,7 +183,23 @@ function Card () {
 */
 
 const trimStr = (str) => {
-  return str.replace(" ", "").substring(0, 10) + "...";
+  let trimmedStr = "";
+  let charCount = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    if (charCount === 10) {
+      break;
+    }
+
+    if (str[i] === " ") {
+      trimmedStr += str[i];
+    } else {
+      trimmedStr += str[i];
+      charCount++;
+    }
+  }
+
+  return trimmedStr + "...";
 };
 
-console.log(trimStr("testing the code here just for "));
+console.log(trimStr("testing the code here just for testing"));
