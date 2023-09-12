@@ -4,26 +4,15 @@
 
 This is an eCommerce site for a fictional store named 'Posaak', built with Next.js, MongoDB, Express, and Node.js. It allows users to browse and purchase products, track orders, and more.
 
-## Table of Contents
-
-- [Features](#features)
-
-- User Registration and Login with JWT
-- Product Catalog (List) with categories and filters
-- Shopping cart
-- WishLists
-- Search Functionality
-- Admin dashboard for managing products and orders
-
 ## Features
 
-- User registration and authentication
+- User Registration and Login with JWT
 - User Profile and Updation
-- Product catalog with categories
+- Product Catalog (List) with categories and filters
 - Shopping cart functionality
-- Secure payment processing
-- Order history and tracking
-- User reviews and ratings
+- WishLists
+- Order history
+- Search and sort Functionality
 - Admin dashboard for managing products and orders
 
 ## Technologies Used
