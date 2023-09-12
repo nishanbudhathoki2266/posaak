@@ -203,7 +203,7 @@ function ProductDetail({ product }) {
             </p>
             <div className="flex items-center border-t-2 pt-4">
               <span className="title-font font-medium text-2xl text-gray-900">
-                Rs. {product.price - product.priceDiscount} /-
+                Rs. {product.price} /-
               </span>
               <div className="ml-auto">
                 <Button
