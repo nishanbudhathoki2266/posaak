@@ -181,3 +181,9 @@ function Card () {
 
 
 */
+
+const trimStr = (str) => {
+  return str.replace(" ", "").substring(0, 10) + "...";
+};
+
+console.log(trimStr("testing the code here just for "));
