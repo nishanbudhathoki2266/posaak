@@ -56,7 +56,13 @@ function AllProducts(props) {
 
           <MdOutlineClear
             className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150"
-            onClick={() => router.push("/products")}
+            onClick={() => {
+              if (router.asPath.includes("?")) {
+                router.push("/products");
+              } else {
+                return;
+              }
+            }}
           />
         </div>
         <div className="flex flex-wrap -m-4">
