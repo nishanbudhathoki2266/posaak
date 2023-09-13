@@ -202,4 +202,27 @@ const trimStr = (str) => {
   return trimmedStr + "...";
 };
 
-console.log(trimStr("testing the code here just for testing"));
+// console.log(trimStr("testing the code here just for testing"));
+
+/*
+
+2 , 7
+7, 11
+
+
+*/
+const nums = [11, 2, 7, 15];
+
+const target = 9;
+
+// const indexResults = [];
+
+// for (let i = 0; i < nums.length; i++) {
+//   for (let j = i + 1; j < nums.length; j++) {
+//     if (nums[i] + nums[j] === target) {
+//       indexResults.push(i, j);
+//     }
+//   }
+// }
+
+// console.log(indexResults);
