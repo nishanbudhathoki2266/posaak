@@ -226,3 +226,26 @@ const target = 9;
 // }
 
 // console.log(indexResults);
+
+const twoSum = (arr, target) => {
+  // Keeping iterated numbers in a memory
+  const iteratedNums = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+    const matchingPair = target - num;
+
+    // Check if the matching pair of the current number is in the object
+    if (iteratedNums.hasOwnProperty(matchingPair)) {
+      return [iteratedNums[matchingPair], i];
+    }
+
+    // If not, add the current number and its index to the object
+    iteratedNums[num] = i;
+  }
+
+  // If no solution is found, return an empty array or null, depending on your requirements
+  return [];
+};
+
+console.log(twoSum([2, 7, 11, 15], 9));
