@@ -18,7 +18,7 @@ function AllProducts(props) {
   if (props.error) return <Error error={props.error} />;
 
   // If no error
-  const { products } = props;
+  const { products, results } = props;
 
   if (!products.length > 0)
     return (
@@ -27,33 +27,25 @@ function AllProducts(props) {
       </div>
     );
 
-  const totalProducts = products.length;
-  const [productsLimit, setProductsLimit] = useState(4);
+  const [page, setPage] = useState(1);
+
+  const handlePageChange = () => {
+    setPage(page + 1);
+
+    router.push(`?page=${page}`);
+  };
 
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
       <Heading position="center">All Products</Heading>
       <div className="container px-5 py-4 mx-auto w-full">
-        <div className="mb-4 flex gap-4 items-center border-2 rounded-lg p-2">
+        <div className="mb-4 inline-flex gap-4 items-center border-2 rounded-lg p-2">
           <FilterButton onClick={() => router.push("?sort=price")}>
             Sort by price
           </FilterButton>
           <FilterButton onClick={() => router.push("?sort=name")}>
             Sort by name
           </FilterButton>
-          <div className="flex items-center gap-2">
-            <input
-              type="text"
-              placeholder="Type to search..."
-              onChange={(e) => setSearchInputText(e.target.value)}
-              value={searchInputText}
-              className="border-2 outline-none px-2 py-[5px] rounded-lg"
-            />
-            <FilterButton onClick={() => setQuery(searchInputText)}>
-              <MdSearch />
-            </FilterButton>
-          </div>
-
           <MdOutlineClear
             className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150"
             onClick={() => {
@@ -72,9 +64,14 @@ function AllProducts(props) {
         </div>
       </div>
       <div className="flex justify-center mt-4">
-        <Button variant="primary" className="mx-auto">
-          Load More
+        <Button
+          variant="primary"
+          className="mx-auto"
+          onClick={handlePageChange}
+        >
+          Load More {page} of {results}
         </Button>
+        )
       </div>
     </section>
   );
@@ -94,6 +91,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         products: products.data.products,
+        results: products.results,
       },
     };
   } catch (err) {
