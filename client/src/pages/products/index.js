@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import Error from "@/components/Error";
 import FilterButton from "@/components/FilterButton";
 import Heading from "@/components/Heading";
@@ -26,9 +27,8 @@ function AllProducts(props) {
       </div>
     );
 
-  const searchedProducts = products?.filter((product) =>
-    product.name.toLowerCase().includes(query.toLocaleLowerCase())
-  );
+  const totalProducts = products.length;
+  const [productsLimit, setProductsLimit] = useState(4);
 
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
@@ -66,14 +66,15 @@ function AllProducts(props) {
           />
         </div>
         <div className="flex flex-wrap -m-4">
-          {searchedProducts.length > 0 ? (
-            searchedProducts.map((product) => (
-              <ProductCard key={product._id} product={product} />
-            ))
-          ) : (
-            <p className="ml-2 mt-4 text-5xl">No product found!</p>
-          )}
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
         </div>
+      </div>
+      <div className="flex justify-center mt-4">
+        <Button variant="primary" className="mx-auto">
+          Load More
+        </Button>
       </div>
     </section>
   );

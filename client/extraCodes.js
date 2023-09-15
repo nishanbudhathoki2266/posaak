@@ -462,4 +462,4 @@ const peopleNotInUK = users.filter((user) => user.country === "UK");
 //   }
 // }
 
-console.log(peopleNotInUK);
+// console.log(peopleNotInUK);

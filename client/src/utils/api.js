@@ -12,9 +12,9 @@ const getFeaturedProducts = async () => {
   return data;
 };
 
-const getAllProducts = async (queryStr = "") => {
+const getAllProducts = async (queryStr = "", page) => {
   const response = await fetch(
-    "http://localhost:8080/api/v1/products" + queryStr
+    `http://localhost:8080/api/v1/products` + queryStr
   );
 
   const data = await response.json();
