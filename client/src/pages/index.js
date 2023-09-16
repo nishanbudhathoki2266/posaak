@@ -1,3 +1,4 @@
+import Banner from "@/components/Banner";
 import Error from "@/components/Error";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Heading from "@/components/Heading";
@@ -14,6 +15,7 @@ export default function HomePage(props) {
   return (
     <section className="max-w-[1440px] mx-auto px-4 py-8">
       <Hero />
+      <Banner />
       <FeaturedProducts featuredProducts={featuredProducts} />
       <Heading position="center" className="-mb-6">
         Shop by Categories

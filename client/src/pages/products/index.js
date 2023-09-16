@@ -66,7 +66,7 @@ function AllProducts(props) {
         <div className="mb-4 inline-flex gap-4 items-center border-2 rounded-lg p-2">
           <FilterButton
             onClick={() => {
-              setSortBy((currState) => {
+              setSortBy(() => {
                 if (searchText) {
                   router.push(`?search=${searchText}&sort=price&page=${page}`);
                 } else {
