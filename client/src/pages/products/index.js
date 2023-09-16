@@ -19,6 +19,8 @@ function AllProducts(props) {
 
   const [page, setPage] = useState(1);
 
+  const [sortBy, setSortBy] = useState(null);
+
   // Error handling
   if (props.error) return <Error error={props.error} />;
 
@@ -28,7 +30,11 @@ function AllProducts(props) {
   const handlePageNextClick = () => {
     if (page === results) return;
     setPage((page) => {
-      router.push(`?page=${page + 1}`);
+      if (sortBy) {
+        router.push(`?sort=${sortBy}&page=${page + 1}`);
+      } else {
+        router.push(`?page=${page + 1}`);
+      }
       return page + 1;
     });
   };
@@ -36,7 +42,11 @@ function AllProducts(props) {
   const handlePagePrevClick = () => {
     if (page === 1) return;
     setPage((page) => {
-      router.push(`?page=${page - 1}`);
+      if (sortBy) {
+        router.push(`?sort=${sortBy}&page=${page - 1}`);
+      } else {
+        router.push(`?page=${page - 1}`);
+      }
       return page - 1;
     });
   };
@@ -53,10 +63,24 @@ function AllProducts(props) {
       <Heading position="center">All Products</Heading>
       <div className="container px-5 py-4 mx-auto w-full">
         <div className="mb-4 inline-flex gap-4 items-center border-2 rounded-lg p-2">
-          <FilterButton onClick={() => router.push("?sort=price")}>
+          <FilterButton
+            onClick={() => {
+              setSortBy((currState) => {
+                router.push(`?sort=price&page=${page}`);
+                return "price";
+              });
+            }}
+          >
             Sort by price
           </FilterButton>
-          <FilterButton onClick={() => router.push("?sort=name")}>
+          <FilterButton
+            onClick={() => {
+              setSortBy((currState) => {
+                router.push(`?sort=name&page=${page}`);
+                return "name";
+              });
+            }}
+          >
             Sort by name
           </FilterButton>
           <MdOutlineClear
@@ -76,14 +100,14 @@ function AllProducts(props) {
           ))}
         </div>
       </div>
-      <div className="flex justify-start gap-4 container mx-auto mt-4">
+      <div className="flex justify-between container mx-auto mt-4">
         {page !== 1 && (
           <Button
             variant="primary"
             className="flex justify-center items-center"
             onClick={handlePagePrevClick}
           >
-            <MdOutlineArrowLeft className="text-4xl" />
+            Prev <MdOutlineArrowLeft className="text-4xl" />
           </Button>
         )}
         {page !== results && (
@@ -92,7 +116,7 @@ function AllProducts(props) {
             className="flex justify-center items-center"
             onClick={handlePageNextClick}
           >
-            <MdOutlineArrowRight className="text-4xl" />
+            Next <MdOutlineArrowRight className="text-4xl" />
           </Button>
         )}
       </div>
