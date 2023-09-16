@@ -11,11 +11,11 @@ function Banner({
 }) {
   const router = useRouter();
   return (
-    <div className="grid grid-cols-1 mb-8 md:grid-cols-2 items-center bg-amber-50 rounded-lg overflow-hidden">
+    <div className="grid grid-cols-1 md:grid-cols-2 items-center bg-amber-50 rounded-lg overflow-hidden">
       {/* left side  */}
       <div
         className={`flex gap-8 justify-center items-center flex-col mb-4 p-4 ${
-          imagePosition === "left" ? "order-last" : ""
+          imagePosition === "left" ? "md:order-last" : ""
         }`}
       >
         <h1 className="text-4xl lg:text-5xl font-bold uppercase tracking-tighter text-gray-800">
