@@ -19,8 +19,8 @@ function AllProducts(props) {
   const router = useRouter();
 
   const [page, setPage] = useState(1);
-
   const [sortBy, setSortBy] = useState(null);
+  const [searchText, setSearchText] = useState("");
 
   // Error handling
   if (props.error) return <Error error={props.error} />;
@@ -67,7 +67,11 @@ function AllProducts(props) {
           <FilterButton
             onClick={() => {
               setSortBy((currState) => {
-                router.push(`?sort=price&page=${page}`);
+                if (searchText) {
+                  router.push(`?search=${searchText}&sort=price&page=${page}`);
+                } else {
+                  router.push(`?sort=price&page=${page}`);
+                }
                 return "price";
               });
             }}
@@ -77,18 +81,44 @@ function AllProducts(props) {
           <FilterButton
             onClick={() => {
               setSortBy((currState) => {
-                router.push(`?sort=name&page=${page}`);
+                if (searchText) {
+                  router.push(`?search=${searchText}&sort=name&page=${page}`);
+                } else {
+                  router.push(`?sort=name&page=${page}`);
+                }
                 return "name";
               });
             }}
           >
             Sort by name
           </FilterButton>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              if (sortBy) {
+                router.push(
+                  `?search=${searchText}&sort=${sortBy}&page=${page}`
+                );
+              } else {
+                router.push(`?search=${searchText}&page=${page}`);
+              }
+            }}
+          >
+            <input
+              type="text"
+              placeholder="Type to search..."
+              className="border-2 rounded-lg py-[5.5px] px-2 outline-none"
+              value={searchText}
+              onChange={(e) => setSearchText(e.target.value)}
+            />
+          </form>
           <MdOutlineClear
             className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150"
             onClick={() => {
               if (router.asPath.includes("?")) {
                 toast.success("Filter cleared!");
+                setSearchText("");
                 router.push("/products");
               } else {
                 return;
