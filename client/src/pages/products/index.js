@@ -11,8 +11,15 @@ import { MdOutlineClear, MdSearch } from "react-icons/md";
 
 function AllProducts(props) {
   const router = useRouter();
-  const [searchInputText, setSearchInputText] = useState("");
-  const [query, setQuery] = useState("");
+
+  const [page, setPage] = useState(1);
+
+  const handlePageChange = () => {
+    setPage((page) => {
+      router.push(`?page=${page + 1}`);
+      return page + 1;
+    });
+  };
 
   // Error handling
   if (props.error) return <Error error={props.error} />;
@@ -26,14 +33,6 @@ function AllProducts(props) {
         <Heading>No Product found</Heading>
       </div>
     );
-
-  const [page, setPage] = useState(1);
-
-  const handlePageChange = () => {
-    setPage(page + 1);
-
-    router.push(`?page=${page}`);
-  };
 
   return (
     <section className="text-gray-600 px-5 py-8 body-font">
