@@ -16,7 +16,27 @@ export default function HomePage(props) {
     <section className="max-w-[1440px] mx-auto px-4 py-8">
       <Hero />
       <FeaturedProducts featuredProducts={featuredProducts} />
-      <Banner />
+      <Heading className="mb-6">What's new?</Heading>
+      <Banner
+        heading="Dashain is Here"
+        paragraph="Dashain Style, Dashain Savings at Posaak,"
+        spanParagraph="Explore our festive discounts today"
+        src="/images/durga.jpg"
+      />
+      <Banner
+        heading="Posaak Kids"
+        paragraph="Dress your kids in fashion that matches their personality,"
+        spanParagraph="Check out our new arrivals!"
+        src="/images/kid.jpg"
+        imagePosition="right"
+        link="/category/64cf77c69f091e1de25a870e"
+      />
+      <Banner
+        heading="Posaak formals"
+        paragraph="Posaak introduces chic and sophisticated formal wear,"
+        spanParagraph="Get ready to turn heads."
+        src="/images/couple.jpg"
+      />
       <ShopByCategory categories={categories} />
     </section>
   );
