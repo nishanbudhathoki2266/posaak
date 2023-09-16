@@ -4,7 +4,7 @@ import CategoryCard from "./CategoryCard";
 function ShopByCategory({ categories }) {
   const router = useRouter();
   return (
-    <section className="text-gray-600 mb-6 md:mb-24 flex justify-center flex-wrap gap-9">
+    <section className="text-gray-600 my-6 md:my-24 flex justify-center flex-wrap gap-9">
       {categories.map((category) => (
         <CategoryCard
           key={category._id}

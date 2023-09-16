@@ -11,7 +11,7 @@ function Banner({
 }) {
   const router = useRouter();
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 items-center bg-amber-50 rounded-lg overflow-hidden  mb-14 md:mb-24">
+    <div className="grid grid-cols-1 md:grid-cols-2 items-center bg-amber-50 rounded-lg overflow-hidden">
       {/* left side  */}
       <div
         className={`flex gap-8 justify-center items-center flex-col mb-4 p-4 ${
