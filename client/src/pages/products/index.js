@@ -96,6 +96,9 @@ function AllProducts(props) {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+
+              if (!searchText) return;
+
               if (sortBy) {
                 router.push(
                   `?search=${searchText}&sort=${sortBy}&page=${page}`
