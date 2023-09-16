@@ -5,7 +5,7 @@ import Heading from "./Heading";
 function Gallery() {
   return (
     <>
-      <Heading>Happy customers</Heading>
+      <Heading>Happy Customers</Heading>
       <div className="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {/* Image one */}
         {Array.from({ length: 12 }, (_, index) => index + 1).map((img) => (
