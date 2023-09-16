@@ -59,9 +59,13 @@ exports.getAllProducts = catchAsync(async (req, res, next) => {
     .paginate();
   const products = await features.query;
 
+  // Essential for pagination
+  const totalProducts = await Product.countDocuments();
+
   res.status(200).json({
     status: "success",
     results: products.length,
+    total: Math.ceil(totalProducts / 4), // keeping limit 4 for a page for now.
     data: {
       products,
     },

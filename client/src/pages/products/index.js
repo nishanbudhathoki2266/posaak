@@ -7,25 +7,39 @@ import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/utils/api";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { MdOutlineClear, MdSearch } from "react-icons/md";
+import {
+  MdOutlineArrowLeft,
+  MdOutlineArrowRight,
+  MdOutlineClear,
+  MdSearch,
+} from "react-icons/md";
 
 function AllProducts(props) {
   const router = useRouter();
 
   const [page, setPage] = useState(1);
 
-  const handlePageChange = () => {
+  // Error handling
+  if (props.error) return <Error error={props.error} />;
+
+  // If no error
+  const { products, results } = props;
+
+  const handlePageNextClick = () => {
+    if (page === results) return;
     setPage((page) => {
       router.push(`?page=${page + 1}`);
       return page + 1;
     });
   };
 
-  // Error handling
-  if (props.error) return <Error error={props.error} />;
-
-  // If no error
-  const { products, results } = props;
+  const handlePagePrevClick = () => {
+    if (page === 1) return;
+    setPage((page) => {
+      router.push(`?page=${page - 1}`);
+      return page - 1;
+    });
+  };
 
   if (!products.length > 0)
     return (
@@ -62,15 +76,25 @@ function AllProducts(props) {
           ))}
         </div>
       </div>
-      <div className="flex justify-center mt-4">
-        <Button
-          variant="primary"
-          className="mx-auto"
-          onClick={handlePageChange}
-        >
-          Load More {page} of {results}
-        </Button>
-        )
+      <div className="flex justify-start gap-4 container mx-auto mt-4">
+        {page !== 1 && (
+          <Button
+            variant="primary"
+            className="flex justify-center items-center"
+            onClick={handlePagePrevClick}
+          >
+            <MdOutlineArrowLeft className="text-4xl" />
+          </Button>
+        )}
+        {page !== results && (
+          <Button
+            variant="primary"
+            className="flex justify-center items-center"
+            onClick={handlePageNextClick}
+          >
+            <MdOutlineArrowRight className="text-4xl" />
+          </Button>
+        )}
       </div>
     </section>
   );
@@ -90,7 +114,7 @@ export async function getServerSideProps(context) {
     return {
       props: {
         products: products.data.products,
-        results: products.results,
+        results: products.total,
       },
     };
   } catch (err) {
