@@ -6,6 +6,7 @@ import Hero from "@/components/Hero";
 import ShopByCategory from "@/components/ShopByCategory";
 import { getAllCategories, getFeaturedProducts } from "@/utils/api";
 import Gallery from "@/components/Gallery";
+import AppOptions from "@/components/AppOptions";
 
 export default function HomePage(props) {
   // Error handling
@@ -40,6 +41,7 @@ export default function HomePage(props) {
       />
       <ShopByCategory categories={categories} />
       <Gallery />
+      <AppOptions />
     </section>
   );
 }
