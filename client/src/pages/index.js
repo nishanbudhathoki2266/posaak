@@ -3,9 +3,9 @@ import Error from "@/components/Error";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
-import PictureCard from "@/components/PictureCard";
 import ShopByCategory from "@/components/ShopByCategory";
 import { getAllCategories, getFeaturedProducts } from "@/utils/api";
+import Gallery from "@/components/Gallery";
 
 export default function HomePage(props) {
   // Error handling
@@ -39,7 +39,7 @@ export default function HomePage(props) {
         src="/images/couple.jpg"
       />
       <ShopByCategory categories={categories} />
-      <PictureCard />
+      <Gallery />
     </section>
   );
 }
