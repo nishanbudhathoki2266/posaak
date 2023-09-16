@@ -7,6 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import { getAllProducts } from "@/utils/api";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import {
   MdOutlineArrowLeft,
   MdOutlineArrowRight,
@@ -87,6 +88,7 @@ function AllProducts(props) {
             className="text-4xl text-black block cursor-pointer hover:-translate-y-[1px] transition-transform ease-out duration-150"
             onClick={() => {
               if (router.asPath.includes("?")) {
+                toast.success("Filter cleared!");
                 router.push("/products");
               } else {
                 return;

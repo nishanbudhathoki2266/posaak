@@ -52,7 +52,21 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllProducts = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Product.find(), req.query)
+  // Searching
+  const searchQuery = req.query.search || "";
+  const searchConditions = [
+    {
+      name: { $regex: new RegExp(searchQuery, "i") },
+    },
+    {
+      description: { $regex: new RegExp(searchQuery, "i") },
+    },
+  ];
+
+  const features = new APIFeatures(
+    Product.find({ $or: searchConditions }),
+    req.query
+  )
     .filter()
     .sort()
     .limitFields()
@@ -60,12 +74,12 @@ exports.getAllProducts = catchAsync(async (req, res, next) => {
   const products = await features.query;
 
   // Essential for pagination
-  const totalProducts = await Product.countDocuments();
+  const totalProducts = await Product.countDocuments({ $or: searchConditions });
 
   res.status(200).json({
     status: "success",
     results: products.length,
-    total: Math.ceil(totalProducts / 2), // keeping limit 4 for a page for now.
+    total: Math.ceil(totalProducts / 5), // keeping limit 4 for a page for now.
     data: {
       products,
     },
