@@ -3,6 +3,7 @@ import Error from "@/components/Error";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import Heading from "@/components/Heading";
 import Hero from "@/components/Hero";
+import PictureCard from "@/components/PictureCard";
 import ShopByCategory from "@/components/ShopByCategory";
 import { getAllCategories, getFeaturedProducts } from "@/utils/api";
 
@@ -19,14 +20,14 @@ export default function HomePage(props) {
       <Heading className="mb-6">What's new?</Heading>
       <Banner
         heading="Dashain is Here"
-        paragraph="Dashain Style, Dashain Savings at Posaak,"
-        spanParagraph="Explore our festive discounts today"
+        paragraph="Dashain offers! Dashain Savings at Posaak!"
+        spanParagraph="Explore our massive 40% discounts today."
         src="/images/durga.jpg"
       />
       <Banner
         heading="Posaak Kids"
         paragraph="Dress your kids in fashion that matches their personality,"
-        spanParagraph="Check out our new arrivals!"
+        spanParagraph="Check out our new arrivals."
         src="/images/kid.jpg"
         imagePosition="right"
         link="/category/64cf77c69f091e1de25a870e"
@@ -38,6 +39,7 @@ export default function HomePage(props) {
         src="/images/couple.jpg"
       />
       <ShopByCategory categories={categories} />
+      <PictureCard />
     </section>
   );
 }
