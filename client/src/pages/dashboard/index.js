@@ -75,6 +75,7 @@ const DashboardPage = () => {
                 <TopSellingCard
                   key={product._id}
                   product={product.productDetails[0]}
+                  totalSales={product.numProductSales}
                 />
               );
             })}
