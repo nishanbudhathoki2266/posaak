@@ -25,6 +25,9 @@ This is an eCommerce site for a fictional store named 'Posaak', built with Next.
 
 ## Some Demo
 
+Landing Page
+![Landing](image-9.png)
+
 Sign up Form
 ![Register Form](image-8.png)
 
