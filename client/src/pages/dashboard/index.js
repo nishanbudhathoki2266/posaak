@@ -4,8 +4,22 @@ import DashboardStatsCard from "@/components/DashboardStatsCard";
 import { MdDeliveryDining } from "react-icons/md";
 import { AiOutlineDollar, AiOutlineUser } from "react-icons/ai";
 import { BiSolidTShirt } from "react-icons/bi";
+import useSWR from "swr";
+import { fetchData } from "@/utils/swr";
+import { useSelector } from "react-redux";
+import { getToken } from "@/redux/reducerSlices/userSlice";
 
 const DashboardPage = () => {
+  const token = useSelector(getToken);
+
+  const header = {
+    authorization: `Bearer ${token}`,
+  };
+
+  const { data, error } = useSWR(
+    "http://localhost:8080/api/v1/products",
+    fetchData
+  );
   return (
     <section className="p-6">
       <Heading>Dashboard</Heading>
@@ -15,7 +29,7 @@ const DashboardPage = () => {
             <MdDeliveryDining className="text-5xl text-red-400 font-extralight rounded-full" />
           }
           title="orders"
-          text="12"
+          text={!data ? "loading" : data.results}
         />
         <DashboardStatsCard
           icon={

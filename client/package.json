@@ -25,6 +25,7 @@
     "react-table": "^7.8.0",
     "redux-persist": "^6.0.0",
     "reduxt": "^0.0.5",
+    "swr": "^2.2.2",
     "yup": "^1.2.0"
   },
   "devDependencies": {
