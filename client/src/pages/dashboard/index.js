@@ -64,14 +64,14 @@ const DashboardPage = () => {
             <MdDeliveryDining className="text-5xl text-red-400 font-extralight rounded-full" />
           }
           title="orders"
-          text={!orders ? "..." : orders.results}
+          text={!orders ? "..." : orders?.results}
         />
         <DashboardStatsCard
           icon={
             <AiOutlineUser className="text-5xl text-cyan-500 font-extralight rounded-full" />
           }
           title="users"
-          text={!users ? "..." : users.results}
+          text={!users ? "..." : users?.results}
         />
         <DashboardStatsCard
           icon={
@@ -81,7 +81,7 @@ const DashboardPage = () => {
           text={
             !revenue
               ? "..."
-              : "Rs. " + revenue.data.totalRevenue[0].revenue + "/-"
+              : "Rs. " + revenue?.data?.totalRevenue?.[0]?.revenue + "/-"
           }
         />
         <DashboardStatsCard
