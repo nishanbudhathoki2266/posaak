@@ -16,7 +16,7 @@ const DashboardPage = () => {
     authorization: `Bearer ${token}`,
   };
 
-  const { data, error } = useSWR(
+  const { data: products, error } = useSWR(
     "http://localhost:8080/api/v1/products",
     fetchData
   );
@@ -29,7 +29,7 @@ const DashboardPage = () => {
             <MdDeliveryDining className="text-5xl text-red-400 font-extralight rounded-full" />
           }
           title="orders"
-          text={!data ? "loading" : data.results}
+          text="12"
         />
         <DashboardStatsCard
           icon={
@@ -50,7 +50,7 @@ const DashboardPage = () => {
             <BiSolidTShirt className="text-5xl text-blue-600 font-extralight rounded-full" />
           }
           title="products"
-          text="15"
+          text={!products ? "..." : products.results}
         />
       </div>
     </section>

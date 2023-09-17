@@ -78,7 +78,7 @@ exports.getAllProducts = catchAsync(async (req, res, next) => {
 
   res.status(200).json({
     status: "success",
-    results: products.length,
+    results: totalProducts,
     total: Math.ceil(totalProducts / 5), // keeping limit 4 for a page for now.
     data: {
       products,
