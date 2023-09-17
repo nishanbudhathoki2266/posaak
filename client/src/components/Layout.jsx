@@ -3,10 +3,13 @@ import Footer from "./Footer";
 import Navigation from "./Navigation";
 
 import { Open_Sans } from "next/font/google";
-import { useSelector } from "react-redux";
-import { getUserDetails } from "@/redux/reducerSlices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserDetails, logOut } from "@/redux/reducerSlices/userSlice";
 import AdminNavigation from "./AdminNavigation";
 import Image from "next/image";
+import { AiOutlineLogout } from "react-icons/ai";
+import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 const archivo = Open_Sans({
   subsets: ["latin"],
@@ -14,9 +17,11 @@ const archivo = Open_Sans({
 });
 
 function Layout({ children }) {
-  const { name, image, role } = useSelector(getUserDetails);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { name, image, role } = useSelector(getUserDetails) || {};
 
-  if (role === "admin")
+  if (role && role === "admin")
     return (
       <section className="min-h-screen bg-gray-100 grid grid-cols-[1fr_6fr]">
         <style jsx global>{`
@@ -28,7 +33,7 @@ function Layout({ children }) {
           <AdminNavigation />
         </aside>
         <main>
-          <header className="bg-white py-3 flex justify-end items-center px-4 gap-2 shadow-lg">
+          <header className="bg-white py-3 flex justify-end items-center px-6 gap-2 shadow-lg">
             <Image
               src={`http://localhost:8080/img/users/${image}`}
               alt="User image"
@@ -37,6 +42,14 @@ function Layout({ children }) {
               className="w-auto h-auto rounded-full"
             />
             <p className="text-sm font-semibold text-gray-600">{name}</p>
+            <AiOutlineLogout
+              className="font-bold text-red-700 text-2xl cursor-pointer"
+              onClick={() => {
+                router.push("/auth/login");
+                toast.success("Logged out!");
+                dispatch(logOut());
+              }}
+            />
           </header>
           {children}
         </main>
