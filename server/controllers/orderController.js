@@ -115,3 +115,20 @@ exports.topSellingProduct = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.revenue = catchAsync(async (req, res, next) => {
+  const totalRevenue = await Order.aggregate([
+    {
+      $group: {
+        _id: null,
+        revenue: { $sum: "$totalPrice" },
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    data: {
+      totalRevenue,
+    },
+  });
+});

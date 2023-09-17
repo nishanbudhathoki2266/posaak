@@ -26,9 +26,9 @@ const DashboardPage = () => {
     token
   );
 
-  const revenue = orders?.data?.orders?.reduce(
-    (acc, order) => acc + order.totalPrice,
-    0
+  const { data: revenue } = useFetch(
+    "http://localhost:8080/api/v1/orders/revenue",
+    token
   );
 
   return (
@@ -54,7 +54,11 @@ const DashboardPage = () => {
             <AiOutlineDollar className="text-5xl text-green-500 font-extralight rounded-full" />
           }
           title="revenue"
-          text={`Rs. ${revenue}`}
+          text={
+            !revenue
+              ? "..."
+              : "Rs. " + revenue.data.totalRevenue[0].revenue + "/-"
+          }
         />
         <DashboardStatsCard
           icon={
