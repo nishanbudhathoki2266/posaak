@@ -33,6 +33,7 @@ function Navigation() {
           <Image
             src="/logo.png"
             alt="Logo of Posaak"
+            className="h-14 w-auto"
             width={150}
             height={150}
           />

@@ -22,7 +22,7 @@ function Hero() {
         </div>
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
           <Image
-            className="object-cover object-center rounded"
+            className="h-auto w-auto"
             alt="hero"
             priority={true}
             src="/hero.jpg"

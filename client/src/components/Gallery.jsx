@@ -15,8 +15,8 @@ function Gallery() {
           >
             <Image
               src={`/images/gallery/img-${img + 1}.jpg`}
-              layout="fill"
-              objectFit="cover"
+              fill={true}
+              sizes="100%"
               alt={`gallery image ${img + 1}`}
               className="hover:scale-[1.3] transition-transform ease-out duration-200"
             />
