@@ -39,7 +39,8 @@ function Layout({ children }) {
               alt="User image"
               height={40}
               width={40}
-              className="w-auto h-auto rounded-full"
+              className="w-auto h-auto rounded-full cursor-pointer"
+              onClick={() => router.push("/profile")}
             />
             <p className="text-sm font-semibold text-gray-600">{name}</p>
             <AiOutlineLogout
