@@ -14,6 +14,8 @@ router
     productController.createProduct
   );
 
+router.get("/productsPerCategory", productController.totalProductsPerCategory);
+
 router.get("/featured", productController.getFeaturedProducts);
 
 router

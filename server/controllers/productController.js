@@ -141,3 +141,28 @@ exports.deleteProduct = catchAsync(async (req, res, next) => {
     data: null,
   });
 });
+
+exports.totalProductsPerCategory = catchAsync(async (req, res, next) => {
+  const productsPerCategory = await Product.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        numProducts: { $sum: 1 },
+      },
+    },
+    {
+      $lookup: {
+        from: "categories", // The name of the "categories" collection
+        localField: "_id", // Field in the "categories" collection
+        foreignField: "_id", // Field in the "products" collection
+        as: "categoryDetails", // Alias for the joined data
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    data: {
+      productsPerCategory,
+    },
+  });
+});

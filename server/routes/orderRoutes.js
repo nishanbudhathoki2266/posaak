@@ -10,8 +10,8 @@ router
   .get(authController.restrictTo("admin"), orderController.getAllOrders)
   .post(authController.restrictTo("user"), orderController.createOrder);
 
-router.use(authController.restrictTo("admin"));
 router.route("/my-orders").get(orderController.getMyOrder);
+router.use(authController.restrictTo("admin"));
 
 router.get("/top-selling", orderController.topSellingProduct);
 router.get("/revenue", orderController.revenue);
