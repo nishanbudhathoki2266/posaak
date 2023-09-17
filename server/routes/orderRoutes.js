@@ -14,6 +14,8 @@ router.route("/my-orders").get(orderController.getMyOrder);
 
 router.use(authController.restrictTo("admin"));
 
+router.get("/top-selling", orderController.topSellingProduct);
+
 router
   .route("/:id")
   .get(orderController.getOrder)

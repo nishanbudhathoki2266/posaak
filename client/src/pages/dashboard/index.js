@@ -4,22 +4,27 @@ import DashboardStatsCard from "@/components/DashboardStatsCard";
 import { MdDeliveryDining } from "react-icons/md";
 import { AiOutlineDollar, AiOutlineUser } from "react-icons/ai";
 import { BiSolidTShirt } from "react-icons/bi";
-import useSWR from "swr";
-import { fetchData } from "@/utils/swr";
 import { useSelector } from "react-redux";
 import { getToken } from "@/redux/reducerSlices/userSlice";
+import useFetch from "@/hooks/useFetch";
 
 const DashboardPage = () => {
   const token = useSelector(getToken);
 
-  const header = {
-    authorization: `Bearer ${token}`,
-  };
+  const { data: products } = useFetch("http://localhost:8080/api/v1/products");
 
-  const { data: products, error } = useSWR(
-    "http://localhost:8080/api/v1/products",
-    fetchData
+  const { data: orders } = useFetch(
+    "http://localhost:8080/api/v1/orders",
+    token
   );
+
+  const { data: users } = useFetch("http://localhost:8080/api/v1/users", token);
+
+  const revenue = orders?.data?.orders?.reduce(
+    (acc, order) => acc + order.totalPrice,
+    0
+  );
+
   return (
     <section className="p-6">
       <Heading>Dashboard</Heading>
@@ -29,21 +34,21 @@ const DashboardPage = () => {
             <MdDeliveryDining className="text-5xl text-red-400 font-extralight rounded-full" />
           }
           title="orders"
-          text="12"
+          text={!orders ? "..." : orders.results}
         />
         <DashboardStatsCard
           icon={
             <AiOutlineUser className="text-5xl text-cyan-500 font-extralight rounded-full" />
           }
           title="users"
-          text="30"
+          text={!users ? "..." : users.results}
         />
         <DashboardStatsCard
           icon={
             <AiOutlineDollar className="text-5xl text-green-500 font-extralight rounded-full" />
           }
           title="revenue"
-          text="12000"
+          text={`Rs. ${revenue}`}
         />
         <DashboardStatsCard
           icon={

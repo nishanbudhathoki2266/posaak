@@ -12,13 +12,7 @@ exports.createOrder = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllOrders = catchAsync(async (req, res, next) => {
-  const features = new APIFeatures(Order.find(), req.query)
-    .filter()
-    .sort()
-    .limitFields()
-    .paginate();
-
-  const orders = await features.query;
+  const orders = await Order.find();
 
   res.status(200).json({
     status: "success",
@@ -86,5 +80,29 @@ exports.deletOrder = catchAsync(async (req, res, next) => {
   res.status(204).json({
     status: "success",
     data: null,
+  });
+});
+
+exports.topSellingProduct = catchAsync(async (req, res, next) => {
+  const orders = await Order.aggregate([
+    {
+      $unwind: "$products",
+    },
+    {
+      $group: {
+        _id: "$products.product",
+        numProductSales: { $sum: "$products.quantity" },
+      },
+    },
+    {
+      $sort: { totalQuantitySold: -1 },
+    },
+    {
+      $limit: 3,
+    },
+  ]);
+  res.status(200).json({
+    results: orders.length,
+    prods: orders,
   });
 });
