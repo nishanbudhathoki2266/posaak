@@ -66,20 +66,26 @@ const DashboardPage = () => {
 
         <div className="bg-white col-span-2 rounded-lg h-96"></div>
         <div className="bg-white col-span-2 rounded-lg p-4 flex justify-center flex-col">
-          <h3 className="text-lg uppercase font-semibold tracking-tight">
-            Top Selling Product/s
-          </h3>
-          <div className="flex justify-center flex-col gap-6 mt-4">
-            {topSellingProducts?.data?.products?.map((product) => {
-              return (
-                <TopSellingCard
-                  key={product._id}
-                  product={product.productDetails[0]}
-                  totalSales={product.numProductSales}
-                />
-              );
-            })}
-          </div>
+          {!topSellingProducts ? (
+            <p className="mx-auto">Loading...</p>
+          ) : (
+            <>
+              <h3 className="text-lg uppercase font-semibold tracking-tight">
+                Top Selling Product/s
+              </h3>
+              <div className="flex justify-center flex-col gap-6 mt-4">
+                {topSellingProducts?.data?.products?.map((product) => {
+                  return (
+                    <TopSellingCard
+                      key={product._id}
+                      product={product.productDetails[0]}
+                      totalSales={product.numProductSales}
+                    />
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

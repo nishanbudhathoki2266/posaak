@@ -26,7 +26,10 @@ function TopSellingCard({
           </span>
           <div className="flex gap-1">
             {sizes.map((size) => (
-              <span className="text-xs uppercase tracking-wider font-extralight">
+              <span
+                key={size}
+                className="text-xs uppercase tracking-wider font-extralight"
+              >
                 {size}
               </span>
             ))}
