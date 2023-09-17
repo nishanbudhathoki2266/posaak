@@ -9,7 +9,10 @@ function Gallery() {
       <div className="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
         {/* Image one */}
         {Array.from({ length: 12 }, (_, index) => index + 1).map((img) => (
-          <div className="relative aspect-square overflow-hidden rounded-lg">
+          <div
+            className="relative aspect-square overflow-hidden rounded-lg"
+            key={img}
+          >
             <Image
               src={`/images/gallery/img-${img + 1}.jpg`}
               layout="fill"
