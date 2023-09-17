@@ -7,6 +7,7 @@ import { BiSolidTShirt } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { getToken } from "@/redux/reducerSlices/userSlice";
 import useFetch from "@/hooks/useFetch";
+import TopSellingCard from "@/components/TopSellingCard";
 
 const DashboardPage = () => {
   const token = useSelector(getToken);
@@ -20,7 +21,7 @@ const DashboardPage = () => {
 
   const { data: users } = useFetch("http://localhost:8080/api/v1/users", token);
 
-  const { data: topSellingProductsIds } = useFetch(
+  const { data: topSellingProducts } = useFetch(
     "http://localhost:8080/api/v1/orders/top-selling",
     token
   );
@@ -33,7 +34,7 @@ const DashboardPage = () => {
   return (
     <section className="p-6">
       <Heading>Dashboard</Heading>
-      <div className="grid gap-2 lg:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-2 lg:gap-6 grid-cols-2 lg:grid-cols-4">
         <DashboardStatsCard
           icon={
             <MdDeliveryDining className="text-5xl text-red-400 font-extralight rounded-full" />
@@ -62,6 +63,23 @@ const DashboardPage = () => {
           title="products"
           text={!products ? "..." : products.results}
         />
+
+        <div className="bg-white col-span-2 rounded-lg h-96"></div>
+        <div className="bg-white col-span-2 rounded-lg p-4 flex justify-center flex-col">
+          <h3 className="text-lg uppercase font-semibold tracking-tight">
+            Top Selling Product/s
+          </h3>
+          <div className="flex justify-center flex-col gap-6 mt-4">
+            {topSellingProducts?.data?.products?.map((product) => {
+              return (
+                <TopSellingCard
+                  key={product._id}
+                  product={product.productDetails[0]}
+                />
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -23,13 +23,13 @@ function Layout({ children }) {
 
   if (role && role === "admin")
     return (
-      <section className="min-h-screen bg-gray-100 grid grid-cols-[1fr_6fr]">
+      <section className="min-h-screen bg-gray-100 grid grid-cols-1 md:grid-cols-[1fr_5fr]">
         <style jsx global>{`
           html {
             font-family: ${archivo.style.fontFamily};
           }
         `}</style>
-        <aside className="bg-white text-gray-800 py-8 px-2 shadow-lg">
+        <aside className="hidden md:block bg-white text-gray-800 py-8 px-2 shadow-lg">
           <AdminNavigation />
         </aside>
         <main>
