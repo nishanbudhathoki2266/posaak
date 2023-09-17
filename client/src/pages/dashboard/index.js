@@ -8,6 +8,17 @@ import { useSelector } from "react-redux";
 import { getToken } from "@/redux/reducerSlices/userSlice";
 import useFetch from "@/hooks/useFetch";
 import TopSellingCard from "@/components/TopSellingCard";
+import { PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
+
+// Function to generate a random color
+const generateRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 
 const DashboardPage = () => {
   const token = useSelector(getToken);
@@ -30,6 +41,19 @@ const DashboardPage = () => {
     "http://localhost:8080/api/v1/orders/revenue",
     token
   );
+
+  const { data: productsPerCategory } = useFetch(
+    "http://localhost:8080/api/v1/products/productsPerCategory"
+  );
+
+  const graphData =
+    productsPerCategory?.data?.productsPerCategory?.map((product) => {
+      return {
+        name: product.categoryDetails[0].name,
+        value: product.numProducts,
+        color: generateRandomColor(),
+      };
+    }) || [];
 
   return (
     <section className="p-6">
@@ -68,7 +92,22 @@ const DashboardPage = () => {
           text={!products ? "..." : products.results}
         />
 
-        <div className="bg-white col-span-2 rounded-lg h-96"></div>
+        <div className="bg-white col-span-2 rounded-lg h-96 flex justify-center items-center pb-8">
+          <PieChart width={400} height={400}>
+            <Pie
+              dataKey="value"
+              isAnimationActive={false}
+              data={graphData}
+              fill="#8884d8" // the separator color
+            >
+              {graphData.map((entry, index) => {
+                return <Cell key={`cell-${index}`} fill={entry.color} />;
+              })}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </div>
         <div className="bg-white col-span-2 rounded-lg p-4 flex justify-center flex-col">
           {!topSellingProducts ? (
             <p className="mx-auto">Loading...</p>
