@@ -94,7 +94,7 @@ exports.topSellingProduct = catchAsync(async (req, res, next) => {
       },
     },
     {
-      $sort: { totalQuantitySold: -1 },
+      $sort: { numProductSales: -1 },
     },
     {
       $limit: 3,
