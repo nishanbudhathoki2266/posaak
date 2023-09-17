@@ -20,6 +20,11 @@ const DashboardPage = () => {
 
   const { data: users } = useFetch("http://localhost:8080/api/v1/users", token);
 
+  const { data: topSellingProductsIds } = useFetch(
+    "http://localhost:8080/api/v1/orders/top-selling",
+    token
+  );
+
   const revenue = orders?.data?.orders?.reduce(
     (acc, order) => acc + order.totalPrice,
     0

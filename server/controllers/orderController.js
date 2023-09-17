@@ -1,6 +1,5 @@
 const Order = require("../models/orderModel");
 const AppError = require("../utils/appError");
-const APIFeatures = require("./../utils/apiFeatures");
 const catchAsync = require("./../utils/catchAsync");
 
 exports.createOrder = catchAsync(async (req, res, next) => {
@@ -84,7 +83,7 @@ exports.deletOrder = catchAsync(async (req, res, next) => {
 });
 
 exports.topSellingProduct = catchAsync(async (req, res, next) => {
-  const orders = await Order.aggregate([
+  const products = await Order.aggregate([
     {
       $unwind: "$products",
     },
@@ -100,9 +99,19 @@ exports.topSellingProduct = catchAsync(async (req, res, next) => {
     {
       $limit: 3,
     },
+    {
+      $lookup: {
+        from: "products", // The name of the "products" collection
+        localField: "_id", // Field in the "orders" collection
+        foreignField: "_id", // Field in the "products" collection
+        as: "productDetails", // Alias for the joined data
+      },
+    },
   ]);
+
   res.status(200).json({
-    results: orders.length,
-    prods: orders,
+    data: {
+      products,
+    },
   });
 });
