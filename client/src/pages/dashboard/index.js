@@ -8,7 +8,18 @@ import { useSelector } from "react-redux";
 import { getToken } from "@/redux/reducerSlices/userSlice";
 import useFetch from "@/hooks/useFetch";
 import TopSellingCard from "@/components/TopSellingCard";
-import { PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 // Function to generate a random color
 const generateRandomColor = () => {
@@ -54,6 +65,16 @@ const DashboardPage = () => {
         color: generateRandomColor(),
       };
     }) || [];
+
+  const { data: salesPerDay } = useFetch(
+    "http://localhost:8080/api/v1/orders/dailyRevenue",
+    token
+  );
+
+  const salesData = salesPerDay?.data?.dailyRevenue?.map((revenue) => ({
+    date: new Date(revenue._id).toLocaleDateString(),
+    revenue: revenue.totalRevenue,
+  }));
 
   return (
     <section className="p-6">
@@ -132,6 +153,24 @@ const DashboardPage = () => {
               </div>
             </>
           )}
+        </div>
+        <div className="col-span-full bg-white flex justify-center items-center gap-8 rounded-lg relative py-8">
+          <h3 className="font-semibold uppercase text-sm tracking-tighter">
+            Daily Revenue
+          </h3>
+          <LineChart width={800} height={400} data={salesData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="revenue"
+              name="Revenue"
+              stroke="#8884d8"
+            />
+          </LineChart>
         </div>
       </div>
     </section>

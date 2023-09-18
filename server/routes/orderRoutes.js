@@ -15,6 +15,7 @@ router.use(authController.restrictTo("admin"));
 
 router.get("/top-selling", orderController.topSellingProduct);
 router.get("/revenue", orderController.revenue);
+router.get("/dailyRevenue", orderController.dailyRevenue);
 
 router
   .route("/:id")

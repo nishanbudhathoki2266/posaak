@@ -132,3 +132,20 @@ exports.revenue = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.dailyRevenue = catchAsync(async (req, res, next) => {
+  const dailyRevenue = await Order.aggregate([
+    {
+      $group: {
+        _id: "$orderDate",
+        totalRevenue: { $sum: "$totalPrice" },
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    data: {
+      dailyRevenue,
+    },
+  });
+});
