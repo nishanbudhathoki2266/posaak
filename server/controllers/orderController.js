@@ -141,6 +141,11 @@ exports.dailyRevenue = catchAsync(async (req, res, next) => {
         totalRevenue: { $sum: "$totalPrice" },
       },
     },
+    {
+      $sort: {
+        _id: 1,
+      },
+    },
   ]);
 
   res.status(200).json({
