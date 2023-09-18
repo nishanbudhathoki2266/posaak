@@ -19,6 +19,8 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
+  BarChart,
+  Bar,
 } from "recharts";
 
 // Function to generate a random color
@@ -156,9 +158,9 @@ const DashboardPage = () => {
         </div>
         <div className="col-span-full bg-white flex justify-center items-center gap-8 rounded-lg relative py-8">
           <h3 className="font-semibold uppercase text-sm tracking-tighter">
-            Daily Revenue
+            Daily Revenue (Line Graph)
           </h3>
-          <LineChart width={800} height={400} data={salesData}>
+          <LineChart width={1200} height={400} data={salesData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
@@ -171,6 +173,19 @@ const DashboardPage = () => {
               stroke="#8884d8"
             />
           </LineChart>
+        </div>
+        <div className="col-span-full bg-white flex justify-center items-center gap-8 rounded-lg relative py-8">
+          <h3 className="font-semibold uppercase text-sm tracking-tighter">
+            Daily Revenue (Bar Graph)
+          </h3>
+          <BarChart width={1200} height={400} data={salesData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="date" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="revenue" fill="#8884d8" name="Revenue" />
+          </BarChart>
         </div>
       </div>
     </section>
