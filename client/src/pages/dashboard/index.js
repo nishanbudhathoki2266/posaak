@@ -93,12 +93,15 @@ const DashboardPage = () => {
         />
 
         <div className="bg-white col-span-2 rounded-lg h-96 flex justify-center items-center pb-8">
+          <h3 className="font-semibold uppercase text-sm tracking-tighter">
+            Products Per Category
+          </h3>
           <PieChart width={400} height={400}>
             <Pie
               dataKey="value"
               isAnimationActive={false}
               data={graphData}
-              fill="#8884d8" // the separator color
+              fill="#8884d8"
             >
               {graphData.map((entry, index) => {
                 return <Cell key={`cell-${index}`} fill={entry.color} />;
