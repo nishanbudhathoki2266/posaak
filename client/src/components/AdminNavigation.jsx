@@ -14,7 +14,7 @@ function AdminNavigation() {
         <li className="hover:bg-gray-100 px-4 py-2">
           <Link
             href="/dashboard"
-            className="text-lg font-semibold text-gray-500 inline-flex items-center gap-4"
+            className="text-xl font-semibold text-gray-500 inline-flex items-center gap-4"
           >
             <AiFillHome /> Home
           </Link>
@@ -22,7 +22,7 @@ function AdminNavigation() {
         <li className="hover:bg-gray-100 px-4 py-2">
           <Link
             href="/dashboard/orders"
-            className="text-lg font-semibold text-gray-500 inline-flex items-center gap-4"
+            className="text-xl font-semibold text-gray-500 inline-flex items-center gap-4"
           >
             <BsFillCartFill className="font-bold" /> Orders
           </Link>
@@ -30,7 +30,7 @@ function AdminNavigation() {
         <li className="hover:bg-gray-100 px-4 py-2">
           <Link
             href="#"
-            className="text-lg font-semibold text-gray-500 inline-flex items-center gap-4"
+            className="text-xl font-semibold text-gray-500 inline-flex items-center gap-4"
           >
             <BsFillBagFill /> Products
           </Link>
