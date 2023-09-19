@@ -81,7 +81,7 @@ const DashboardPage = () => {
   return (
     <section className="p-6">
       <Heading>Dashboard</Heading>
-      <div className="grid gap-2 lg:gap-6 grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-2 overflow-x-scroll grid-cols-2 lg:grid-cols-4">
         <DashboardStatsCard
           icon={
             <MdDeliveryDining className="text-5xl text-red-400 font-extralight rounded-full" />
@@ -115,7 +115,7 @@ const DashboardPage = () => {
           text={!products ? "..." : products.results}
         />
 
-        <div className="bg-white col-span-2 rounded-lg h-96 flex justify-center items-center pb-8">
+        <div className="bg-white col-span-2 overflow-scroll flex-col lg:flex-row rounded-lg h-96 flex justify-center items-center pb-8">
           <h3 className="font-semibold uppercase text-sm tracking-tighter">
             Products Per Category
           </h3>
@@ -156,11 +156,11 @@ const DashboardPage = () => {
             </>
           )}
         </div>
-        <div className="col-span-full bg-white flex justify-center items-center gap-8 rounded-lg relative py-8">
+        <div className="col-span-full bg-white overflow-x-scroll flex flex-col xl:flex-row justify-center items-center w-full gap-8 rounded-lg relative py-8">
           <h3 className="font-semibold uppercase text-sm tracking-tighter">
             Daily Revenue (Line Graph)
           </h3>
-          <LineChart width={1200} height={400} data={salesData}>
+          <LineChart width={800} height={400} data={salesData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
@@ -170,21 +170,21 @@ const DashboardPage = () => {
               type="monotone"
               dataKey="revenue"
               name="Revenue"
-              stroke="#8884d8"
+              stroke="#166534"
             />
           </LineChart>
         </div>
-        <div className="col-span-full bg-white flex justify-center items-center gap-8 rounded-lg relative py-8">
+        <div className="col-span-full bg-white overflow-x-scroll flex flex-col xl:flex-row justify-center items-center gap-8 rounded-lg relative py-8">
           <h3 className="font-semibold uppercase text-sm tracking-tighter">
             Daily Revenue (Bar Graph)
           </h3>
-          <BarChart width={1200} height={400} data={salesData}>
+          <BarChart width={800} height={400} data={salesData}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="revenue" fill="#8884d8" name="Revenue" />
+            <Bar dataKey="revenue" fill="#60a5fa" name="Revenue" />
           </BarChart>
         </div>
       </div>
