@@ -137,7 +137,9 @@ exports.dailyRevenue = catchAsync(async (req, res, next) => {
   const dailyRevenue = await Order.aggregate([
     {
       $group: {
-        _id: "$orderDate",
+        _id: {
+          $dateToString: { format: "%Y-%m-%d", date: "$orderDate" },
+        },
         totalRevenue: { $sum: "$totalPrice" },
       },
     },
