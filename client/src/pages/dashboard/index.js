@@ -81,7 +81,7 @@ const DashboardPage = () => {
   return (
     <section className="p-6">
       <Heading>Dashboard</Heading>
-      <div className="grid gap-2 overflow-x-scroll grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-2 grid-cols-2 lg:grid-cols-4">
         <DashboardStatsCard
           icon={
             <MdDeliveryDining className="text-5xl text-red-400 font-extralight rounded-full" />
@@ -115,7 +115,7 @@ const DashboardPage = () => {
           text={!products ? "..." : products.results}
         />
 
-        <div className="bg-white col-span-2 overflow-scroll flex-col lg:flex-row rounded-lg h-96 flex justify-center items-center pb-8">
+        <div className="bg-white col-span-2 overflow-x-scroll flex-col lg:flex-row rounded-lg h-96 flex justify-center items-center pb-8">
           <h3 className="font-semibold uppercase text-sm tracking-tighter">
             Products Per Category
           </h3>
