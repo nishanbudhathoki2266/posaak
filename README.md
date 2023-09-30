@@ -23,6 +23,13 @@ This is an eCommerce site for a fictional store named 'Posaak', built with Next.
 - Node.js
 - Tailwind CSS
 
+## Major front end libraries
+- Recharts -> for data visualization with charts
+- SWR -> for maintaining remote state in admin dashboard
+- React-hot-toast -> for some toasts and notifications
+- Formik & Yup -> for form validations
+- Redux toolkit & Redux persist -> for maintaining and persisting global states
+
 ## Some Demo
 
 Landing Page
