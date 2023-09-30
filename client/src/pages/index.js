@@ -7,6 +7,7 @@ import ShopByCategory from "@/components/ShopByCategory";
 import { getAllCategories, getFeaturedProducts } from "@/utils/api";
 import Gallery from "@/components/Gallery";
 import AppOptions from "@/components/AppOptions";
+import { useState } from "react";
 
 export default function HomePage(props) {
   // Error handling
@@ -14,6 +15,7 @@ export default function HomePage(props) {
 
   // If no error
   const { featuredProducts, categories } = props;
+
   return (
     <section className="max-w-[1440px] mx-auto px-4 py-8">
       <Hero />

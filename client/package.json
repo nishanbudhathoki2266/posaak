@@ -22,7 +22,6 @@
     "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.1.2",
-    "react-table": "^7.8.0",
     "recharts": "^2.8.0",
     "redux-persist": "^6.0.0",
     "reduxt": "^0.0.5",

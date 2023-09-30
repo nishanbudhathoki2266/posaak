@@ -183,6 +183,25 @@ const getMyOrders = async (headers) => {
   return data;
 };
 
+const deliverAnOrder = async (orderId, headers) => {
+  const response = await fetch(
+    `http://localhost:8080/api/v1/orders/${orderId}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify({ isDelivered: true }),
+      headers: { ...headers, "Content-Type": "application/json" },
+    }
+  );
+
+  const data = await response.json();
+
+  if (!data.status === "success") {
+    throw new Error(data.message);
+  }
+
+  return data;
+};
+
 export {
   getFeaturedProducts,
   getProductById,
@@ -196,4 +215,5 @@ export {
   updateMyPassword,
   createOrder,
   getMyOrders,
+  deliverAnOrder,
 };
