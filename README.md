@@ -41,12 +41,6 @@ Sign up Form
 Login up Form
 ![Login Form](image-7.png)
 
-Hero Section
-![Hero Section](image.png)
-
-Featured Products and Shopy By Category
-![Featured Products and Shop By Category](image-2.png)
-
 User Profile
 ![User Profile](image-3.png)
 
