@@ -29,10 +29,10 @@ function AdminNavigation() {
         </li>
         <li className="hover:bg-gray-100 px-4 py-2">
           <Link
-            href="#"
+            href="/dashboard/products"
             className="text-xl font-semibold text-gray-500 inline-flex items-center gap-4"
           >
-            <BsFillBagFill /> Products
+            <BsFillBagFill /> Add Products
           </Link>
         </li>
       </ul>
