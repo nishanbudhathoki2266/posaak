@@ -23,12 +23,12 @@ const MyOrdersPage = () => {
         Authorization: `Bearer ${token ? token : ""}`,
       });
 
-      setIsLoading(false);
       if (response.status === "success") {
         setOrders(response.data.orders);
       } else {
         toast.error(response.message);
       }
+      setIsLoading(false);
     }
     fetchOrders();
   }, []);

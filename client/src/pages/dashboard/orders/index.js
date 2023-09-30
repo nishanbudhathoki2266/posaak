@@ -18,12 +18,12 @@ function OrdersPage() {
     const response = await deliverAnOrder(id, {
       Authorization: `Bearer ${token ? token : ""}`,
     });
-    setIsLoading(false);
     if (response.status === "success") {
       toast.success("Changed to delivered successfully!");
     } else {
       toast.error(response.message);
     }
+    setIsLoading(false);
   };
 
   return (
