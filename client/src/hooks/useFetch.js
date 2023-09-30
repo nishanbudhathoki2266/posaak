@@ -5,7 +5,7 @@ function useFetch(url, token) {
   const { data, error } = useSWR(
     [url, token],
     ([url, token]) => fetchData(url, token),
-    { refreshInterval: 1 }
+    { refreshInterval: 500 }
   );
 
   return { data, error };
